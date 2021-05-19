@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"crystalsummer.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "4b921942"
+    }); 
+  daovoice('update');
+  </script>
+
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="高德地图常用操作">
+<meta property="og:url" content="http://crystalsummer.gitee.io/2020/03/02/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Crystal&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2019/05/14/21/50/storytelling-4203628_960_720.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/01/07/xV7iFSN4PWgLKEd.gif">
+<meta property="og:image" content="https://i.loli.net/2021/03/25/xLJhy7smC3znqac.gif">
+<meta property="og:image" content="https://i.loli.net/2021/03/29/Huj3wtYGFhx7f16.png">
+<meta property="og:image" content="https://i.loli.net/2020/12/21/Izk5a9ycxuCEVtZ.gif">
+<meta property="og:image" content="https://i.loli.net/2020/12/21/RdhqOuo1GbyC8FN.gif">
+<meta property="article:published_time" content="2020-03-02T07:21:15.000Z">
+<meta property="article:modified_time" content="2021-04-27T02:01:25.966Z">
+<meta property="article:author" content="Crystal">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="map">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2019/05/14/21/50/storytelling-4203628_960_720.jpg">
+
+<link rel="canonical" href="http://crystalsummer.gitee.io/2020/03/02/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>高德地图常用操作 | Crystal's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Crystal's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Crystal's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/crystal-summer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://crystalsummer.gitee.io/2020/03/02/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.png">
+      <meta itemprop="name" content="Crystal">
+      <meta itemprop="description" content="Only for recording life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crystal's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高德地图常用操作
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">posted</span>
+
+              <time title="创建时间：2020-03-02 15:21:15" itemprop="dateCreated datePublished" datetime="2020-03-02T15:21:15+08:00">2020-03-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/map/" itemprop="url" rel="index"><span itemprop="name">map</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="count">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">count：</span>
+              <span>24k</span>
+            </span>
+            <span class="post-meta-item" title="readingTime">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">readingTime &asymp;</span>
+              <span>22 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://cdn.pixabay.com/photo/2019/05/14/21/50/storytelling-4203628_960_720.jpg" alt=""></p>
+<a id="more"></a>
+<h1 id="初始化地图"><a href="#初始化地图" class="headerlink" title="初始化地图"></a>初始化地图</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">let amap &#x3D; null</span><br><span class="line">export const initAmap &#x3D; (id, opt)&#x3D;&gt; &#123;</span><br><span class="line">  amap &#x3D; new AMap.Map(</span><br><span class="line">    id,</span><br><span class="line">    Object.assign(</span><br><span class="line">      &#123;</span><br><span class="line">        resizeEnable: true,</span><br><span class="line">        center: [119.891, 28.3299], &#x2F;&#x2F; 中心点坐标</span><br><span class="line">        mapStyle: &#39;amap:&#x2F;&#x2F;styles&#x2F;d5364a675861fbc8e08d91b93773a5d5&#39;,</span><br><span class="line">        viewMode: &#39;3D&#39;,</span><br><span class="line">        zoom: 11,</span><br><span class="line">        pitch: 50</span><br><span class="line">      &#125;,</span><br><span class="line">      opt</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  return amap</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3D楼宇"><a href="#3D楼宇" class="headerlink" title="3D楼宇"></a>3D楼宇</h1><p><img src="https://i.loli.net/2021/01/07/xV7iFSN4PWgLKEd.gif" alt=""></p>
+<h2 id="官方示例"><a href="#官方示例" class="headerlink" title="官方示例"></a>官方示例</h2><ol>
+<li><a href="https://lbs.amap.com/api/javascript-api/guide/object3d/mesh" target="_blank" rel="noopener"><strong>网格Mesh</strong></a></li>
+<li><a href="https://lbs.amap.com/api/javascript-api/example/object3d-base/event" target="_blank" rel="noopener"><strong>Object3D 的拾取</strong></a></li>
+<li><a href="https://lbs.amap.com/api/javascript-api/example/mesh/mesh-texture" target="_blank" rel="noopener"><strong>给 Mesh 添加纹理</strong></a></li>
+</ol>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><ol>
+<li><p>获取楼宇信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1、初始化地图</span><br><span class="line">this.map &#x3D; initAmap(&#39;bigScreen&#39;, &#123;</span><br><span class="line">    resizeEnable: true,</span><br><span class="line">    center: [119.865674, 28.448911],</span><br><span class="line">    zoom: 16.5,</span><br><span class="line">    pitch: 90,</span><br><span class="line">    viewMode: &#39;3D&#39;,</span><br><span class="line">    mapStyle: &#39;amap:&#x2F;&#x2F;styles&#x2F;fc35552908a5c4f34b7330621230b0bd&#39;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 2、获取楼宇信息并渲染楼宇</span><br><span class="line">getFloorInfo() &#123;</span><br><span class="line">    getLayoutList(&#123; parkId: this.parkId &#125;).then(res &#x3D;&gt; &#123;</span><br><span class="line">        this.floorInfo &#x3D; res || []</span><br><span class="line">        &#x2F;&#x2F; 创建楼宇</span><br><span class="line">        this.buildingInfo &#x3D; newBuildings(this.floorInfo)</span><br><span class="line">        &#x2F;&#x2F; 选中楼层更换图片</span><br><span class="line">        this.map.on(&#39;click&#39;, (ev) &#x3D;&gt; &#123;</span><br><span class="line">            let pixel &#x3D; ev.pixel</span><br><span class="line">            let px &#x3D; new AMap.Pixel(pixel.x, pixel.y)</span><br><span class="line">            let obj &#x3D; this.map.getObject3DByContainerPos(px, [this.buildingInfo.floor3Dlayer], false) || &#123;&#125;</span><br><span class="line">            let object &#x3D; obj.object</span><br><span class="line">            let covering &#x3D; this.buildingInfo.coverings.find((cu) &#x3D;&gt; &#123;</span><br><span class="line">                return cu &#x3D;&#x3D;&#x3D; object</span><br><span class="line">            &#125;)</span><br><span class="line">            if (covering) &#123;</span><br><span class="line">                updateCovering(covering)</span><br><span class="line">                this.entParam.parkLayoutId &#x3D; covering.dataInfo.areaInfo.id</span><br><span class="line">                this.entParam.floorIds &#x3D; covering.dataInfo.floorInfo.id</span><br><span class="line">                this.floorName &#x3D; covering.dataInfo.buildingInfo.name + &#39; &gt; &#39; + covering.dataInfo.areaInfo.name + &#39; &gt; &#39; + covering.dataInfo.floorInfo.name</span><br><span class="line">                this.geEntData(1)</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                updateCovering()</span><br><span class="line">                this.entParam.parkLayoutId &#x3D; null</span><br><span class="line">                this.entParam.floorIds &#x3D; null</span><br><span class="line">                this.floorName &#x3D; null</span><br><span class="line">                this.geEntData(1)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 楼宇信息</span><br><span class="line">this.floorInfo &#x3D; [</span><br><span class="line">    id:41,name:&quot;1区&quot;,</span><br><span class="line">    children:[</span><br><span class="line">        &#123;</span><br><span class="line">            id:42,name:&quot;3号楼&quot;,</span><br><span class="line">            children:[</span><br><span class="line">                &#123;id:29,name:&quot;1楼&quot;&#125;,</span><br><span class="line">                &#123;id:30,name:&quot;2楼&quot;&#125;,</span><br><span class="line">                &#123;id:31,name:&quot;3楼&quot;&#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,&#123;</span><br><span class="line">            id:43,name:&quot;5号楼&quot;,</span><br><span class="line">            children:[</span><br><span class="line">                &#123;id:32,name:&quot;1楼&quot;&#125;,</span><br><span class="line">                &#123;id:33,name:&quot;2楼&quot;&#125;,</span><br><span class="line">                &#123;id:34,name:&quot;3楼&quot;&#125;,</span><br><span class="line">                &#123;id:35,name:&quot;4楼&quot;&#125;,</span><br><span class="line">                &#123;id:36,name:&quot;5楼&quot;&#125;,</span><br><span class="line">                &#123;id:37,name:&quot;6楼&quot;&#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建楼宇方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 电子商务园经纬度数据</span><br><span class="line">const buildingPloyline &#x3D; [</span><br><span class="line">  [[119.864169, 28.437501], [119.864508, 28.438084], [119.865504, 28.437583], [119.865206, 28.436992], [119.864171, 28.437514]],</span><br><span class="line">  [[119.863916, 28.437046], [119.864156, 28.437453], [119.865163, 28.436957], [119.864896, 28.43653], [119.863916, 28.437046]]]</span><br><span class="line">let floor3Dlayer &#x3D; null  &#x2F;&#x2F; 3d图层</span><br><span class="line">let coverings &#x3D; [] &#x2F;&#x2F; 楼层集合</span><br><span class="line">import floorImg from &#39;@&#x2F;assets&#x2F;images&#x2F;map-floor-unchoose.png&#39; &#x2F;&#x2F; 楼层贴图</span><br><span class="line">import floorChoosedImg  from &#39;@&#x2F;assets&#x2F;images&#x2F;map-floor-choosed.png&#39; &#x2F;&#x2F; 选中楼层贴图</span><br><span class="line">import mapLight from &#39;@&#x2F;assets&#x2F;images&#x2F;map-floor-light.png&#39; &#x2F;&#x2F; 楼顶光照贴图</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 创建楼宇</span><br><span class="line"> * @param &#123;Array&#125; floorInfo 楼层数据</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const newBuildings &#x3D; (floorInfo &#x3D; []) &#x3D;&gt; &#123;</span><br><span class="line">  floor3Dlayer &#x3D; new AMap.Object3DLayer()</span><br><span class="line">  amap.add(floor3Dlayer)</span><br><span class="line">  if (floorInfo &amp;&amp; floorInfo.length &gt; 0) &#123;</span><br><span class="line">    let area &#x3D; floorInfo[0].children || []</span><br><span class="line">    area.map((curr, index) &#x3D;&gt; &#123;</span><br><span class="line">      let path &#x3D; buildingPloyline[index]</span><br><span class="line">      let floor &#x3D; curr.children || []</span><br><span class="line">      if (index &lt;&#x3D; 1) &#123;</span><br><span class="line">        &#x2F;&#x2F; 加一层高度为0的楼宇作为底层</span><br><span class="line">        addFloorCoverings(path, 0, 0, false)</span><br><span class="line">        floor.map((cu, i) &#x3D;&gt; &#123;</span><br><span class="line">          &#x2F;&#x2F; 各层楼宇-只设置侧面</span><br><span class="line">          addFloorCoverings(path, 300, i, true, &#123; buildingInfo: floorInfo[0], areaInfo: curr, floorInfo: cu &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        &#x2F;&#x2F; 加一层高度为0的楼宇作为顶层</span><br><span class="line">        addFloorCoverings(path, 0, floor.length, true, &#123; buildingInfo: floorInfo[0], areaInfo: curr, floorInfo: curr[floor.length - 1] &#125;)</span><br><span class="line">        &#x2F;&#x2F; 在顶楼加上光图</span><br><span class="line">        if (floor.length &gt;&#x3D; 4) &#123;</span><br><span class="line">          addFloorLight(path, 500, floor.length + 1)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  return &#123; floor3Dlayer, coverings &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 创建楼层</span><br><span class="line"> * @param &#123;Array&#125; path 楼层坐标范围</span><br><span class="line"> * @param &#123;Number&#125; height 楼层高度（大于0）</span><br><span class="line"> * @param &#123;Number&#125; floorIndex 第几层</span><br><span class="line"> * @param &#123;Bollean&#125; pushFlag 是否将当前对象推进coverings</span><br><span class="line"> * @param &#123;Object&#125; data 当前幢、楼层数据</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const addFloorCoverings &#x3D; (path, height &#x3D; 200, floorIndex, pushFlag, data &#x3D; &#123; buildingInfo: &#123;&#125;, areaInfo: &#123;&#125;, floorInfo: &#123;&#125;&#125;) &#x3D;&gt; &#123;</span><br><span class="line">  var bounds &#x3D; path.map(function(p) &#123;</span><br><span class="line">    return new AMap.LngLat(p[0], p[1])</span><br><span class="line">  &#125;)</span><br><span class="line">  &#x2F;&#x2F; 创建 Object3D.Mesh 对象</span><br><span class="line">  var covering &#x3D; new AMap.Object3D.Mesh()</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 楼层贴图</span><br><span class="line">  covering.textures.push(floorImg)</span><br><span class="line"></span><br><span class="line">  covering.dataInfo &#x3D; &#123; ...data &#125;</span><br><span class="line"></span><br><span class="line">  if (pushFlag) &#123;</span><br><span class="line">    coverings.push(covering)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  var geometry &#x3D; covering.geometry</span><br><span class="line">  var vertices &#x3D; geometry.vertices</span><br><span class="line">  var vertexColors &#x3D; geometry.vertexColors</span><br><span class="line">  var faces &#x3D; geometry.faces</span><br><span class="line">  var vertexLength &#x3D; bounds.length * 2</span><br><span class="line"></span><br><span class="line">  var verArr &#x3D; []</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; var color &#x3D; [0 &#x2F; 255, 224 &#x2F; 255, 220 &#x2F; 255, 0.1]</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 设置侧面</span><br><span class="line">  bounds.forEach((lngLat, index) &#x3D;&gt; &#123;</span><br><span class="line">    var g20 &#x3D; amap.lngLatToGeodeticCoord(lngLat)</span><br><span class="line">    verArr.push([g20.x, g20.y])</span><br><span class="line">    if (height &gt; 0) &#123;</span><br><span class="line">      &#x2F;&#x2F; 构建顶点-底面顶点</span><br><span class="line">      vertices.push(g20.x, g20.y, -floorIndex * height)</span><br><span class="line">      &#x2F;&#x2F; 构建顶点-顶面顶点</span><br><span class="line">      vertices.push(g20.x, g20.y, -(floorIndex + 1) * height)</span><br><span class="line">    &#125; else &#123; &#x2F;&#x2F; 楼宇底层和顶层</span><br><span class="line">      &#x2F;&#x2F; 构建顶点-底面顶点</span><br><span class="line">      vertices.push(g20.x, g20.y, floorIndex &#x3D;&#x3D; 0 ? 0 : -floorIndex * 300)</span><br><span class="line">      &#x2F;&#x2F; 构建顶点-顶面顶点</span><br><span class="line">      vertices.push(g20.x, g20.y, floorIndex &#x3D;&#x3D; 0 ? 0 : -floorIndex * 300)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 设置底面顶点颜色</span><br><span class="line">    &#x2F;&#x2F; vertexColors.push.apply(vertexColors, color)</span><br><span class="line">    &#x2F;&#x2F; 设置顶面顶点颜色</span><br><span class="line">    &#x2F;&#x2F; vertexColors.push.apply(vertexColors, color)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 四个顶点的纹理坐标</span><br><span class="line">    geometry.vertexUVs.push(0, 1)</span><br><span class="line">    geometry.vertexUVs.push(0, 0)</span><br><span class="line">    geometry.vertexUVs.push(1, 1)</span><br><span class="line">    geometry.vertexUVs.push(1, 0)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 设置三角形面</span><br><span class="line">    var bottomIndex &#x3D; index * 2</span><br><span class="line">    var topIndex &#x3D; bottomIndex + 1</span><br><span class="line">    var nextBottomIndex &#x3D; (bottomIndex + 2) % vertexLength</span><br><span class="line">    var nextTopIndex &#x3D; (bottomIndex + 3) % vertexLength</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 侧面三角形1</span><br><span class="line">    faces.push(bottomIndex, topIndex, nextTopIndex)</span><br><span class="line">    &#x2F;&#x2F; 侧面三角形2</span><br><span class="line">    faces.push(bottomIndex, nextTopIndex, nextBottomIndex)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 设置顶面，根据顶点拆分三角形   楼宇底层和顶层的时候才会设置顶面</span><br><span class="line">  if (height &#x3D;&#x3D; 0) &#123;</span><br><span class="line">    var triangles &#x3D; AMap.GeometryUtil.triangulateShape(verArr)</span><br><span class="line">    for (var v &#x3D; 0; v &lt; triangles.length; v +&#x3D; 3) &#123;</span><br><span class="line">      var a &#x3D; triangles[v]</span><br><span class="line">      var b &#x3D; triangles[v + 2]</span><br><span class="line">      var c &#x3D; triangles[v + 1]</span><br><span class="line">      faces.push(a * 2 + 1, b * 2 + 1, c * 2 + 1)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 开启透明度支持</span><br><span class="line">  covering.transparent &#x3D; true</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; backOrFront属性来控制显示正反面，这里我们开启两面</span><br><span class="line">  covering.backOrFront &#x3D; &#39;both&#39;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 添加至 3D 图层</span><br><span class="line">  floor3Dlayer.add(covering)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 更新楼层</span><br><span class="line"> * @param &#123;Object&#125; covering 楼层对象</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const updateCovering &#x3D; (covering) &#x3D;&gt; &#123;</span><br><span class="line">  coverings.forEach(function(cu) &#123;</span><br><span class="line">    updateCoveringImg(cu, floorImg)</span><br><span class="line">  &#125;)</span><br><span class="line">  if (covering) &#123;</span><br><span class="line">    updateCoveringImg(covering, floorChoosedImg)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 更新楼层贴图</span><br><span class="line"> * @param &#123;Object&#125; covering 楼层对象</span><br><span class="line"> * @param &#123;Obect&#125; img 要更新的楼层的贴图</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const updateCoveringImg &#x3D; (covering, img) &#x3D;&gt; &#123;</span><br><span class="line">  covering.textures.splice(0, 1, img)</span><br><span class="line">  covering.needUpdate &#x3D; true</span><br><span class="line">  covering.reDraw()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 创建楼宇顶楼的光照</span><br><span class="line"> * @param &#123;Array&#125; path 楼层坐标范围</span><br><span class="line"> * @param &#123;Number&#125; height 楼层高度（大于0）</span><br><span class="line"> * @param &#123;Number&#125; floorIndex  第几层</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const addFloorLight &#x3D; (path, height, floorIndex) &#x3D;&gt; &#123;</span><br><span class="line">  var bounds &#x3D; path.map(function(p) &#123;</span><br><span class="line">    return new AMap.LngLat(p[0], p[1])</span><br><span class="line">  &#125;)</span><br><span class="line">  &#x2F;&#x2F; 创建 Object3D.Mesh 对象</span><br><span class="line">  var covering &#x3D; new AMap.Object3D.Mesh()</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 楼层贴图</span><br><span class="line">  covering.textures.push(mapLight)</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; coverings.push(covering)</span><br><span class="line"></span><br><span class="line">  var geometry &#x3D; covering.geometry</span><br><span class="line">  var vertices &#x3D; geometry.vertices</span><br><span class="line">  var vertexColors &#x3D; geometry.vertexColors</span><br><span class="line">  var faces &#x3D; geometry.faces</span><br><span class="line">  var vertexLength &#x3D; bounds.length * 2</span><br><span class="line"></span><br><span class="line">  var verArr &#x3D; []</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 设置侧面</span><br><span class="line">  bounds.forEach((lngLat, index) &#x3D;&gt; &#123;</span><br><span class="line">    var g20 &#x3D; amap.lngLatToGeodeticCoord(lngLat)</span><br><span class="line">    verArr.push([g20.x, g20.y])</span><br><span class="line">    &#x2F;&#x2F; 构建顶点-底面顶点</span><br><span class="line">    vertices.push(g20.x, g20.y, -(floorIndex - 1) * 300)</span><br><span class="line">    &#x2F;&#x2F; 构建顶点-顶面顶点-向外扩</span><br><span class="line">    let x &#x3D; g20.x; let y &#x3D; g20.y</span><br><span class="line">    if (index &#x3D;&#x3D; 0 || index &#x3D;&#x3D; 1 || index &#x3D;&#x3D; 4) &#123;</span><br><span class="line">      x &#x3D; x - 300</span><br><span class="line">    &#125;</span><br><span class="line">    if (index &#x3D;&#x3D; 2 || index &#x3D;&#x3D; 3) &#123;</span><br><span class="line">      x &#x3D; x + 300</span><br><span class="line">    &#125;</span><br><span class="line">    vertices.push(x, y, -(floorIndex + 1) * height)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 四个顶点的纹理坐标</span><br><span class="line">    geometry.vertexUVs.push(0, 1)</span><br><span class="line">    geometry.vertexUVs.push(0, 0)</span><br><span class="line">    geometry.vertexUVs.push(1, 1)</span><br><span class="line">    geometry.vertexUVs.push(1, 0)</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 设置三角形面</span><br><span class="line">    var bottomIndex &#x3D; index * 2</span><br><span class="line">    var topIndex &#x3D; bottomIndex + 1</span><br><span class="line">    var nextBottomIndex &#x3D; (bottomIndex + 2) % vertexLength</span><br><span class="line">    var nextTopIndex &#x3D; (bottomIndex + 3) % vertexLength</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 侧面三角形1</span><br><span class="line">    faces.push(bottomIndex, topIndex, nextTopIndex)</span><br><span class="line">    &#x2F;&#x2F; 侧面三角形2</span><br><span class="line">    faces.push(bottomIndex, nextTopIndex, nextBottomIndex)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 开启透明度支持</span><br><span class="line">  covering.transparent &#x3D; true</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; backOrFront属性来控制显示正反面，这里我们开启两面</span><br><span class="line">  covering.backOrFront &#x3D; &#39;both&#39;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 添加至 3D 图层</span><br><span class="line">  floor3Dlayer.add(covering)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 清空3d图层</span><br><span class="line">export const clearFloor3Dlayer &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  floor3Dlayer.clear()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>代码地址：<a href="https://gitee.com/crystalSummer/record-code/blob/master/largeVisualScreen/liandu/map/index.js" target="_blank" rel="noopener"><strong>3D贴图楼宇</strong></a></p>
+<h1 id="绘制行政区"><a href="#绘制行政区" class="headerlink" title="绘制行政区"></a>绘制行政区</h1><h2 id="省市区县的行政区"><a href="#省市区县的行政区" class="headerlink" title="省市区县的行政区"></a>省市区县的行政区</h2><p><img src="https://i.loli.net/2021/03/25/xLJhy7smC3znqac.gif" alt=""><br>官网示例：</p>
+<ol>
+<li><a href="https://lbs.amap.com/demo/javascript-api/example/district-search/draw-district-boundaries" target="_blank" rel="noopener"><strong>行政区边界查询</strong></a></li>
+<li><a href="https://lbs.amap.com/demo/javascript-api/example/mesh/obj3d-wall" target="_blank" rel="noopener"><strong>垂面 Wall</strong></a></li>
+<li><a href="https://lbs.amap.com/demo/javascript-api/example/line/meshline" target="_blank" rel="noopener"><strong>MeshLine 高度线</strong></a></li>
+<li><a href="https://lbs.amap.com/demo/javascript-api/example/object3d-base/event" target="_blank" rel="noopener"><strong>Object3D 的拾取</strong></a></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 地图对象</span><br><span class="line">let amap &#x3D; null</span><br><span class="line">&#x2F;&#x2F; 行政查询对象</span><br><span class="line">let district &#x3D; null</span><br><span class="line">&#x2F;&#x2F; Object3D对象</span><br><span class="line">let object3Dlayer &#x3D; null</span><br><span class="line">&#x2F;&#x2F; 区域覆盖物数组</span><br><span class="line">let meshes &#x3D; []</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 初始化地图</span><br><span class="line">*&#x2F;</span><br><span class="line">export  const  initAmap &#x3D; function(id) &#123;</span><br><span class="line">    amap &#x3D; new AMap.Map(id, &#123;</span><br><span class="line">        resizeEnable: true,</span><br><span class="line">        center: [119.822398, 30.507198], &#x2F;&#x2F; 中心点坐标</span><br><span class="line">        mapStyle: &#39;amap:&#x2F;&#x2F;styles&#x2F;bc02739e6d7d7bb66dcb092afb438175&#39;,</span><br><span class="line">        viewMode: &#39;3D&#39;,</span><br><span class="line">        zoom: 9.8,</span><br><span class="line">        pitch: 40</span><br><span class="line">    &#125;)</span><br><span class="line">    return amap</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 创建行政查询对象 和 Object3D对象</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const createDistrict &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    district &#x3D; new AMap.DistrictSearch(&#123;</span><br><span class="line">        level: &#39;district&#39;,</span><br><span class="line">        showbiz: false,</span><br><span class="line">        extensions: &#39;all&#39;,</span><br><span class="line">        subdistrict: 1</span><br><span class="line">    &#125;)</span><br><span class="line">    if (amap &amp;&amp; Object.keys(amap).length &gt; 0) &#123;</span><br><span class="line">        object3Dlayer &#x3D; new AMap.Object3DLayer()</span><br><span class="line">        amap.add(object3Dlayer)</span><br><span class="line">        return object3Dlayer</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 获取当前行政区的信息（经纬度，中心点等）</span><br><span class="line"> * @param &#123;*&#125; name 行政地区</span><br><span class="line"> * @param &#123;*&#125; opt 行政查询对象的配置项</span><br><span class="line"> * @param &#123;*&#125; wallOpts 外围立体阴影效果配置项</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const getAreaInfo &#x3D; (name, opts, wallOpts) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 修改行政查询对象的配置项</span><br><span class="line">    if (opts &amp;&amp; Object.keys(opts).length &gt; 0) &#123;</span><br><span class="line">        opts.level &amp;&amp; district.setLevel(opts.level)</span><br><span class="line">        opts.subdistrict &amp;&amp; district.setSubdistrict(opts.subdistrict)</span><br><span class="line">    &#125;</span><br><span class="line">    return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; 根据名字查询经纬度数据</span><br><span class="line">        district.search(name, function(status, result) &#123;</span><br><span class="line">            console.log(result)</span><br><span class="line">            if (status &#x3D;&#x3D; &#39;complete&#39;) &#123;</span><br><span class="line">                if (name &#x3D;&#x3D; &#39;湖州市&#39;) &#123;</span><br><span class="line">                    &#x2F;&#x2F; 立体阴影效果</span><br><span class="line">                    var wall &#x3D; new AMap.Object3D.Wall(&#123;</span><br><span class="line">                        path: result.districtList[0].boundaries,</span><br><span class="line">                        height: wallOpts.height ? wallOpts.height : 5000,</span><br><span class="line">                        color: wallOpts.color ? wallOpts.color : &#39;#12413A&#39;</span><br><span class="line">                    &#125;)</span><br><span class="line">                    wall.backOrFront &#x3D; &#39;back&#39;</span><br><span class="line">                    &#x2F;&#x2F; wall.transparent &#x3D; true</span><br><span class="line">                    object3Dlayer.add(wall)</span><br><span class="line">                &#125;</span><br><span class="line">                resolve(result.districtList[0])</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                reject(result)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> *</span><br><span class="line"> * @param &#123;*&#125; citys 需要渲染的区域列表</span><br><span class="line"> * @param &#123;*&#125; disOpts 行政对象的配置项</span><br><span class="line"> * @param &#123;*&#125; priOpts 棱柱体对象的配置项</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const rendPolygon &#x3D; (citys, disOpts, priOpts) &#x3D;&gt; &#123;</span><br><span class="line">    console.log(citys)</span><br><span class="line">    meshes &#x3D; []</span><br><span class="line">    Promise.all(citys.map(v &#x3D;&gt; &#123;</span><br><span class="line">        return getAreaInfo(v.name, disOpts)</span><br><span class="line">    &#125;)).then(res &#x3D;&gt; &#123; &#x2F;&#x2F; 绘制polygon和polyline</span><br><span class="line">        res.map(item &#x3D;&gt; &#123;</span><br><span class="line">            &#x2F;&#x2F; 区域覆盖物-不规则棱形-此方法没有办法改变棱柱体的颜色</span><br><span class="line">            &#x2F;&#x2F; var prism &#x3D; new AMap.Object3D.Prism(&#123;</span><br><span class="line">            &#x2F;&#x2F;     path: item.boundaries,</span><br><span class="line">            &#x2F;&#x2F;     height: priOpts.height ? priOpts.height : 5000,</span><br><span class="line">            &#x2F;&#x2F;     color: priOpts.color ? priOpts.color : &#39;#0088ffcc&#39;,</span><br><span class="line">            &#x2F;&#x2F;     extData: &#123;</span><br><span class="line">            &#x2F;&#x2F;         name: item.name,</span><br><span class="line">            &#x2F;&#x2F;         center: item.center</span><br><span class="line">            &#x2F;&#x2F;     &#125;</span><br><span class="line">            &#x2F;&#x2F; &#125;)</span><br><span class="line">            &#x2F;&#x2F; prism.transparent &#x3D; true</span><br><span class="line">            &#x2F;&#x2F; object3Dlayer.add(prism)</span><br><span class="line">            &#x2F;&#x2F; prisms.push(prism)</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 区域覆盖物-网格</span><br><span class="line">            let paths &#x3D; JSON.parse(JSON.stringify(item.boundaries[0])).map(cu &#x3D;&gt; &#123;</span><br><span class="line">                return cu instanceof Array ? new AMap.LngLat(cu[0], cu[1]) : cu</span><br><span class="line">            &#125;)</span><br><span class="line">            var mesh &#x3D; new AMap.Object3D.Mesh()</span><br><span class="line">            meshes.push(mesh)</span><br><span class="line">            var geometry &#x3D; mesh.geometry</span><br><span class="line">            var vertices &#x3D; geometry.vertices</span><br><span class="line">            var vertexColors &#x3D; geometry.vertexColors</span><br><span class="line">            var faces &#x3D; geometry.faces</span><br><span class="line">            var vertexLength &#x3D; paths.length*2</span><br><span class="line">            var verArr &#x3D; []</span><br><span class="line">            &#x2F;&#x2F; 设置侧面</span><br><span class="line">            paths.forEach(function(lngLat, index) &#123;</span><br><span class="line">                var g20 &#x3D; amap.lngLatToGeodeticCoord(lngLat)</span><br><span class="line">                verArr.push([g20.x, g20.y])</span><br><span class="line">                &#x2F;&#x2F; 构建顶点-底面顶点</span><br><span class="line">                vertices.push(g20.x, g20.y, 0)</span><br><span class="line">                &#x2F;&#x2F; 构建顶点-顶面顶点</span><br><span class="line">                &#x2F;&#x2F; vertices.push(g20.x, g20.y, -1000)</span><br><span class="line">                vertices.push(g20.x, g20.y, -1000)</span><br><span class="line">                &#x2F;&#x2F; 设置底面顶点颜色</span><br><span class="line">                vertexColors.push.apply(vertexColors,  priOpts.color ? priOpts.color : [100 &#x2F; 255, 150 &#x2F; 255, 230 &#x2F; 255, 0.9])</span><br><span class="line">                &#x2F;&#x2F; 设置顶面顶点颜色</span><br><span class="line">                vertexColors.push.apply(vertexColors,  priOpts.color ? priOpts.color : [100 &#x2F; 255, 150 &#x2F; 255, 230 &#x2F; 255, 0.9])</span><br><span class="line">                &#x2F;&#x2F; 设置三角形面</span><br><span class="line">                var bottomIndex &#x3D; index * 2</span><br><span class="line">                var topIndex &#x3D; bottomIndex + 1</span><br><span class="line">                var nextBottomIndex &#x3D; (bottomIndex + 2) % vertexLength</span><br><span class="line">                var nextTopIndex &#x3D; (bottomIndex + 3) % vertexLength</span><br><span class="line"></span><br><span class="line">                &#x2F;&#x2F; 侧面三角形1</span><br><span class="line">                faces.push(bottomIndex, topIndex, nextTopIndex)</span><br><span class="line">                &#x2F;&#x2F; 侧面三角形2</span><br><span class="line">                faces.push(bottomIndex, nextTopIndex, nextBottomIndex)</span><br><span class="line">            &#125;)</span><br><span class="line">            &#x2F;&#x2F; 设置顶面，根据顶点拆分三角形</span><br><span class="line">            var triangles &#x3D; AMap.GeometryUtil.triangulateShape(verArr)</span><br><span class="line">            for (var v &#x3D; 0; v &lt; triangles.length; v +&#x3D; 3) &#123;</span><br><span class="line">                var a &#x3D; triangles[v]</span><br><span class="line">                var b &#x3D; triangles[v + 2]</span><br><span class="line">                var c &#x3D; triangles[v + 1]</span><br><span class="line">                faces.push(a * 2 + 1, b * 2 + 1, c * 2 + 1)</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F; 绑定额外的参数</span><br><span class="line">            mesh.extData &#x3D; &#123;</span><br><span class="line">                name: item.name,</span><br><span class="line">                center: item.center</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F; 添加至 3D 图层</span><br><span class="line">            object3Dlayer.add(mesh)</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 设置文字</span><br><span class="line">            &#x2F;&#x2F; var text &#x3D; new AMap.Text(&#123;</span><br><span class="line">            &#x2F;&#x2F;     text: item.name,</span><br><span class="line">            &#x2F;&#x2F;     &#x2F;&#x2F; verticalAlign: &#39;bottom&#39;,</span><br><span class="line">            &#x2F;&#x2F;     position: [item.center.lng, item.center.lat],</span><br><span class="line">            &#x2F;&#x2F;     &#x2F;&#x2F; height: 5000,</span><br><span class="line">            &#x2F;&#x2F;     style: &#123;</span><br><span class="line">            &#x2F;&#x2F;         &#39;background-color&#39;: &#39;transparent&#39;,</span><br><span class="line">            &#x2F;&#x2F;         &#39;border&#39;: &#39;none&#39;,</span><br><span class="line">            &#x2F;&#x2F;         &#39;color&#39;: &#39;white&#39;,</span><br><span class="line">            &#x2F;&#x2F;         &#39;font-size&#39;: &#39;0.14rem&#39;,</span><br><span class="line">            &#x2F;&#x2F;         &#39;font-weight&#39;: 600</span><br><span class="line">            &#x2F;&#x2F;     &#125;</span><br><span class="line">            &#x2F;&#x2F; &#125;)</span><br><span class="line">            &#x2F;&#x2F; text.setMap(amap)</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 添加高度线</span><br><span class="line">            var meshLine &#x3D; new AMap.Object3D.MeshLine(&#123;</span><br><span class="line">                path: item.boundaries[0],</span><br><span class="line">                height: 1000,</span><br><span class="line">                color: &#39;#12413A&#39;,</span><br><span class="line">                width: 1</span><br><span class="line">            &#125;)</span><br><span class="line">            meshLine[&#39;backOrFront&#39;] &#x3D; &#39;front&#39;</span><br><span class="line">            &#x2F;&#x2F; meshLine.transparent &#x3D; true</span><br><span class="line">            object3Dlayer.add(meshLine)</span><br><span class="line">        &#125;)</span><br><span class="line">        return meshes</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 点图添加点击事件-高亮当前网格</span><br><span class="line"> * @param &#123;Array&#125; orColor 网格原有颜色</span><br><span class="line"> * @param &#123;Array&#125; upColor 网格高亮颜色</span><br><span class="line"> * @param &#123;String&#125; name 地图当前区域</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const findMesh &#x3D; (orColor, upColor, name) &#x3D;&gt; &#123;</span><br><span class="line">    if (name) &#123;</span><br><span class="line">        &#x2F;&#x2F; 清空之前的高亮</span><br><span class="line">        clearHighLight(orColor)</span><br><span class="line">        var meshe &#x3D; meshes.filter(function(cu) &#123;</span><br><span class="line">            return cu.extData.name &#x3D;&#x3D; name</span><br><span class="line">        &#125;) || []</span><br><span class="line">        &#x2F;&#x2F; 重置颜色</span><br><span class="line">        let extData &#x3D; null</span><br><span class="line">        meshe.forEach(function(item) &#123;</span><br><span class="line">            var vertexColors &#x3D; item.geometry.vertexColors</span><br><span class="line">            var len &#x3D; vertexColors.length</span><br><span class="line">            for (var i &#x3D; 0; i &lt; len &#x2F; 4; i++) &#123;</span><br><span class="line">                var r &#x3D; upColor[0]</span><br><span class="line">                var g &#x3D; upColor[1]</span><br><span class="line">                var b &#x3D; upColor[2]</span><br><span class="line">                var a &#x3D; upColor[3]</span><br><span class="line">                &#x2F;&#x2F; 不能重新赋值，只允许修改内容</span><br><span class="line">                vertexColors.splice(i * 4, 4, r, g, b, a)</span><br><span class="line">            &#125;</span><br><span class="line">            item.needUpdate &#x3D; true</span><br><span class="line">            item.reDraw()</span><br><span class="line">            extData &#x3D; item.extData</span><br><span class="line">        &#125;)</span><br><span class="line">        return extData</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 清空之前的高亮</span><br><span class="line"> * @param &#123;Array&#125; orColor 网格原有颜色</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const clearHighLight &#x3D; (orColor) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 在高亮当前区域之前，先将之前高亮去掉</span><br><span class="line">    meshes.map(item &#x3D;&gt; &#123;</span><br><span class="line">        var vertexColors &#x3D; item.geometry.vertexColors</span><br><span class="line">        var len &#x3D; vertexColors.length</span><br><span class="line">        for (var i &#x3D; 0; i &lt; len &#x2F; 4; i++) &#123;</span><br><span class="line">            var r &#x3D; orColor[0]</span><br><span class="line">            var g &#x3D; orColor[1]</span><br><span class="line">            var b &#x3D; orColor[2]</span><br><span class="line">            var a &#x3D; orColor[3]</span><br><span class="line">            &#x2F;&#x2F; 不能重新赋值，只允许修改内容</span><br><span class="line">            vertexColors.splice(i * 4, 4, r, g, b, a)</span><br><span class="line">        &#125;</span><br><span class="line">        item.needUpdate &#x3D; true</span><br><span class="line">        item.reDraw()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 打开信息窗口</span><br><span class="line"> * @param &#123;Object&#125; data 信息窗口要展示的数据</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const openInfoWindow &#x3D; (data) &#x3D;&gt; &#123;</span><br><span class="line">    let content &#x3D; &#96;&lt;div class&#x3D;&quot;info-window&quot;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;info-window-title&quot;&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;title-img&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;title-img&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;title-name&quot;&gt;&#96; + data.name + &#96;&lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;info-window-body&quot;&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;li&quot;&gt;</span><br><span class="line">                &lt;div&gt;贷款户数&lt;&#x2F;div&gt;</span><br><span class="line">                &lt;div&gt;&lt;span&gt;&#96; + (data.countyEnt || 0) + &#96;&lt;&#x2F;span&gt;家&lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;li&quot;&gt;</span><br><span class="line">                &lt;div&gt;贷款金额&lt;&#x2F;div&gt;</span><br><span class="line">                &lt;div&gt;&lt;span&gt;&#96; + (data.loanRest || 0) + &#96;&lt;&#x2F;span&gt;万元&lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;li&quot;&gt;</span><br><span class="line">                &lt;div&gt;支行数量&lt;&#x2F;div&gt;</span><br><span class="line">                &lt;div&gt;&lt;span&gt;&#96; + (data.sponsorCount || 0) + &#96;&lt;&#x2F;span&gt;家&lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;&#96;</span><br><span class="line">    var infoWindow &#x3D; new AMap.InfoWindow(&#123;</span><br><span class="line">        isCustom: true,  &#x2F;&#x2F; 使用自定义窗体</span><br><span class="line">        content: content,</span><br><span class="line">        offset: new AMap.Pixel(-200, 40)</span><br><span class="line">    &#125;)</span><br><span class="line">    infoWindow.open(amap, data.center)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 关闭信息窗口</span><br><span class="line">export const closeInfoWindow &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    amap.clearInfoWindow()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 清空地图上的所有</span><br><span class="line">export const clearMap &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    amap.clearInfoWindow()</span><br><span class="line">    amap.clearMap()</span><br><span class="line">    object3Dlayer.clear(meshes)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码地址：<a href="https://gitee.com/crystalSummer/record-code/blob/master/largeVisualScreen/huzhouBank/map/index.js" target="_blank" rel="noopener"><strong>3d 立体 区县 地图</strong></a></p>
+<h2 id="区县级以下（街道）的行政区"><a href="#区县级以下（街道）的行政区" class="headerlink" title="区县级以下（街道）的行政区"></a>区县级以下（街道）的行政区</h2><p><img src="https://i.loli.net/2021/03/29/Huj3wtYGFhx7f16.png" alt=""><br>    街道的经纬度数据从官方地图没有办法获取，我这边是产品提供json数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line">import &#123; regionJson &#125; from &#39;..&#x2F;..&#x2F;..&#x2F;static&#x2F;region&#x2F;amap.haining&#39;</span><br><span class="line">import entSelectIcon from &#39;..&#x2F;..&#x2F;assets&#x2F;ent_select_icon.png&#39;</span><br><span class="line"></span><br><span class="line">let amap &#x3D; null</span><br><span class="line">let polygons &#x3D; []</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @description 初始化地图</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const initAmap &#x3D; (id, opt) &#x3D;&gt; &#123;</span><br><span class="line">  amap &#x3D; new AMap.Map(</span><br><span class="line">    id,</span><br><span class="line">    Object.assign(</span><br><span class="line">      &#123;</span><br><span class="line">        resizeEnable: true,</span><br><span class="line">        center: [120.611735528, 30.3497873], &#x2F;&#x2F; 中心点坐标</span><br><span class="line">        mapStyle: &#39;amap:&#x2F;&#x2F;styles&#x2F;4129d18680c75412409bf8e4de8ecc81&#39;,</span><br><span class="line">        viewMode: &#39;3D&#39;,</span><br><span class="line">        zoom: 10.99,</span><br><span class="line">        pitch: 30,</span><br><span class="line">        features: [&#39;bg&#39;, &#39;road&#39;, &#39;building&#39;]</span><br><span class="line">      &#125;,</span><br><span class="line">      opt</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  return amap</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 渲染区域--渲染所有区域或者单独渲染某个区域（下钻）</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const rendPolygon &#x3D; (name) &#x3D;&gt; &#123;</span><br><span class="line">  polygons &#x3D; []</span><br><span class="line">  if (name) &#123;</span><br><span class="line">    let center &#x3D; null; let path &#x3D; null</span><br><span class="line">    regionJson.districts.forEach(item &#x3D;&gt; &#123;</span><br><span class="line">      if (item.name &#x3D;&#x3D;&#x3D; name) &#123;</span><br><span class="line">        center &#x3D; item.center</span><br><span class="line">        path &#x3D; item.polyline</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    const polygon &#x3D; new AMap.Polygon(&#123;</span><br><span class="line">      path: JSON.parse(path),</span><br><span class="line">      fillColor: &#39;rgba(26, 142, 255, 0.3)&#39;,</span><br><span class="line">      cursor: &#39;pointer&#39;,</span><br><span class="line">      strokeColor: &#39;#1AFFF0&#39;,</span><br><span class="line">      strokeOpacity: 1,</span><br><span class="line">      strokeWeight: 2,</span><br><span class="line">      extData: &#123;</span><br><span class="line">        town: name,</span><br><span class="line">        center: center</span><br><span class="line">      &#125;,</span><br><span class="line">      zIndex: 10</span><br><span class="line">    &#125;)</span><br><span class="line">    polygons.push(polygon)</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    regionJson.districts.map((cu, index) &#x3D;&gt; &#123;</span><br><span class="line">      &#x2F;&#x2F; 生成行政区划polygon</span><br><span class="line">      const polygon &#x3D; new AMap.Polygon(&#123;</span><br><span class="line">        path: JSON.parse(cu.polyline),</span><br><span class="line">        fillColor: &#39;rgba(26, 142, 255, 0.3)&#39;,</span><br><span class="line">        cursor: &#39;pointer&#39;,</span><br><span class="line">        strokeColor: &#39;#1AFFF0&#39;,</span><br><span class="line">        strokeOpacity: 1,</span><br><span class="line">        strokeWeight: 2,</span><br><span class="line">        extData: &#123;</span><br><span class="line">          town: cu.name,</span><br><span class="line">          center: cu.center</span><br><span class="line">        &#125;,</span><br><span class="line">        zIndex: 10</span><br><span class="line">      &#125;)</span><br><span class="line">      polygons.push(polygon)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  amap.add(polygons)</span><br><span class="line">  return polygons</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 渲染城市名--渲染所有城市名和单独渲染某一个城市名</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const rendCityName &#x3D; (name) &#x3D;&gt; &#123;</span><br><span class="line">  const textLayer &#x3D; new AMap.LabelsLayer(&#123;</span><br><span class="line">    rejectMapMask: true,</span><br><span class="line">    collision: true,</span><br><span class="line">    animation: true,</span><br><span class="line">    zIndex: 120</span><br><span class="line">  &#125;)</span><br><span class="line">  amap.add(textLayer)</span><br><span class="line">  if (name) &#123;</span><br><span class="line">    let center &#x3D; &#39;&#39;</span><br><span class="line">    regionJson.districts.forEach(item &#x3D;&gt; &#123;</span><br><span class="line">      if (item.name &#x3D;&#x3D;&#x3D; name) &#123;</span><br><span class="line">        center &#x3D; item.center</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    const labelsMarker &#x3D; new AMap.LabelMarker(&#123;</span><br><span class="line">      zooms: [3, 20],</span><br><span class="line">      position: center,</span><br><span class="line">      text: &#123;</span><br><span class="line">        content: name,</span><br><span class="line">        style: &#123;</span><br><span class="line">          fillColor: &#39;white&#39;,</span><br><span class="line">          fontWeight: &#39;normal&#39;,</span><br><span class="line">          fontSize: 14,</span><br><span class="line">          zooms: [3, 20]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    textLayer.add(labelsMarker)</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    regionJson.districts.forEach(item &#x3D;&gt; &#123;</span><br><span class="line">      const labelsMarker &#x3D; new AMap.LabelMarker(&#123;</span><br><span class="line">        zooms: [3, 20],</span><br><span class="line">        position: item.center,</span><br><span class="line">        text: &#123;</span><br><span class="line">          content: item.name,</span><br><span class="line">          style: &#123;</span><br><span class="line">            fillColor: &#39;white&#39;,</span><br><span class="line">            fontWeight: &#39;normal&#39;,</span><br><span class="line">            fontSize: 14,</span><br><span class="line">            zooms: [3, 20]</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">      textLayer.add(labelsMarker)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  return textLayer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码地址：<a href="https://gitee.com/crystalSummer/record-code/blob/master/largeVisualScreen/haining/map/index.js" target="_blank" rel="noopener"><strong>镇街 区域 地图</strong></a></p>
+<h1 id="涟漪散点"><a href="#涟漪散点" class="headerlink" title="涟漪散点"></a>涟漪散点</h1><p><img src="https://i.loli.net/2020/12/21/Izk5a9ycxuCEVtZ.gif" alt=""></p>
+<p>实现原理：使用 AMap.Text 渲染散点，然后给散点添加涟漪样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 散点数据</span><br><span class="line">circleData&#x3D;[</span><br><span class="line">  &#123;</span><br><span class="line">    creditCode: &quot;913300001429396622&quot;,</span><br><span class="line">    entName: &quot;浙江钱江生物化学股份有限公司&quot;,</span><br><span class="line">    lat: &quot;30.5070225407221800&quot;,</span><br><span class="line">    lng: &quot;120.6849546605598100&quot;,</span><br><span class="line">    town: &quot;海洲街道&quot;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    creditCode: &quot;91330000146719376J&quot;</span><br><span class="line">    entName: &quot;宏达高科控股股份有限公司&quot;</span><br><span class="line">    lat: &quot;30.4440248163964960&quot;</span><br><span class="line">    lng: &quot;120.3764044023183000&quot;</span><br><span class="line">    town: &quot;许村镇&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  ......</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 渲染散点</span><br><span class="line"> *&#x2F;</span><br><span class="line">let circles &#x3D; []</span><br><span class="line">export const renderCircle &#x3D; (circleData) &#x3D;&gt; &#123;</span><br><span class="line">  const circles &#x3D; []</span><br><span class="line">  if (circleData &amp;&amp; circleData.length &gt; 0) &#123;</span><br><span class="line">    circleData.map(cu &#x3D;&gt; &#123;</span><br><span class="line">      if (cu.lng &amp;&amp; cu.lat) &#123;</span><br><span class="line">        var text &#x3D; new AMap.Text(&#123;</span><br><span class="line">          text: &#39;&#39;,</span><br><span class="line">          cursor: &#39;pointer&#39;,</span><br><span class="line">          style: &#123;</span><br><span class="line">            background: &#39;rgba(26, 255, 240, 0.7)&#39;,</span><br><span class="line">            display: &#39;inline-block&#39;,</span><br><span class="line">            width: &#39;0.05rem&#39;,</span><br><span class="line">            height: &#39;0.05rem&#39;,</span><br><span class="line">            borderRadius: &#39;50%&#39;,</span><br><span class="line">            border: &#39;1px solid rgba(26, 255, 240, 1)&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          position: [cu.lng, cu.lat]</span><br><span class="line">        &#125;)</span><br><span class="line">        &#x2F;&#x2F; 给每个散点添加信息窗口</span><br><span class="line">        var infoWindow &#x3D; null</span><br><span class="line">        text.on(&#39;mouseover&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">          infoWindow &#x3D; new AMap.InfoWindow(&#123;</span><br><span class="line">            isCustom: true,</span><br><span class="line">            content: &#39;&lt;div class&#x3D;&quot;circles-info-window&quot;&gt;&#39; + cu.entName + &#39;&lt;&#x2F;div&gt;&#39;,</span><br><span class="line">            offset: new AMap.Pixel(16, -10)</span><br><span class="line">          &#125;)</span><br><span class="line">          infoWindow.open(amap, [cu.lng, cu.lat])</span><br><span class="line">        &#125;)</span><br><span class="line">        text.on(&#39;mouseout&#39;, () &#x3D;&gt; &#123;</span><br><span class="line">          amap.clearInfoWindow()</span><br><span class="line">        &#125;)</span><br><span class="line">        circles.push(text)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    amap.add(circles)</span><br><span class="line">    return circles</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 散点动画样式</span><br><span class="line">@keyframes warn &#123;</span><br><span class="line">    0% &#123;</span><br><span class="line">      transform: scale(1);</span><br><span class="line">      opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line">    25% &#123;</span><br><span class="line">      transform: scale(1.2);</span><br><span class="line">      opacity: 0.3;</span><br><span class="line">    &#125;</span><br><span class="line">    50% &#123;</span><br><span class="line">      transform: scale(1.7);</span><br><span class="line">      opacity: 0.5;</span><br><span class="line">    &#125;</span><br><span class="line">    100% &#123;</span><br><span class="line">      transform: scale(2);</span><br><span class="line">      opacity: 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 散点样式</span><br><span class="line">&#x2F;deep&#x2F;#big-screen-map&#123;</span><br><span class="line">  .amap-marker&#123;</span><br><span class="line">    &amp;-content&#123;</span><br><span class="line">      .amap-overlay-text-container&#123;</span><br><span class="line">        &amp;::before&#123;</span><br><span class="line">          content:&#39;&#39;;</span><br><span class="line">          position: absolute;</span><br><span class="line">          left:0;</span><br><span class="line">          top:0.03rem;</span><br><span class="line">          width: 0.11rem;</span><br><span class="line">          height: 0.11rem;</span><br><span class="line">          border: 1px solid rgba(26, 255, 240, 1);</span><br><span class="line">          border-radius: 50%;</span><br><span class="line">          animation: warn 2s ease-out infinite;</span><br><span class="line">          z-index:99;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码地址：<a href="https://gitee.com/crystalSummer/record-code/blob/master/largeVisualScreen/haining/map/index.js" target="_blank" rel="noopener"><strong>涟漪散点</strong></a></p>
+<h1 id="点聚合"><a href="#点聚合" class="headerlink" title="点聚合"></a>点聚合</h1><p><img src="https://i.loli.net/2020/12/21/RdhqOuo1GbyC8FN.gif" alt=""></p>
+<p>当散点数据过多时，如果页面需要渲染全部的散点，页面就会出现卡顿现像，这个时候就需要先展示聚合点，然后点击查看某个区域的时候再展示当前区域的散点。</p>
+<p>官方示例：</p>
+<ol>
+<li><a href="https://lbs.amap.com/api/javascript-api/guide/overlays/marker" target="_blank" rel="noopener"><strong>点标记</strong></a></li>
+<li><a href="https://lbs.amap.com/api/javascript-api/reference/plugin#AMap.MarkerClusterer" target="_blank" rel="noopener"><strong>点聚合</strong></a></li>
+<li><a href="https://lbs.amap.com/api/javascript-api/example/marker/markerclusterer" target="_blank" rel="noopener"><strong>点聚合示例</strong></a></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">pointData&#x3D;[</span><br><span class="line">  &#123;town: &#39;许村镇&#39;, center: &#39;120.36694046348333,30.43513907843635&#39;, count: 218&#125;,</span><br><span class="line">  &#123;town: &quot;长安镇&quot;, center: [], count: 249&#125;,</span><br><span class="line">  ......</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 渲染聚合点</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const renderAggregationPoint &#x3D; (data) &#x3D;&gt; &#123;</span><br><span class="line">  if (data &amp;&amp; data.length &gt; 0) &#123;</span><br><span class="line">    const markers &#x3D; []</span><br><span class="line">    data.map(cu &#x3D;&gt; &#123;</span><br><span class="line">      markers.push(</span><br><span class="line">        new AMap.Marker(&#123;</span><br><span class="line">          position: cu.center.split(&#39;,&#39;),</span><br><span class="line">          content: &#39;&lt;div class&#x3D;&quot;aggregation-point-div&quot;&gt;&lt;div&gt;&#39; + cu.town + &#39;&lt;&#x2F;div&gt;&lt;div&gt;&#39; + cu.count + &#39;&lt;span&gt;家&lt;&#x2F;span&gt;&lt;&#x2F;div&gt;&lt;&#x2F;div&gt;&#39;,</span><br><span class="line">          offset: new AMap.Pixel(-40, -30),</span><br><span class="line">          extData: &#123;</span><br><span class="line">            town: cu.town,</span><br><span class="line">            count: cu.count</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      )</span><br><span class="line">    &#125;)</span><br><span class="line">    const cluster &#x3D; new AMap.MarkerClusterer(amap, markers, &#123;</span><br><span class="line">      gridSize: 60</span><br><span class="line">    &#125;)</span><br><span class="line">    return &#123; markers, cluster &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码地址：<a href="https://gitee.com/crystalSummer/record-code/blob/master/largeVisualScreen/haining/map/index.js" target="_blank" rel="noopener"><strong>点聚合</strong></a>
+　　</p>
+
+    </div>
+
+    
+    
+    
+    
+    
+      <div>
+          <div>
+    
+        <div style="text-align:center;color: #666;font-size:14px;">-------------本文结束　<i class="fa fa-hourglass-end" style="color:rgb(90,85,85)"></i>　感谢阅读-------------</div>
+    
+</div>
+      </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Crystal
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://crystalsummer.gitee.io/2020/03/02/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" title="高德地图常用操作">http://crystalsummer.gitee.io/2020/03/02/高德地图常用操作/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Web/" rel="tag"><i class="fa fa-tag"></i> Web</a>
+              <a href="/tags/map/" rel="tag"><i class="fa fa-tag"></i> map</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/22/%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%94%BE%E5%A4%A7%E7%89%B9%E6%95%88/" rel="prev" title="背景图片放大特效">
+      <i class="fa fa-chevron-left"></i> 背景图片放大特效
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/10/SVG%E5%AE%9E%E7%8E%B0%E5%9C%B0%E5%9B%BE%E6%93%8D%E4%BD%9C/" rel="next" title="SVG实现地图操作">
+      SVG实现地图操作 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MDEyMC8yNjYxMA"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化地图"><span class="nav-number">1.</span> <span class="nav-text">初始化地图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3D楼宇"><span class="nav-number">2.</span> <span class="nav-text">3D楼宇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#官方示例"><span class="nav-number">2.1.</span> <span class="nav-text">官方示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现过程"><span class="nav-number">2.2.</span> <span class="nav-text">实现过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制行政区"><span class="nav-number">3.</span> <span class="nav-text">绘制行政区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#省市区县的行政区"><span class="nav-number">3.1.</span> <span class="nav-text">省市区县的行政区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区县级以下（街道）的行政区"><span class="nav-number">3.2.</span> <span class="nav-text">区县级以下（街道）的行政区</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#涟漪散点"><span class="nav-number">4.</span> <span class="nav-text">涟漪散点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点聚合"><span class="nav-number">5.</span> <span class="nav-text">点聚合</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Crystal"
+      src="/uploads/avatar2.png">
+  <p class="site-author-name" itemprop="name">Crystal</p>
+  <div class="site-description" itemprop="description">Only for recording life</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/crystal-summer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;crystal-summer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:herr_510@163.com" title="E-Mail → mailto:herr_510@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/5596982190/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;5596982190&#x2F;profile?rightmod&#x3D;1&amp;wvr&#x3D;6&amp;mod&#x3D;personnumber&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ruanyifeng.com/blog/" title="http:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;" rel="noopener" target="_blank">阮一峰</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhangxinxu.com/" title="https:&#x2F;&#x2F;www.zhangxinxu.com&#x2F;" rel="noopener" target="_blank">张鑫旭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">CodePen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nowcoder.com/" title="https:&#x2F;&#x2F;www.nowcoder.com&#x2F;" rel="noopener" target="_blank">牛客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dandyweng.com/" title="https:&#x2F;&#x2F;www.dandyweng.com&#x2F;" rel="noopener" target="_blank">翁天信</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Crystal Summer</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">249k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:46</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='34,34,34' opacity='0.5' zIndex='' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

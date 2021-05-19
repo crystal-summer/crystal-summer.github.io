@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"crystalsummer.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "4b921942"
+    }); 
+  daovoice('update');
+  </script>
+
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="前端单页面应用开发规范化要点">
+<meta property="og:url" content="http://crystalsummer.gitee.io/2020/01/15/%E5%89%8D%E7%AB%AF%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E5%8C%96%E8%A6%81%E7%82%B9/index.html">
+<meta property="og:site_name" content="Crystal&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2020/04/25/17/11/landscape-5091781_960_720.jpg">
+<meta property="article:published_time" content="2020-01-15T02:33:43.000Z">
+<meta property="article:modified_time" content="2021-04-27T02:01:25.961Z">
+<meta property="article:author" content="Crystal">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="规范">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2020/04/25/17/11/landscape-5091781_960_720.jpg">
+
+<link rel="canonical" href="http://crystalsummer.gitee.io/2020/01/15/%E5%89%8D%E7%AB%AF%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E5%8C%96%E8%A6%81%E7%82%B9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>前端单页面应用开发规范化要点 | Crystal's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Crystal's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Crystal's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/crystal-summer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://crystalsummer.gitee.io/2020/01/15/%E5%89%8D%E7%AB%AF%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E5%8C%96%E8%A6%81%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.png">
+      <meta itemprop="name" content="Crystal">
+      <meta itemprop="description" content="Only for recording life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crystal's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          前端单页面应用开发规范化要点
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">posted</span>
+
+              <time title="创建时间：2020-01-15 10:33:43" itemprop="dateCreated datePublished" datetime="2020-01-15T10:33:43+08:00">2020-01-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/%E8%A7%84%E8%8C%83/" itemprop="url" rel="index"><span itemprop="name">规范</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="count">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">count：</span>
+              <span>7.8k</span>
+            </span>
+            <span class="post-meta-item" title="readingTime">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">readingTime &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://cdn.pixabay.com/photo/2020/04/25/17/11/landscape-5091781_960_720.jpg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　经过几个月时间的开发和试运营，公司项目逐渐走向规范化并趋于成熟，终于不用重复的搬运代码，趁着现在有时间，整理一下前端单页面应用开发规范化的要点。<br>　　适当的规范和标准不是为了消灭小姐姐小哥哥们代码内容的创造性、优雅性，而是限制过度个性化，以一种普遍认可的统一方式一起做事，提升协作效率。所谓前人栽树后人乘凉，提高我们代码的可读性和可维护性，是我们共同努力的目标。<br>　　具体知识点在项目中的常用操作参考以下链接：</p>
+<ul>
+<li><a href="https://crystalsummer.gitee.io/2019/03/21/Element/"><strong>Element</strong></a></li>
+<li><a href="https://crystalsummer.gitee.io/2019/04/05/Vant/"><strong>Vant</strong></a></li>
+<li><a href="http://crystalsummer.gitee.io/2019/08/11/CSS预处理器/"><strong>CSS预处理器</strong></a></li>
+<li><a href="http://crystalsummer.gitee.io/2019/10/15/ESLint常用配置/"><strong>ESLint常用配置</strong></a></li>
+<li><a href="http://crystalsummer.gitee.io/2020/08/26/钉钉免登录/"><strong>钉钉免登录</strong></a></li>
+<li><a href="https://crystalsummer.gitee.io/2020/03/02/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"><strong>高德地图</strong></a></li>
+<li><a href="https://crystalsummer.gitee.io/2019/05/20/Echarts/"><strong>ECharts</strong></a></li>
+</ul>
+<h1 id="项目技术栈"><a href="#项目技术栈" class="headerlink" title="项目技术栈"></a>项目技术栈</h1><ul>
+<li>电脑端：<a href="https://cn.vuejs.org/" target="_blank" rel="noopener"><strong>Vue</strong></a>  +  <a href="https://element.eleme.cn/#/zh-CN" target="_blank" rel="noopener"><strong>Element</strong></a>  +  <a href="https://www.sass.hk/" target="_blank" rel="noopener"><strong>Sass</strong></a>/<a href="https://less.bootcss.com/" target="_blank" rel="noopener"><strong>Less</strong></a>；</li>
+<li>移动端（钉钉/微信）：<a href="https://cn.vuejs.org/" target="_blank" rel="noopener"><strong>Vue</strong></a>  +  <a href="https://youzan.github.io/vant/#/zh-CN/" target="_blank" rel="noopener"><strong>Vant</strong></a>/<a href="http://mint-ui.github.io/#!/zh-cn" target="_blank" rel="noopener"><strong>Mint UI</strong></a>  + <a href="https://www.sass.hk/" target="_blank" rel="noopener"><strong>Sass</strong></a>/<a href="https://less.bootcss.com/" target="_blank" rel="noopener"><strong>Less</strong></a>；</li>
+<li>微信小程序：<a href="https://uniapp.dcloud.io/" target="_blank" rel="noopener"><strong>uni-app</strong></a>  +  <a href="https://uniapp.dcloud.io/component/README" target="_blank" rel="noopener"><strong>uni ui</strong></a> /<a href="https://ext.dcloud.net.cn/" target="_blank" rel="noopener"><strong>uni衍生的插件市场</strong></a> + <a href="https://www.sass.hk/" target="_blank" rel="noopener"><strong>Sass</strong></a>/<a href="https://less.bootcss.com/" target="_blank" rel="noopener"><strong>Less</strong></a>；</li>
+<li>项目涉及的可视化模块：地图部分使用<a href="https://lbs.amap.com/" target="_blank" rel="noopener"><strong>高德地图</strong></a>，图表部分使用<a href="https://echarts.apache.org/zh/index.html" target="_blank" rel="noopener"><strong>ECharts</strong></a>可视化库。</li>
+</ul>
+<h1 id="文件规范化"><a href="#文件规范化" class="headerlink" title="文件规范化"></a>文件规范化</h1><h2 id="文件存放位置规范"><a href="#文件存放位置规范" class="headerlink" title="文件存放位置规范"></a>文件存放位置规范</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">src</span><br><span class="line">    assets  存放静态图片</span><br><span class="line">    common  存放公共方法，接口，样式和变量等</span><br><span class="line">        1)icons      存放icon样式库 ( iconfont&#x2F;svg等 )</span><br><span class="line">        2)styles      存放公共样式</span><br><span class="line">        3)api        存放公共接口</span><br><span class="line">        4)utils       存放公用方法</span><br><span class="line">        5)constant   存放公共的变量</span><br><span class="line">    components  存放公用组件</span><br><span class="line">    directive  存放全局的指令</span><br><span class="line">    filters   存放全局过滤器</span><br><span class="line">    layout  全局布局的组件</span><br><span class="line">    router  存放全局的路由列表</span><br><span class="line">    store   存储应用全局的所有组件状态</span><br><span class="line">    views   所有的功能组件</span><br><span class="line">vue.config.js    vue-cli项目配置文件</span><br></pre></td></tr></table></figure>
+<ol>
+<li>icons：图标库，iconfont引入阿里图标库；svg是项目的svg图标存放位置；</li>
+<li>styles：样式文件，一般使用<code>Sass</code>语言，若要使用其他语言可在该文件下建文件夹，比如新建less文件夹，内部放置less文件；</li>
+<li>api：接口文件，放置所有的接口，<code>request.js</code>文件放在api文件夹根目录，用于处理<code>axios</code>初始配置；按照模块名新建文件夹，存放该模块下的所有子模块接口文件；接口文件命名规则遵循跟views的文件名一致，方便后人查看翻阅；调用规则遵循 <code>@api/模块名/子模块名</code>；公共接口存在放<code>api/commonApi/index.js</code>里面，登录和退出接口也放在这里；</li>
+<li>utils：方法文件，方法按照处理类型分类，比如validate表示存放所有验证的方法，time处理所有涉及时间的方法，以此类推；所有的方法文件都在utils/index.js中引入并导出；调用时通过<code>@utils</code>调用即可；</li>
+<li>constant：变量文件，按照常规和非常规常量进行分类；常规的都放在commonConstant；非常规可新建文件，比如地图相关的所有放mapConstant,图表相关放echartsConstant；所有的变量文件都在<code>constant/index.js</code>中引入并导出；调用时通过<code>@constant</code>调用即可；</li>
+<li>router：路由文件，所有功能的路由文件都在router内；在<code>router/modules/</code>下新建模块的路由文件；文件命名规则遵循跟views的文件名一致；所有的路由文件都在<code>router/index.js</code>中引入并导出为路由对象；其中constantRoutes为固定路由，asyncRoutes为动态路由。</li>
+</ol>
+<h2 id="文件命名规范"><a href="#文件命名规范" class="headerlink" title="文件命名规范"></a>文件命名规范</h2><p>　　在vue官方规范基础上结合大家的编码习惯独家定制：</p>
+<ol>
+<li>Component：所有的Component文件都是以大写开头 (PascalCase)，包括views下的Component文件，但除了index.vue；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@&#x2F;components&#x2F;BackToTop&#x2F;index.vue</span><br><span class="line">@&#x2F;components&#x2F;Charts&#x2F;Line.vue</span><br><span class="line">@&#x2F;views&#x2F;example&#x2F;components&#x2F;ButtonItem.vue</span><br></pre></td></tr></table></figure></li>
+<li>JS：所有的.js文件遵循驼峰命名(kebabCase)；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@utils&#x2F;handleData.js</span><br><span class="line">@&#x2F;views&#x2F;svgIcons&#x2F;requireIcons.js</span><br><span class="line">@&#x2F;components&#x2F;MarkdownEditor&#x2F;defaultOptions.js</span><br></pre></td></tr></table></figure></li>
+<li>Views：views下的文件夹和单组件文件都遵循驼峰命名(kebabCase)。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@&#x2F;views&#x2F;organization&#x2F;logManage&#x2F;index.vue</span><br><span class="line">@&#x2F;views&#x2F;entFile</span><br><span class="line">@&#x2F;views&#x2F;entFile&#x2F;search&#x2F;entDetail.vue</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="文件引用规范"><a href="#文件引用规范" class="headerlink" title="文件引用规范"></a>文件引用规范</h2><p>　　在vue.config.js文件的alias中配置内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">configureWebpack: &#123;</span><br><span class="line">    &#x2F;&#x2F; provide the app&#39;s title in webpack&#39;s name field, so that</span><br><span class="line">    &#x2F;&#x2F; it can be accessed in index.html to inject the correct title.</span><br><span class="line">    name: &#39;企业码&#39;,</span><br><span class="line">    resolve: &#123;</span><br><span class="line">      alias: &#123;</span><br><span class="line">        &#39;@&#39;: resolve(&#39;src&#39;),</span><br><span class="line">        &#39;@utils&#39;: path.resolve(__dirname, &#39;.&#x2F;src&#x2F;common&#x2F;utils&#39;),</span><br><span class="line">        &#39;@constant&#39;: path.resolve(__dirname, &#39;.&#x2F;src&#x2F;common&#x2F;constant&#39;),</span><br><span class="line">        &#39;@api&#39;: path.resolve(__dirname, &#39;.&#x2F;src&#x2F;common&#x2F;api&#39;),</span><br><span class="line">        &#39;@assets&#39;: path.resolve(__dirname, &#39;.&#x2F;src&#x2F;assets&#39;),</span><br><span class="line">        &#39;@static&#39;: path.resolve(__dirname, &#39;.&#x2F;static&#39;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>　　所以在调用时只需使用<code>@XX</code>的形式调用即可，当然也可以根据自己需要自行添加。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;~@styles&#x2F;variables.scss&quot;;</span><br><span class="line">import &#123; typeList &#125; from &#39;@constant&#39;;</span><br><span class="line">import &#123;notEmpty,notSelect&#125; from &#39;@utils&#39;;</span><br><span class="line">import &#123;findById&#125; from &#39;@api&#x2F;organition&#x2F;user.js;</span><br></pre></td></tr></table></figure>
+
+<h2 id="新建模块的操作示例"><a href="#新建模块的操作示例" class="headerlink" title="新建模块的操作示例"></a>新建模块的操作示例</h2><p>　　比如，要新建一个企业管理模块：</p>
+<ol>
+<li>在 @/views 新建模块文件夹： entManage；</li>
+<li>在 @/router/module下新建路由文件 ：entManage.js；</li>
+<li>在@/common/api下新建接口文件：<br>若企业管理只有一个模块则在 @/common/api下新建接口文件 :  api/ entManage /index.js；<br>若企业管理有多个子模块，则建立和views文件名相同的js文件接口：api/entManage/entFileSet.js和api/entManage/entLibrary.js。</li>
+</ol>
+<h1 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h1><ol>
+<li>文本缩进：一次缩进两个空格</li>
+<li>对象命名：<ul>
+<li>常量：采用全大写并且单词以_分割(KEBAB_CASE)</li>
+<li>函数名：<ul>
+<li>类（构造函数）：以大写开头的驼峰命名格式 (PascalCase);</li>
+<li>函数：首字母小写，驼峰命名（kebabCase）。 </li>
+</ul>
+</li>
+<li>变量名：首字母小写，驼峰命名(kebabCase)，匈牙利命名。<br>匈牙利命名法语法：变量名＝变量类型＋对象描述，例如：<table>
+<thead>
+<tr>
+<th align="center">起名类型</th>
+<th align="center">命名前缀</th>
+<th align="center">举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Array数组</td>
+<td align="center">a</td>
+<td align="center">aList,aGroup</td>
+</tr>
+<tr>
+<td align="center">Boolean逻辑</td>
+<td align="center">b</td>
+<td align="center">bChecked,bHasLogin</td>
+</tr>
+<tr>
+<td align="center">Function 函数</td>
+<td align="center">f</td>
+<td align="center">fGetHtml,fInit</td>
+</tr>
+<tr>
+<td align="center">Integer 数字</td>
+<td align="center">n</td>
+<td align="center">nPage,nTotal</td>
+</tr>
+<tr>
+<td align="center">Object 对象</td>
+<td align="center">o</td>
+<td align="center">oButton,oDate</td>
+</tr>
+<tr>
+<td align="center">Regular E正则</td>
+<td align="center">r</td>
+<td align="center">rDomain,rEmail</td>
+</tr>
+<tr>
+<td align="center">String  字符</td>
+<td align="center">s</td>
+<td align="center">sName,sHtml</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li>代码注释<br>原则上：如无必要，勿增注释，如有必要，尽量详尽。以此提高代码可读性和可维护性。注释分为单行注释：<code>//</code>和多行注释：<code>/**/</code>。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;顶部文档注释</span><br><span class="line">&#x2F;**</span><br><span class="line">  * @description: 中文说明</span><br><span class="line">  * @author: name</span><br><span class="line">  * @update: name(xxxx-xx-xx)</span><br><span class="line">  *&#x2F;</span><br><span class="line">&#x2F;&#x2F;S函数注释</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @func</span><br><span class="line"> * @todo 这个函数需要优化</span><br><span class="line"> * @desc 一个带参数的函数</span><br><span class="line"> * @param &#123;string&#125; a - 参数a</span><br><span class="line"> * @param &#123;number&#125; b&#x3D;1 - 参数b默认值为1</span><br><span class="line"> * @param &#123;string&#125; c&#x3D;1 - 参数c字符串 </span><br><span class="line"> * @param &#123;object&#125; d - 参数d为一个对象</span><br><span class="line"> * @param &#123;string&#125; d.e - 参数d的e属性</span><br><span class="line"> * @param &#123;string&#125; d.f - 参数d的f属性</span><br><span class="line"> * @param &#123;object[]&#x2F;Array&#125; g - 参数g为一个对象数组</span><br><span class="line"> * @param &#123;string&#125; g.h - 参数g数组中一项的h属性</span><br><span class="line"> * @returns &#123;boolean&#125; 返回值为true</span><br><span class="line"> *&#x2F;</span><br></pre></td></tr></table></figure>
+参考文档：<a href="http://yuri4ever.github.io/jsdoc/" target="_blank" rel="noopener"><strong>JSDoc Guide</strong></a></li>
+<li>代码检查<ul>
+<li>建议VSCode配置ESLint插件：每次保存，VSCode就能标红不符合 eslint 规则的地方，同时还会做一些简单的自我修正。另外运行<code>npm run lint -- --fix</code>，eslint会自动修复一些简单错误。</li>
+<li>一般所有的配置项都存放在 <code>.eslintrc.js</code> 中，如果觉得配置过于严格可自行修改内部配置；原则上为了减少代码不必要的错误使用最严格的<code>plugin:vue/recommended</code>来校验代码。</li>
+<li>配置步骤：<ul>
+<li>VSCode扩展插件中搜索安装eslint插件；</li>
+<li>在根目录配置<code>.eslintrc.js</code>文件；</li>
+<li>VSCode 进行扩展设置，依次点击 文件 &gt; 首选项 &gt; 设置 Settings.json添加配置项如下： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;files.autoSave&quot;: &quot;off&quot;,</span><br><span class="line">  &quot;eslint.validate&quot;: [</span><br><span class="line">    &quot;javascript&quot;,</span><br><span class="line">    &quot;javascriptreact&quot;,</span><br><span class="line">    &quot;vue-html&quot;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;language&quot;: &quot;vue&quot;,</span><br><span class="line">      &quot;autoFix&quot;: true</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  &quot;eslint.run&quot;: &quot;onSave&quot;,</span><br><span class="line">  &quot;eslint.autoFixOnSave&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+　　参考文档：<a href="https://panjiachen.github.io/vue-element-admin-site/zh/guide/advanced/eslint.html" target="_blank" rel="noopener"><strong>ESLint配置</strong></a><br>　　若ESLint经常出现error/warn请查看：<a href="https://github.com/BingKui/javascript-zh" target="_blank" rel="noopener"><strong>目前主流代码规范</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="Git提交规范"><a href="#Git提交规范" class="headerlink" title="Git提交规范"></a>Git提交规范</h1><p>　　每次提交，Commit message 都包括三个部分：Header，Body 和 Footer。其中，Header 是必需的，Body 和 Footer 可以省略。而Header部分只有一行，包括两个字段：type（必需）和subject（必需）。type用于说明 commit 的类别，只允许使用下面9个标识，subject是 commit 目的的简短描述，不超过50个字符。<br>type如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">feat: 新功能（feature）</span><br><span class="line">fix: 修补bug</span><br><span class="line">docs: 文档（documentation）</span><br><span class="line">style: 格式（不影响代码运行的变动）</span><br><span class="line">refactor: 重构（即不是新增功能，也不是修改bug的代码变动）</span><br><span class="line">chore: 构建过程或辅助工具的变动</span><br><span class="line">revert: 撤销，版本回退</span><br><span class="line">perf: 性能优化</span><br><span class="line">test：测试</span><br><span class="line">improvement: 改进</span><br><span class="line">build: 打包</span><br><span class="line">ci: 持续集成</span><br></pre></td></tr></table></figure>
+
+<h1 id="单位适配"><a href="#单位适配" class="headerlink" title="单位适配"></a>单位适配</h1><p>具体内容参考<a href="http://crystalsummer.gitee.io/2020/09/10/单位适配/"><strong>单位适配</strong></a></p>
+<h2 id="移动端"><a href="#移动端" class="headerlink" title="移动端"></a>移动端</h2><ol>
+<li>安装 <code>amfe-flexible</code> 和 <code>postcss-pxtorem</code> 插件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install amfe-flexible --save  &#x2F;&#x2F; 用于给根元素设置字体大小</span><br><span class="line">npm install postcss-pxtorem -D &#x2F;&#x2F; 用于将单位转化为 rem</span><br></pre></td></tr></table></figure></li>
+<li>在 <code>main.js</code> 里面引入：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#39;amfe-flexible&#x2F;index.js&#39;</span><br></pre></td></tr></table></figure></li>
+<li>在项目根目录下的postcss.config.js文件里配置如下（1rem = 37.5px）：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  plugins: &#123;</span><br><span class="line">    autoprefixer: &#123;</span><br><span class="line">      overrideBrowserslist: [&#39;Android 4.1&#39;, &#39;iOS 7.1&#39;, &#39;Chrome &gt; 31&#39;, &#39;ff &gt; 31&#39;, &#39;ie &gt;&#x3D; 8&#39;]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#39;postcss-pxtorem&#39;: &#123;</span><br><span class="line">      rootValue: 37.5,&#x2F;&#x2F;vant-UI的官方根字体大小是37.5</span><br><span class="line">      unitPrecision: 5,</span><br><span class="line">      propList: [&#39;*&#39;, &#39;!font-size&#39;, &#39;!border&#39;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="PC端"><a href="#PC端" class="headerlink" title="PC端"></a>PC端</h2>　　<code>@/common/utils/rem.js</code>文件用于PC端大屏展示页面的单位适配，按需引入该文件即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 设置 rem 函数，屏幕适配</span><br><span class="line">function setRem() &#123;</span><br><span class="line">  &#x2F;&#x2F; 320 1rem默认大小16px(1rem &#x3D; 16px); 320px &#x3D; 20rem;每个元素px基础上&#x2F;16</span><br><span class="line">  let htmlWidth &#x3D; document.documentElement.clientWidth || document.body.clientWidth</span><br><span class="line">  &#x2F;&#x2F; 得到html的Dom元素</span><br><span class="line">  let htmlDom &#x3D; document.getElementsByTagName(&#39;html&#39;)[0]</span><br><span class="line">  &#x2F;&#x2F; 设置根元素字体大小 1920表示基准值，就ui设计的尺寸</span><br><span class="line">  htmlDom.style.fontSize &#x3D; ((100) &#x2F; (1920 &#x2F; htmlWidth)) + &#39;px&#39;</span><br><span class="line">&#125;</span><br><span class="line">function screen() &#123;&#x2F;&#x2F;解决屏幕适配缩放问题</span><br><span class="line">    let width &#x3D; $(window).width();</span><br><span class="line">    let height &#x3D; document.body.offsetHeight;</span><br><span class="line">    let scaleX;</span><br><span class="line">    if (height &gt; 1080) &#123;</span><br><span class="line">        scaleX &#x3D; width &#x2F; 1915;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        scaleX &#x3D; width &#x2F; 1920;</span><br><span class="line">    &#125;</span><br><span class="line">    let scaleFunc &#x3D; &quot;scale(&quot; + scaleX + &quot;)&quot;;</span><br><span class="line">    $(&#39;body&#39;).css(&#123;</span><br><span class="line">        &quot;transform&quot;: scaleFunc, &#x2F;&#x2F;缩放比例</span><br><span class="line">        &quot;transform-origin&quot;: &quot;left top&quot;, &#x2F;&#x2F;缩放基点</span><br><span class="line">        &quot;-ms-transform&quot;: scaleFunc, &#x2F;* IE 9 *&#x2F;</span><br><span class="line">        &quot;-ms-transform-origin&quot;: &quot;left top&quot;,</span><br><span class="line"></span><br><span class="line">        &quot;-moz-transform&quot;: scaleFunc, &#x2F;* Firefox *&#x2F;</span><br><span class="line">        &quot;-moz-transform-origin&quot;: &quot;left top&quot;,</span><br><span class="line"></span><br><span class="line">        &quot;-webkit-transform&quot;: scaleFunc, &#x2F;* Safari 和 Chrome *&#x2F;</span><br><span class="line">        &quot;-webkit-transform-origin&quot;: &quot;left top&quot;,</span><br><span class="line"></span><br><span class="line">        &quot;-o-transform&quot;: scaleFunc, &#x2F;* Opera *&#x2F;</span><br><span class="line">        &quot;-o-transform-origin&quot;: &quot;left top&quot;,</span><br><span class="line">    &#125;);</span><br><span class="line">    if (width &gt; 1920) &#123;</span><br><span class="line">        $(&#39;body&#39;).css(&#123;</span><br><span class="line">            &quot;backgroundAttachment&quot;: &quot;fixed&quot;,</span><br><span class="line">            &quot;backgroundSize&quot;: &quot;100% 100%&quot;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 初始化</span><br><span class="line">setRem()</span><br><span class="line">if ($(window).width() &gt; 1920 &amp;&amp; $(window).height() &gt; 1080) &#123;</span><br><span class="line">  screen()</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 改变窗口大小时重新设置 rem</span><br><span class="line">window.onresize &#x3D; function() &#123;</span><br><span class="line">  setRem()</span><br><span class="line">  if ($(window).width() &gt; 1920 &amp;&amp; $(window).height() &gt; 1080) &#123;</span><br><span class="line">    screen()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+    
+    
+      <div>
+          <div>
+    
+        <div style="text-align:center;color: #666;font-size:14px;">-------------本文结束　<i class="fa fa-hourglass-end" style="color:rgb(90,85,85)"></i>　感谢阅读-------------</div>
+    
+</div>
+      </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Crystal
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://crystalsummer.gitee.io/2020/01/15/%E5%89%8D%E7%AB%AF%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E5%8C%96%E8%A6%81%E7%82%B9/" title="前端单页面应用开发规范化要点">http://crystalsummer.gitee.io/2020/01/15/前端单页面应用开发规范化要点/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"><i class="fa fa-tag"></i> Vue</a>
+              <a href="/tags/%E8%A7%84%E8%8C%83/" rel="tag"><i class="fa fa-tag"></i> 规范</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/29/%E6%BB%9A%E5%8A%A8%E8%A7%86%E5%B7%AE/" rel="prev" title="滚动视差">
+      <i class="fa fa-chevron-left"></i> 滚动视差
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/24/Vue%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E9%85%8D%E7%BD%AE/" rel="next" title="Vue项目框架配置">
+      Vue项目框架配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MDEyMC8yNjYxMA"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目技术栈"><span class="nav-number">2.</span> <span class="nav-text">项目技术栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件规范化"><span class="nav-number">3.</span> <span class="nav-text">文件规范化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件存放位置规范"><span class="nav-number">3.1.</span> <span class="nav-text">文件存放位置规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件命名规范"><span class="nav-number">3.2.</span> <span class="nav-text">文件命名规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件引用规范"><span class="nav-number">3.3.</span> <span class="nav-text">文件引用规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建模块的操作示例"><span class="nav-number">3.4.</span> <span class="nav-text">新建模块的操作示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码规范"><span class="nav-number">4.</span> <span class="nav-text">代码规范</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git提交规范"><span class="nav-number">5.</span> <span class="nav-text">Git提交规范</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单位适配"><span class="nav-number">6.</span> <span class="nav-text">单位适配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端"><span class="nav-number">6.1.</span> <span class="nav-text">移动端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PC端"><span class="nav-number">6.2.</span> <span class="nav-text">PC端</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Crystal"
+      src="/uploads/avatar2.png">
+  <p class="site-author-name" itemprop="name">Crystal</p>
+  <div class="site-description" itemprop="description">Only for recording life</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/crystal-summer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;crystal-summer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:herr_510@163.com" title="E-Mail → mailto:herr_510@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/5596982190/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;5596982190&#x2F;profile?rightmod&#x3D;1&amp;wvr&#x3D;6&amp;mod&#x3D;personnumber&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ruanyifeng.com/blog/" title="http:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;" rel="noopener" target="_blank">阮一峰</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhangxinxu.com/" title="https:&#x2F;&#x2F;www.zhangxinxu.com&#x2F;" rel="noopener" target="_blank">张鑫旭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">CodePen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nowcoder.com/" title="https:&#x2F;&#x2F;www.nowcoder.com&#x2F;" rel="noopener" target="_blank">牛客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dandyweng.com/" title="https:&#x2F;&#x2F;www.dandyweng.com&#x2F;" rel="noopener" target="_blank">翁天信</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Crystal Summer</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">249k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:46</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='34,34,34' opacity='0.5' zIndex='' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
