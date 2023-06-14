@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"crystalsummer.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "4b921942"
+    }); 
+  daovoice('update');
+  </script>
+
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="钉钉免登录">
+<meta property="og:url" content="http://crystalsummer.gitee.io/2020/08/26/%E9%92%89%E9%92%89%E5%85%8D%E7%99%BB%E5%BD%95/index.html">
+<meta property="og:site_name" content="Crystal&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2020/03/25/14/57/orbs-4967554_960_720.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/08/26/TjmEkMUcNy5LSaR.gif">
+<meta property="article:published_time" content="2020-08-26T03:46:55.000Z">
+<meta property="article:modified_time" content="2022-08-10T07:37:05.812Z">
+<meta property="article:author" content="Crystal">
+<meta property="article:tag" content="H5">
+<meta property="article:tag" content="钉钉">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2020/03/25/14/57/orbs-4967554_960_720.jpg">
+
+<link rel="canonical" href="http://crystalsummer.gitee.io/2020/08/26/%E9%92%89%E9%92%89%E5%85%8D%E7%99%BB%E5%BD%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>钉钉免登录 | Crystal's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Crystal's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Crystal's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/crystal-summer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://crystalsummer.gitee.io/2020/08/26/%E9%92%89%E9%92%89%E5%85%8D%E7%99%BB%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.png">
+      <meta itemprop="name" content="Crystal">
+      <meta itemprop="description" content="Only for recording life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crystal's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          钉钉免登录
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">posted</span>
+
+              <time title="创建时间：2020-08-26 11:46:55" itemprop="dateCreated datePublished" datetime="2020-08-26T11:46:55+08:00">2020-08-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/H5/" itemprop="url" rel="index"><span itemprop="name">H5</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/H5/%E9%92%89%E9%92%89/" itemprop="url" rel="index"><span itemprop="name">钉钉</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="count">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">count：</span>
+              <span>9k</span>
+            </span>
+            <span class="post-meta-item" title="readingTime">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">readingTime &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://cdn.pixabay.com/photo/2020/03/25/14/57/orbs-4967554_960_720.jpg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="钉钉内部微应用免登"><a href="#钉钉内部微应用免登" class="headerlink" title="钉钉内部微应用免登"></a>钉钉内部微应用免登</h1><p>　　具体官方文档查看<a href="https://ding-doc.dingtalk.com/doc#/dev/ep7bpq" target="_blank" rel="noopener"><strong>H5微应用免登流程</strong></a></p>
+<ol>
+<li>安装钉钉 API<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install dingtalk-jsapi –save</span><br></pre></td></tr></table></figure></li>
+<li>引入钉钉 API<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import * as dd from &#39;dingtalk-jsapi&#39;;</span><br></pre></td></tr></table></figure></li>
+<li>获取微应用免登授权码，再根据免登授权码 code 登录应用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">export const ddLogin &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">    return new Promise((resolve,reject)&#x3D;&gt;&#123;</span><br><span class="line">        axios.post(&#39;&#x2F;api&#x2F;dtalk&#x2F;getDingParam&#39;).then((res)&#x3D;&gt;&#123;</span><br><span class="line">            if (res.data.code &#x3D;&#x3D; &#39;0000&#39;) &#123;</span><br><span class="line">                let corpId &#x3D; res.data.data.corpId;&#x2F;&#x2F; 公司的 corpId</span><br><span class="line">                dd.ready(function() &#123;</span><br><span class="line">                    &#x2F;&#x2F; 获取微应用免登授权码</span><br><span class="line">                    dd.runtime.permission.requestAuthCode(&#123;</span><br><span class="line">                        corpId: corpId, &#x2F;&#x2F; 企业id</span><br><span class="line">                        onSuccess: function (info) &#123;</span><br><span class="line">                            let code &#x3D; info.code; &#x2F;&#x2F; 通过该免登授权码可以获取用户身份</span><br><span class="line">                            axios(&#123;</span><br><span class="line">                                method: &#39;post&#39;,</span><br><span class="line">                                url: &#39;&#x2F;api&#x2F;dtalkLogin&#39;, &#x2F;&#x2F; 路径</span><br><span class="line">                                data: &#123;</span><br><span class="line">                                    code</span><br><span class="line">                                &#125;,</span><br><span class="line">                                transformRequest: [function (data) &#123;</span><br><span class="line">                                    let ret &#x3D; &#39;&#39;;</span><br><span class="line">                                    ret &#x3D; qs.stringify(data);</span><br><span class="line">                                    return ret;</span><br><span class="line">                                &#125;],</span><br><span class="line">                                headers: &#123;</span><br><span class="line">                                    &#39;Content-Type&#39;: &#39;application&#x2F;x-www-form-urlencoded&#39;</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;).then(res&#x3D;&gt;&#123;</span><br><span class="line">                                if(res.data.code &#x3D;&#x3D; &#39;0000&#39;)&#123;</span><br><span class="line">                                    setLocalStorage(&#39;token&#39;,res.data.data.token.token);</span><br><span class="line">                                    setLocalStorage(&quot;curl&quot;, res.data.data.permission);</span><br><span class="line">                                    setLocalStorage(&quot;grider&quot;, res.data.data.grider);</span><br><span class="line">                                    setLocalStorage(&quot;permissionDing&quot;, res.data.data.permissionDing);</span><br><span class="line">                                    setLocalStorage(&quot;level&quot;, res.data.data.level);</span><br><span class="line">                                    resolve(res.data);</span><br><span class="line">                                &#125;else&#123;</span><br><span class="line">                                    Toast(&#39;登录失败&#39;);</span><br><span class="line">                                    location.href &#x3D; localStorage.getItem(&quot;loginUrl&quot;);&#x2F;&#x2F;登录页</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;)</span><br><span class="line">                        &#125;,</span><br><span class="line">                        onFail: function (err) &#123;</span><br><span class="line">                            Toast(err.errorMessage);</span><br><span class="line">                            location.href &#x3D; localStorage.getItem(&quot;loginUrl&quot;);&#x2F;&#x2F;登录页</span><br><span class="line">                            reject();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                Toast(&#39;登录失败&#39;);</span><br><span class="line">                location.href &#x3D; localStorage.getItem(&quot;loginUrl&quot;);&#x2F;&#x2F;登录页</span><br><span class="line">                reject();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="钉钉扫码登录第三方网站"><a href="#钉钉扫码登录第三方网站" class="headerlink" title="钉钉扫码登录第三方网站"></a>钉钉扫码登录第三方网站</h1><p>　　具体官方文档查看<a href="https://ding-doc.dingtalk.com/doc#/serverapi2/kymkv6/jfDu3" target="_blank" rel="noopener"><strong>身份验证-扫码登录第三方网站</strong></a>，这里采用了官网中的方法二：支持网站将钉钉登录二维码内嵌到自己页面中。用户使用钉钉扫码登录后 JS 会将 loginTmpCode 返回给网站。JS 钉钉登录主要用途：网站希望用户在网站内就能完成登录，无需跳转到钉钉域下登录后再返回，提升钉钉登录的流畅性与成功率。<br>　　项目地址：<a href="http://lylobsysc.cet0570.com/gov/login.html#/" target="_blank" rel="noopener"><strong>龙游企情通登录页</strong></a><br><img src="https://i.loli.net/2020/08/26/TjmEkMUcNy5LSaR.gif" alt=""></p>
+<ol>
+<li>创建一个div，用于显示钉钉带过来的二维码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;scan_box&quot; id&#x3D;&quot;scan_box&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure></li>
+<li>通过公司的 appid 拿到二维码，用户扫码-扫码成功-跳转 ddLogin 页面登录应用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 重定向地址</span><br><span class="line">redirect_uri:window.location.href +&#39;ddLogin&#39;</span><br><span class="line">mounted()&#123;</span><br><span class="line">	this.codeLogin();</span><br><span class="line">&#125;,</span><br><span class="line">codeLogin()&#123;</span><br><span class="line">    let that &#x3D; this;</span><br><span class="line">    api.getQrDingParam().then(res&#x3D;&gt;&#123;</span><br><span class="line">        &#x2F;&#x2F; console.log(res);</span><br><span class="line">        if(res.code &#x3D;&#x3D; &#39;0000&#39;)&#123;</span><br><span class="line">            &#x2F;&#x2F; 1.调用后台接口拿到公司的 appid</span><br><span class="line">            this.appid &#x3D; res.data.appId;</span><br><span class="line">            &#x2F;&#x2F; 2.在需要使用钉钉登录的地方实例以下 JS 对象</span><br><span class="line">            let obj &#x3D; DDLogin(&#123;</span><br><span class="line">                id: &#39;scan_box&#39;, &#x2F;&#x2F; 这里的 id 就是上面定义的用来存放二维码 div 的 id</span><br><span class="line">                goto: encodeURIComponent(&#39;https:&#x2F;&#x2F;oapi.dingtalk.com&#x2F;connect&#x2F;oauth2&#x2F;sns_authorize?appid&#x3D;&#39; + this.appid + &#39;&amp;response_type&#x3D;code&amp;scope&#x3D;snsapi_login&amp;state&#x3D;STATE&amp;redirect_uri&#x3D;&#39; + this.redirect_uri + &#39;&#39;),</span><br><span class="line">                style: &#39;border:none;background-color:#FFFFFF;&#39;,</span><br><span class="line">                &#x2F;&#x2F; 表示显示二维码的区域的宽、高，width 和 height 不代表二维码的大小，二维码大小是固定的210px*210px</span><br><span class="line">                width: &#39;220&#39;,</span><br><span class="line">                height: &#39;300&#39;</span><br><span class="line">            &#125;)</span><br><span class="line">            let hanndleMessage &#x3D; function (event) &#123;</span><br><span class="line">                let origin &#x3D; event.origin;</span><br><span class="line">                &#x2F;&#x2F; 判断是否来自 ddLogin 扫码事件</span><br><span class="line">                if (origin &#x3D;&#x3D;&#x3D; &#39;https:&#x2F;&#x2F;login.dingtalk.com&#39;) &#123;</span><br><span class="line">                    let loginTmpCode &#x3D; event.data;</span><br><span class="line">                    &#x2F;&#x2F; 这里 url 不用进行 urlencode 编码</span><br><span class="line">                    let url &#x3D; &#39;https:&#x2F;&#x2F;oapi.dingtalk.com&#x2F;connect&#x2F;oauth2&#x2F;sns_authorize?appid&#x3D;&#39; + that.appid + &#39;&amp;response_type&#x3D;code&amp;scope&#x3D;snsapi_login&amp;state&#x3D;STATE&amp;redirect_uri&#x3D;&#39; + that.redirect_uri + &#39;&amp;loginTmpCode&#x3D;&#39; + loginTmpCode;</span><br><span class="line">                    &#x2F;&#x2F; 跳转链接到新页面</span><br><span class="line">                    window.location.href &#x3D; url;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">            if (typeof window.addEventListener !&#x3D;&#x3D; &#39;undefined&#39;) &#123; &#x2F;&#x2F; 添加事件</span><br><span class="line">                window.addEventListener(&#39;message&#39;, hanndleMessage, false)</span><br><span class="line">            &#125; else if (typeof window.attachEvent !&#x3D;&#x3D; &#39;undefined&#39;) &#123;</span><br><span class="line">                window.attachEvent(&#39;onmessage&#39;, hanndleMessage)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return this.$message.error(res.msg)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li>跳转到 ddLogin 页面后，后台会在新页面带上 code，根据 code 进行登录<br>　　此页面和登录页面相似，只是一个过渡页面，在二维码显示上面加了一个遮罩层，显示登录中，请稍后。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">created() &#123;</span><br><span class="line">    &#x2F;&#x2F; 由于该页面带上了后台返回的 code 和 state，所以重定向地址需要重写</span><br><span class="line">    this.redirect_uri &#x3D; location.origin + location.pathname ;</span><br><span class="line">    &#x2F;&#x2F; 获取后台返回的 code</span><br><span class="line">    this.code &#x3D; location.query.code;</span><br><span class="line">    if(this.code)&#123;</span><br><span class="line">        this.getdd();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">mounted() &#123;</span><br><span class="line">    this.codeLogin(); &#x2F;&#x2F; 和上面第二步同样的方法</span><br><span class="line">&#125;,</span><br><span class="line">getdd()&#123;</span><br><span class="line">    api.dtalkPcQrLogin(&#123;code:this.code&#125;).then(res&#x3D;&gt;&#123;</span><br><span class="line">        if (res.code &#x3D;&#x3D; &quot;0000&quot;) &#123;</span><br><span class="line">            setLocalStorage(&quot;token&quot;, res.data.token.token);</span><br><span class="line">            setLocalStorage(&quot;curl&quot;, res.data.permission);</span><br><span class="line">            setLocalStorage(&quot;department&quot;, res.data.department);</span><br><span class="line">            setLocalStorage(&quot;level&quot;, res.data.level);</span><br><span class="line">            setLocalStorage(&quot;grider&quot;, res.data.grider);</span><br><span class="line">            setLocalStorage(&quot;username&quot;, res.data.username);</span><br><span class="line">            setLocalStorage(&quot;name&quot;, res.data.realName);</span><br><span class="line">            setLocalStorage(&quot;permissionDing&quot;, res.data.permissionDing);</span><br><span class="line">            document.cookie &#x3D; &quot;token&#x3D;&quot; + res.data.token.token;</span><br><span class="line">            let arr &#x3D; JSON.parse(res.data.permission);</span><br><span class="line">            let item &#x3D; arr[0];</span><br><span class="line">            let child &#x3D; item.child[0];</span><br><span class="line">            &#x2F;&#x2F; 根据权限登录对应页面</span><br><span class="line">            if (item.url &amp;&amp; item.child.length&#x3D;&#x3D;0) &#123;</span><br><span class="line">                gotoGovURL(&#96;$&#123;item.url&#125;&#96;);</span><br><span class="line">            &#125; else if (child) &#123;</span><br><span class="line">                gotoGovURL(&#96;$&#123;item.url&#125;#&#x2F;$&#123;child.url&#125;&#96;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            this.$message(&#123;</span><br><span class="line">                message: res.msg,</span><br><span class="line">                type: &#39;warning&#39;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="钉钉免登2-0版本（专有钉钉）"><a href="#钉钉免登2-0版本（专有钉钉）" class="headerlink" title="钉钉免登2.0版本（专有钉钉）"></a>钉钉免登2.0版本（专有钉钉）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; HTML文件引入api</span><br><span class="line">&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;g.alicdn.com&#x2F;gdt&#x2F;jsapi&#x2F;1.3.5&#x2F;index.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 接口</span><br><span class="line">&#x2F;&#x2F; 免登接口 authCode</span><br><span class="line">export const autoLogin &#x3D; (params) &#x3D;&gt; request.get(&#39;&#x2F;dtalk&#x2F;autoLogin&#39;, &#123; params &#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 绑定用户</span><br><span class="line">export const loginAndBind &#x3D; (params) &#x3D;&gt; request.get(&#39;&#x2F;dtalk&#x2F;loginAndBind&#39;, &#123; params &#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 退出登录-解绑</span><br><span class="line">export const exitAndRemove &#x3D; (params) &#x3D;&gt; request.get(&#39;&#x2F;dtalkExit&#x2F;exitAndRemove&#39;, &#123; params &#125;)</span><br><span class="line"></span><br><span class="line">**</span><br><span class="line"> * @description: 政务钉钉2.0版本迭代 api修改dd.runtime.permission.requestAuthCode-》dd.getAuthCode 接口修改&#x2F;api&#x2F;dtalkLogin -》&#x2F;api&#x2F;dtalkLoginV2</span><br><span class="line"> *               流程：dd.getAuthCode 钉钉api 获取钉钉免登授权码》》》&#x2F;dtalk&#x2F;user&#x2F;dtalkLogin通过免登授权码获取用户信息</span><br><span class="line"> *&#x2F;</span><br><span class="line">export const ddLoginV2 &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; console.log(&#39;ddLoginV2&#39;);</span><br><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; console.log(&#39;ddV2&#39;)</span><br><span class="line">    dd.ready(function() &#123;</span><br><span class="line">      &#x2F;&#x2F; console.log(&#39;ddV2 进&#39;)</span><br><span class="line">      dd.getAuthCode().then((result) &#x3D;&gt; &#123;</span><br><span class="line">        let authCode &#x3D; result.code</span><br><span class="line">        console.log(result)</span><br><span class="line">        &#x2F;&#x2F; 通过该免登授权码可以获取用户身份</span><br><span class="line">        autoLogin(&#123; authCode &#125;).then(res &#x3D;&gt; &#123;</span><br><span class="line">          &#x2F;&#x2F; console.log(&#39;dtalkLoginV2接口返回信息&#39;,res)</span><br><span class="line">          resolve(res)</span><br><span class="line">        &#125;).catch(() &#x3D;&gt; &#123;</span><br><span class="line">          Toast(&#39;免登失败，请重新登录绑定&#39;)</span><br><span class="line">          setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">            location.href &#x3D; &#39;&#x2F;dd.html#&#x2F;login&#39;&#x2F;&#x2F; 登录页</span><br><span class="line">          &#125;, 1500)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">      return false</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用</span><br><span class="line">&#x2F;&#x2F; 1. 默认进入首页</span><br><span class="line">mounted() &#123;</span><br><span class="line">    &#x2F;&#x2F; 免登</span><br><span class="line">    ddLoginV2().then(res &#x3D;&gt; &#123;</span><br><span class="line">      console.log(res)</span><br><span class="line">      setLocalStorage(&#39;token&#39;, res.access_token)</span><br><span class="line">      setLocalStorage(&#39;nickNameCn&#39;, res.dtalkUserInfo)</span><br><span class="line">      setLocalStorage(&#39;accountId&#39;, res.dtalkId)</span><br><span class="line">      setLocalStorage(&#39;clientId&#39;, res.clientId)</span><br><span class="line">      setLocalStorage(&#39;lastName&#39;, res.lastName)</span><br><span class="line">      setToken(res.access_token)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">    &#x2F;&#x2F; 退出登录</span><br><span class="line">    logout() &#123;</span><br><span class="line">      this.$dialog.confirm(&#123;</span><br><span class="line">        title: &#39;提示&#39;,</span><br><span class="line">        message: &#39;是否确定退出登录？&#39;</span><br><span class="line">      &#125;).then(() &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; 接除绑定</span><br><span class="line">        exitAndRemove().then(res &#x3D;&gt; &#123;</span><br><span class="line">          this.$router.push(&#39;login&#39;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;).catch(() &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; on cancel</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 2.登录</span><br><span class="line">methods: &#123;</span><br><span class="line">    &#x2F;&#x2F; 登录</span><br><span class="line">    login() &#123;</span><br><span class="line">      if (!this.username || !this.password) return</span><br><span class="line">      login(&#123;</span><br><span class="line">        username: this.username,</span><br><span class="line">        password: this.password,</span><br><span class="line">        source: 1</span><br><span class="line">      &#125;).then(response &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; 重新获取免登授权码</span><br><span class="line">        dd.getAuthCode().then((result) &#x3D;&gt; &#123;</span><br><span class="line">          let code &#x3D; result.code</span><br><span class="line">          let pwd &#x3D; this.password</span><br><span class="line">          loginAndBind(&#123;</span><br><span class="line">            userName: this.username,</span><br><span class="line">            password: md5(pwd),</span><br><span class="line">            authCode: code</span><br><span class="line">          &#125;).then(res &#x3D;&gt; &#123;</span><br><span class="line">            setLocalStorage(&#39;token&#39;, res.access_token)</span><br><span class="line">            setLocalStorage(&#39;nickNameCn&#39;, res.dtalkUserInfo)</span><br><span class="line">            setLocalStorage(&#39;accountId&#39;, res.dtalkId)</span><br><span class="line">            setLocalStorage(&#39;clientId&#39;, res.clientId)</span><br><span class="line">            setLocalStorage(&#39;lastName&#39;, res.lastName)</span><br><span class="line">            setToken(res.access_token)</span><br><span class="line">            this.$notify(&#123; type: &#39;success&#39;, message: &#39;绑定成功&#39; &#125;)</span><br><span class="line">            this.$router.push(&#39;dashboard&#39;)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p>代码地址：<a href="https://gitee.com/crystalSummer/record-code/tree/master/ddAutoLogin" target="_blank" rel="noopener"><strong>钉钉免登2.0版本（专有钉钉）</strong></a></p>
+
+    </div>
+
+    
+    
+    
+    
+    
+      <div>
+          <div>
+    
+        <div style="text-align:center;color: #666;font-size:14px;">-------------本文结束　<i class="fa fa-hourglass-end" style="color:rgb(90,85,85)"></i>　感谢阅读-------------</div>
+    
+</div>
+      </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Crystal
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://crystalsummer.gitee.io/2020/08/26/%E9%92%89%E9%92%89%E5%85%8D%E7%99%BB%E5%BD%95/" title="钉钉免登录">http://crystalsummer.gitee.io/2020/08/26/钉钉免登录/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/H5/" rel="tag"><i class="fa fa-tag"></i> H5</a>
+              <a href="/tags/%E9%92%89%E9%92%89/" rel="tag"><i class="fa fa-tag"></i> 钉钉</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/02/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%BA%93%E8%AE%B0%E5%BD%95/" rel="prev" title="常用工具库记录">
+      <i class="fa fa-chevron-left"></i> 常用工具库记录
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/10/%E5%A4%A7%E5%B1%8F%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91/" rel="next" title="大屏可视化开发">
+      大屏可视化开发 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MDEyMC8yNjYxMA"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#钉钉内部微应用免登"><span class="nav-number">1.</span> <span class="nav-text">钉钉内部微应用免登</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#钉钉扫码登录第三方网站"><span class="nav-number">2.</span> <span class="nav-text">钉钉扫码登录第三方网站</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#钉钉免登2-0版本（专有钉钉）"><span class="nav-number">3.</span> <span class="nav-text">钉钉免登2.0版本（专有钉钉）</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Crystal"
+      src="/uploads/avatar2.png">
+  <p class="site-author-name" itemprop="name">Crystal</p>
+  <div class="site-description" itemprop="description">Only for recording life</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/crystal-summer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;crystal-summer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:herr_510@163.com" title="E-Mail → mailto:herr_510@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/5596982190/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;5596982190&#x2F;profile?rightmod&#x3D;1&amp;wvr&#x3D;6&amp;mod&#x3D;personnumber&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ruanyifeng.com/blog/" title="http:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;" rel="noopener" target="_blank">阮一峰</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhangxinxu.com/" title="https:&#x2F;&#x2F;www.zhangxinxu.com&#x2F;" rel="noopener" target="_blank">张鑫旭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">CodePen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nowcoder.com/" title="https:&#x2F;&#x2F;www.nowcoder.com&#x2F;" rel="noopener" target="_blank">牛客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dandyweng.com/" title="https:&#x2F;&#x2F;www.dandyweng.com&#x2F;" rel="noopener" target="_blank">翁天信</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Crystal Summer</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">478k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">7:14</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='34,34,34' opacity='0.5' zIndex='' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"crystalsummer.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "4b921942"
+    }); 
+  daovoice('update');
+  </script>
+
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Vue项目框架配置">
+<meta property="og:url" content="http://crystalsummer.gitee.io/2020/01/24/Vue%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Crystal&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2019/08/06/02/16/mountains-4387209_960_720.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/10/29/dBwN4JReyCngUKf.png">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/30/16629bb7e0e41356?imageslim">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/30/16629d391e7781e1?imageslim">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/30/16629d57bc9513fb?imageslim">
+<meta property="og:image" content="https://i.loli.net/2020/10/27/YpvfhCcOIRBHQ6G.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/30/xuTp1vNR2YCUls4.png">
+<meta property="article:published_time" content="2020-01-24T06:33:47.000Z">
+<meta property="article:modified_time" content="2022-08-10T07:37:05.811Z">
+<meta property="article:author" content="Crystal">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="Frame">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2019/08/06/02/16/mountains-4387209_960_720.jpg">
+
+<link rel="canonical" href="http://crystalsummer.gitee.io/2020/01/24/Vue%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E9%85%8D%E7%BD%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Vue项目框架配置 | Crystal's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Crystal's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Crystal's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/crystal-summer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://crystalsummer.gitee.io/2020/01/24/Vue%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.png">
+      <meta itemprop="name" content="Crystal">
+      <meta itemprop="description" content="Only for recording life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crystal's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue项目框架配置
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">posted</span>
+
+              <time title="创建时间：2020-01-24 14:33:47" itemprop="dateCreated datePublished" datetime="2020-01-24T14:33:47+08:00">2020-01-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/Frame/" itemprop="url" rel="index"><span itemprop="name">Frame</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="count">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">count：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="readingTime">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">readingTime &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://cdn.pixabay.com/photo/2019/08/06/02/16/mountains-4387209_960_720.jpg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="知识梳理"><a href="#知识梳理" class="headerlink" title="知识梳理"></a>知识梳理</h1><h2 id="publicPath"><a href="#publicPath" class="headerlink" title="publicPath"></a>publicPath</h2><p>部署应用包时的基本 URL：</p>
+<ul>
+<li>output.publicPath:表示的是打包生成的index.html文件里面引用资源的前缀；</li>
+<li>devServer.publicPath：表示的是打包生成的静态文件所在的位置（若是devServer里面的publicPath没有设置，则会认为是output里面设置的publicPath的值）。</li>
+</ul>
+<div style='color:#409EFF;border:1px solid #409EFF;border-radius:4px;background:rgba(64,158,255,0.1);padding:5px 10px;margin-bottom:20px;'>
+默认情况下，Vue CLI 会假设你的应用是被部署在一个域名的根路径上，例如 https://www.my-app.com/。如果应用被部署在一个子路径上，你就需要用这个选项指定这个子路径。例如，如果你的应用被部署在 https://www.my-app.com/my-app/，则设置 publicPath 为 /my-app/。
+</div>
+<div style='color:#409EFF;border:1px solid #409EFF;border-radius:4px;background:rgba(64,158,255,0.1);padding:5px 10px;margin-bottom:20px;'>
+这个值也可以被设置为空字符串 ('') 或是相对路径 ('./')，这样所有的资源都会被链接为相对路径，这样打出来的包可以被部署在任意路径。
+</div>
+
+<ol>
+<li>推荐写法，生产环境配置为相对路径’’,开发环境时devServer和output的publicPath设置为/：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    publicPath: process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;production&#39; ? &#39;&#39; : &#39;&#x2F;&#39;, </span><br><span class="line">    devServer:&#123;</span><br><span class="line">        &#x2F;&#x2F;不设置时取外面output的publicPath</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://i.loli.net/2020/10/29/dBwN4JReyCngUKf.png" alt=""></li>
+<li>打包生成的静态文件所在位置 与 html文件引用资源的前缀 相同：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    publicPath:  &#39;&#x2F;outputdist&#x2F;&#39;,</span><br><span class="line">    devServer:&#123;</span><br><span class="line">        &#x2F;&#x2F;不设置时取外面output的publicPath</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://user-gold-cdn.xitu.io/2018/9/30/16629bb7e0e41356?imageslim" alt=""></li>
+<li>打包生成的静态文件所在位置 与 html文件引用资源的前缀 不同：控制台会提示找不到相关文件。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    publicPath: &#39;&#x2F;outputdist&#x2F;&#39;</span><br><span class="line">    devServer:&#123;</span><br><span class="line">        publicPath: &#39;&#x2F;dist&#x2F;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="https://user-gold-cdn.xitu.io/2018/9/30/16629d391e7781e1?imageslim" alt=""><br><img src="https://user-gold-cdn.xitu.io/2018/9/30/16629d57bc9513fb?imageslim" alt=""></li>
+</ol>
+<p>参考文章：<a href="https://juejin.im/post/6844903686632636423" target="_blank" rel="noopener"><strong>webpack中的path、publicPath和contentBase</strong></a></p>
+<h2 id="productionSourceMap"><a href="#productionSourceMap" class="headerlink" title="productionSourceMap"></a>productionSourceMap</h2><p>　　productionSourceMap 是用来设置生产环境的 source map 开启与关闭，source map 的作用就是定位报错或者 console 的位置。<br>比如：在 main.js 的第20行有一句 console.log(‘test’)</p>
+<ul>
+<li>productionSourceMap = false：打包之后的代码是经过压缩加密的，浏览器控制台会打印出 ‘test’，但是不会直接给出这句打印指令是在哪个文件的哪一行，并且打包后的文件很小；</li>
+<li>productionSourceMap = true：打包之后生成 map 文件，map 文件相当于查看源码的一个东西，浏览器控制台也会打印出 ‘test’，并且会准确定位到这句打印指令是在 main.js 的第20行，但是打包之后的文件很大。</li>
+</ul>
+<h2 id="pages"><a href="#pages" class="headerlink" title="pages"></a>pages</h2><p>pages 是在 multi-page 模式下构建应用，具体内容可以查看<a href="https://cli.vuejs.org/zh/config/#pages" target="_blank" rel="noopener"><strong>官方介绍</strong></a>。在 vue-cli3 vue.config.js 中的 pages 参数是会编译到 webpack 的插件html-webpack-plugin 的配置中。即 pages 就是插件 html-webpack-plugin 对应的 pages 参数。其值应该是一个对象，对象的 key 是入口的名字，value 是：</p>
+<ul>
+<li>一个指定了 entry, template, filename, title 和 chunks 的对象 (除了 entry 之外都是可选的)；</li>
+<li>或一个指定其 entry 的字符串。</li>
+</ul>
+<p>value 具体内容介绍如下：</p>
+<ul>
+<li>entry：每个页面的入口，相当于单页面应用的 main.js ， 必需；</li>
+<li>template：模板来源，相当于单页面应用的 public/index.html，非必需，省略时默认与模块名一致；</li>
+<li>filename：打包后在 dist 文件下的 HTML 文件的名称，省略时默认与 template 一致；</li>
+<li>title：页面在浏览器打开时的名称，当使用 title 选项时，template 中的 title 标签需要是 <title>&lt;%= htmlWebpackPlugin.options.title %&gt;</title>；</li>
+<li>favicon：页面在浏览器打开时的图标；</li>
+<li>inject：注入选项，四个值：true，body，head，false；<ul>
+<li>true：默认值，script 标签位于 HTML 文件的 body 底部；</li>
+<li>body：同 true；</li>
+<li>head：script 标签位于 HTML 文件的 head 标签内；</li>
+<li>false：不插入生成的 js 文件，只是单纯的生成一个 HTML 文件。</li>
+</ul>
+</li>
+<li>minify：是否对 HTML 文件进行压缩，两个值，false（不对生成的 HTML 文件进行压缩） 或者压缩选项；</li>
+<li>catch：默认值 true，表示在内容变化时才生成一个新的文件；</li>
+<li>hash：是否给生成的 js 文件独特的 hash 值，默认值 false；</li>
+<li>chunks：针对多入口文件，当你有多个入口时，对应会生成多个编译后的 js 文件，chunks 选项可以决定是否都使用这些生成的 js 文件。</li>
+</ul>
+<div style='color:#409EFF;border:1px solid #409EFF;border-radius:4px;background:rgba(64,158,255,0.1);padding:5px 10px;margin-bottom:20px;'>
+chunks 默认会在生成的 html 文件中引用所有的 js 文件，当然你可以指定引入哪些特定的文件。例如：有两个入口文件，生成了两个 js 文件，如果不指定对应的 chunks，则每个生成的 html 文件中会都引入这两个 js 文件。
+</div>
+
+<p>参考文章：<a href="https://segmentfault.com/a/1190000007294861#articleHeader9" target="_blank" rel="noopener"><strong>html-webpack-plugin用法全解</strong></a></p>
+<h2 id="devServer"><a href="#devServer" class="headerlink" title="devServer"></a>devServer</h2><ul>
+<li>devServer.index：设置开发时项目运行后默认打开的 index 页面，在多端项目里面，政务端 gov 默认打开 <a href="http://localhost:port/gov.html">http://localhost:port/gov.html</a> 页面 </li>
+<li>devServer.contentBase：根据 contentBase 设置的执行目录去查找 index.html 文件，不设置默认是根目录；在多端项目中，比如政务端 gov，这里就需要将 contentBase 设置成 gov，这样浏览器在打开页面的时候会去 gov 下面找 index.html 文件。</li>
+</ul>
+<h2 id="涉及文档"><a href="#涉及文档" class="headerlink" title="涉及文档"></a>涉及文档</h2><ul>
+<li><a href="https://cli.vuejs.org/zh/config/#%E5%85%A8%E5%B1%80-cli-%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener"><strong>vue-cli的webpack配置参考</strong></a></li>
+<li><a href="https://webpack.docschina.org/configuration/dev-server/" target="_blank" rel="noopener"><strong>webpack配置-devServer</strong></a></li>
+<li><a href="https://webpack.docschina.org/configuration/output/#outputpublicpath" target="_blank" rel="noopener"><strong>webpack配置-publicPath</strong></a></li>
+</ul>
+<h1 id="单页面应用配置"><a href="#单页面应用配置" class="headerlink" title="单页面应用配置"></a>单页面应用配置</h1><p>　　单页面应用就是使用 vue-cli 脚手架新建项目时默认的项目配置，整个项目只有一个页面组成，通过 vue-router 进行路由配置。这里做了新的配置，配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#39;use strict&#39;</span><br><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  publicPath: &#39;&#x2F;&#39;,</span><br><span class="line">  outputDir: &#39;dist&#39;,&#x2F;&#x2F; 打包时生成的生产环境构建文件的目录</span><br><span class="line">  assetsDir: &#39;static&#39;, &#x2F;&#x2F;打包后的 css、js 等静态文件目录名,相对于outputDir</span><br><span class="line">  lintOnSave: process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;development&#39;,&#x2F;&#x2F; 开发环境的进行 eslint 校验，线上不校验</span><br><span class="line">  productionSourceMap: false,</span><br><span class="line">  &#x2F;&#x2F; 如果前端应用和后端服务器没有运行在同一个主机上，需要在开发环境下将请求代理到服务器</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    port: &#39;9001&#39;, &#x2F;&#x2F; 前端打开页面的端口号 http:&#x2F;&#x2F;localhost:9001</span><br><span class="line">    open: true, &#x2F;&#x2F; 应用运行成功后，浏览器是否打开页面</span><br><span class="line">    &#x2F;&#x2F; 出现编译器错误时，在浏览器中显示全屏覆盖</span><br><span class="line">    overlay: &#123;</span><br><span class="line">      warnings: false,</span><br><span class="line">      errors: true</span><br><span class="line">    &#125;,</span><br><span class="line">    proxy: &#123;</span><br><span class="line">        [process.env.VUE_APP_BASE_API]: &#123;</span><br><span class="line">            target: &#96;http:&#x2F;&#x2F;10.1.1.139:8444&#96;, &#x2F;&#x2F; 代理地址，这里设置的地址会代替axios中设置的baseURL</span><br><span class="line">            changeOrigin: true, &#x2F;&#x2F; 如果接口跨域，需要进行这个参数配置</span><br><span class="line">            pathRewrite: &#123; &#x2F;&#x2F; pathRewrite方法重写url</span><br><span class="line">                [&#39;^&#39; + process.env.VUE_APP_BASE_API]: &#39;&#39;  </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; process.env.VUE_APP_BASE_API 为 &#x2F;dev-api，请求到 &#x2F;dev-api&#x2F;XXX 的请求会被代理</span><br><span class="line">        &#x2F;&#x2F; 之前的url：http:&#x2F;&#x2F;localhost:9001&#x2F;dev-api&#x2F;XXX，重写之后的url：http:&#x2F;&#x2F;10.1.1.139:8444&#x2F;XXX</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  chainWebpack(config)&#123;&#x2F;&#x2F;把当前项目的根目录的static备份到打包目录的static目录下面</span><br><span class="line">      config</span><br><span class="line">      .plugin(&#39;copy&#39;)</span><br><span class="line">      .init((CopyWebpackPlugin) &#x3D;&gt; new CopyWebpackPlugin([&#123;</span><br><span class="line"></span><br><span class="line">        from: path.resolve(__dirname, &#39;.&#x2F;static&#39;),</span><br><span class="line">        to: path.resolve(__dirname, &#39;.&#x2F;dist&#x2F;static&#39;)</span><br><span class="line">      &#125;])).end()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/10/27/YpvfhCcOIRBHQ6G.png" alt=""><br>GitHub完整代码地址：<a href="https://github.com/crystal-summer/single-terminal-single-page" target="_blank" rel="noopener"><strong>https://github.com/crystal-summer/single-terminal-single-page</strong></a><br>gitee完整代码地址：<a href="https://gitee.com/crystalSummer/single-terminal-single-page" target="_blank" rel="noopener"><strong>https://gitee.com/crystalSummer/single-terminal-single-page</strong></a></p>
+<h1 id="多页面应用配置"><a href="#多页面应用配置" class="headerlink" title="多页面应用配置"></a>多页面应用配置</h1><p>　　多页面应用配置，在这里，每个页面相当于一个单页面应用，每个页面会配置自己的入口（router，vuex）、模板等，每个页面之间的跳转可以使用 location.href，而页面内可以使用入口中的 router 跳转，所以项目本身的 APP.vue 和 main.js 文件就没有作用了，可以将其删除，配置完成后，启动项目，在浏览器打开 <a href="http://localhost:9001/login.html#/" target="_blank" rel="noopener">http://localhost:9001/login.html#/</a> 就可以访问页面了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 最终文件目录如下</span><br><span class="line">|-node_modules</span><br><span class="line">|-public</span><br><span class="line">    |-favicon.ico</span><br><span class="line">    |-index.html</span><br><span class="line">|-src</span><br><span class="line">    |-assets</span><br><span class="line">    |-components</span><br><span class="line">    |-store</span><br><span class="line">    |-views</span><br><span class="line">        |-login</span><br><span class="line">             |-index.vue</span><br><span class="line">             |-login.js</span><br><span class="line">             |-login.html</span><br><span class="line">             |-router.js</span><br><span class="line">        |-homePage</span><br><span class="line">             |-index.vue</span><br><span class="line">             |-homePage.js</span><br><span class="line">             |-homePage.html</span><br><span class="line">             |-router.js</span><br><span class="line">|-.browserslistrc</span><br><span class="line">|-.eslintrc.js</span><br><span class="line">|-.gitignore</span><br><span class="line">|-babel.config.js</span><br><span class="line">|-package.json</span><br><span class="line">|-vue.config.js</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; vue.config.js 配置如下</span><br><span class="line">&#39;use strict&#39;</span><br><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    publicPath: &#39;&#x2F;&#39;,</span><br><span class="line">    outputDir: &#39;dist&#39;,</span><br><span class="line">    assetsDir: &#39;static&#39;,</span><br><span class="line">    &#x2F;&#x2F; 多个页面可以将这一块单独提出</span><br><span class="line">    pages:&#123;</span><br><span class="line">        login:&#123;</span><br><span class="line">            &#x2F;&#x2F; page 的入口，相当于单页面应用的 main.js ， 必需</span><br><span class="line">            entry: path.join(__dirname, &#96;.&#x2F;src&#x2F;views&#x2F;login&#x2F;login.js&#96;),</span><br><span class="line">            &#x2F;&#x2F; 模板来源，相当于单页面应用的 public&#x2F;index.html，非必需，省略时默认与模块名一致</span><br><span class="line">            template: path.join(__dirname, &#39;.&#x2F;src&#x2F;views&#x2F;login&#x2F;login.html&#39;),</span><br><span class="line">            &#x2F;&#x2F; 当使用 title 选项时，template 中的 title 标签需要是 &lt;title&gt;&lt;%&#x3D; htmlWebpackPlugin.options.title %&gt;&lt;&#x2F;title&gt;</span><br><span class="line">            title: &#39;gov Page&#39;,</span><br><span class="line">            favicon: path.join(__dirname, &#39;.&#x2F;public&#x2F;favicon.ico&#39;),</span><br><span class="line">            &#x2F;&#x2F; 在这个页面中包含的块，默认情况下会包含提取出来的通用 chunk 和 vendor chunk。</span><br><span class="line">            chunks:[&#39;chunk-vendors&#39;, &#39;chunk-common&#39;, &#39;login&#39;]</span><br><span class="line">          &#125;,</span><br><span class="line">        homePage:&#123;</span><br><span class="line">            entry: path.join(__dirname, &#96;.&#x2F;src&#x2F;views&#x2F;homePage&#x2F;homePage.js&#96;),</span><br><span class="line">            template: path.join(__dirname, &#39;.&#x2F;src&#x2F;views&#x2F;homePage&#x2F;homePage.html&#39;),</span><br><span class="line">            title: &#39;gov Page&#39;,</span><br><span class="line">            favicon: path.join(__dirname, &#39;.&#x2F;public&#x2F;favicon.ico&#39;),</span><br><span class="line">            chunks:[&#39;chunk-vendors&#39;, &#39;chunk-common&#39;, &#39;homePage&#39;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    lintOnSave: process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;development&#39;,</span><br><span class="line">    productionSourceMap: false,</span><br><span class="line">    devServer: &#123;</span><br><span class="line">      port: &#39;9001&#39;,</span><br><span class="line">      open: true,</span><br><span class="line">      overlay: &#123;</span><br><span class="line">        warnings: false,</span><br><span class="line">        errors: true</span><br><span class="line">      &#125;,</span><br><span class="line">      proxy: &#123;</span><br><span class="line">            [process.env.VUE_APP_BASE_API]: &#123;</span><br><span class="line">                target: &#96;http:&#x2F;&#x2F;10.1.1.139:8444&#96;,</span><br><span class="line">                changeOrigin: true, </span><br><span class="line">                pathRewrite: &#123; </span><br><span class="line">                    [&#39;^&#39; + process.env.VUE_APP_BASE_API]: &#39;&#39;  </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    chainWebpack(config)&#123;</span><br><span class="line">        config</span><br><span class="line">        .plugin(&#39;copy&#39;)</span><br><span class="line">        .init((CopyWebpackPlugin) &#x3D;&gt; new CopyWebpackPlugin([&#123;</span><br><span class="line">  </span><br><span class="line">          from: path.resolve(__dirname, &#39;.&#x2F;static&#39;),</span><br><span class="line">          to: path.resolve(__dirname, &#39;.&#x2F;dist&#x2F;static&#39;)</span><br><span class="line">        &#125;])).end()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>多页面应用打包后的文件如下，会出现多个 HTML 文件：<br><img src="https://i.loli.net/2020/10/30/xuTp1vNR2YCUls4.png" alt=""><br>GitHub完整代码地址：<a href="https://github.com/crystal-summer/single-terminal-multi-page" target="_blank" rel="noopener"><strong>https://github.com/crystal-summer/single-terminal-multi-page</strong></a><br>gitee完整代码地址：<a href="https://gitee.com/crystalSummer/single-terminal-multi-page" target="_blank" rel="noopener"><strong>https://gitee.com/crystalSummer/single-terminal-multi-page</strong></a></p>
+<h1 id="多端应用配置"><a href="#多端应用配置" class="headerlink" title="多端应用配置"></a>多端应用配置</h1><ol>
+<li>多端单页面应用和多端多页面应用获取文件方式相同：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const &#123; getCreateConfig &#125; &#x3D; require(&#39;.&#x2F;config&#x2F;config.file&#39;)</span><br><span class="line">const fileName &#x3D; require(&#39;.&#x2F;config&#x2F;fileName&#39;)</span><br><span class="line">const path &#x3D; require(&#39;path&#39;)</span><br><span class="line">const isProd &#x3D; process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;production&#39;</span><br><span class="line">function getPages () &#123;</span><br><span class="line">  let obj &#x3D; &#123;&#125;</span><br><span class="line">  let &#123; html: &#123; filename: template &#125;, js: &#123; filename: entry &#125; &#125; &#x3D; getCreateConfig(process.env.selfDirName)</span><br><span class="line">  Object.entries(fileName).forEach(([k, v]) &#x3D;&gt; &#123;</span><br><span class="line">    obj[k] &#x3D; &#123;</span><br><span class="line">      entry: entry.replace(&#x2F;\$&#123;filename&#125;&#x2F;g, k),</span><br><span class="line">      template: template.replace(&#x2F;\$&#123;filename&#125;&#x2F;g, k),</span><br><span class="line">      filename: isProd ? &#96;$&#123;k&#125;.html&#96; : &#96;$&#123;process.env.selfDirName&#125;&#x2F;$&#123;k&#125;.html&#96;,</span><br><span class="line">      title: &#39;&#39;,</span><br><span class="line">      favicon: path.join(__dirname, &#39;.&#x2F;public&#x2F;favicon.ico&#39;),</span><br><span class="line">      chunks: [&#39;chunk-vendors&#39;, &#39;chunk-common&#39;, &#96;$&#123;k&#125;&#96;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return obj</span><br><span class="line">&#125;</span><br><span class="line">let pages &#x3D; getPages()</span><br></pre></td></tr></table></figure></li>
+<li>多端单页面应用和多端多页面应用区别：<ul>
+<li>配置 pages 不同：多端单页面应用的 pages 拿到的是当前环境（当前端）的页面，多端多页面应用的 pages 拿到的是全部页面；</li>
+<li>多端单页面应用在创建文件时在 create.js 是用的是 createProj()，而多端多页面应用用的是 createProj(pathname)。</li>
+</ul>
+</li>
+</ol>
+<h2 id="多端单页面应用配置"><a href="#多端单页面应用配置" class="headerlink" title="多端单页面应用配置"></a>多端单页面应用配置</h2><p>多端单页面应用，遵循一个端一个页面的原则创建文件，创建文件的规则写在配置文件夹config里。</p>
+<ul>
+<li>在 config/fileName 文件新增一个文件名(相当于新建一个端/一个页面文件)；</li>
+<li>在根目录创建进程文件，规定当前进程对象(eg:.env.gov .env.govDev)；</li>
+<li>在 package.json 文件创建 script 脚本命令，包括启动命令和打包命令 (eg:”vue-cli-service serve –open –mode govDev)；</li>
+<li>在 config/template 创建模板文件；</li>
+<li>运行 npm run create 或者 node ./create/index.js，新建的文件夹和文件即生成；</li>
+</ul>
+<p>文件夹 config 内部是通过 fileName 指定文件夹和文件名，然后自动生成文件夹以及文件的配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  publicPath: process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;production&#39; ? &#39;&#39; : &#39;&#x2F;&#39;,</span><br><span class="line">  outputDir: &#39;dist&#x2F;&#39; + process.env.selfDirName,</span><br><span class="line">  assetsDir: &#39;static&#39;,</span><br><span class="line">  lintOnSave: process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;development&#39;,</span><br><span class="line">  &#x2F;&#x2F; 当前运行环境的入口文件的配置，只打包运行当前环境的页面（仅有一个页面）</span><br><span class="line">  pages:&#123;[process.env.selfDirName]:pages[process.env.selfDirName]&#125;, </span><br><span class="line">  productionSourceMap: false,</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    index: &#96;&#x2F;$&#123;process.env.selfDirName&#125;.html&#96;,</span><br><span class="line">    contentBase: path.join(__dirname, process.env.selfDirName),</span><br><span class="line">    port: process.env.port,</span><br><span class="line">  &#125;,</span><br><span class="line">  chainWebpack(config)&#123;&#x2F;&#x2F;生产环境把当前项目的根目录的static备份到dist&#x2F;static目录下面</span><br><span class="line">    let staticPath &#x3D; &#39;&#39;</span><br><span class="line">    if (process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;production&#39;) &#123;</span><br><span class="line">      staticPath &#x3D; path.resolve(__dirname, &#96;.&#x2F;dist&#x2F;&#96; + &#96;static&#96;)</span><br><span class="line">      &#x2F;&#x2F; staticPath &#x3D; path.resolve(__dirname, &#96;.&#x2F;dist&#x2F;&#96; + process.env.selfDirName + &#96;&#x2F;static&#96;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      staticPath &#x3D; &#39;static&#39;</span><br><span class="line">    &#125;</span><br><span class="line">    config</span><br><span class="line">      .plugin(&#39;copy&#39;)</span><br><span class="line">      .init((CopyWebpackPlugin) &#x3D;&gt; new CopyWebpackPlugin([&#123;</span><br><span class="line">        from: path.resolve(__dirname, &#39;.&#x2F;static&#39;),</span><br><span class="line">        to: staticPath</span><br><span class="line">      &#125;])).end()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>GitHub完整代码地址：<a href="https://github.com/crystal-summer/multi-terminal-single-page" target="_blank" rel="noopener"><strong>https://github.com/crystal-summer/multi-terminal-single-page</strong></a><br>gitee完整代码地址：<a href="https://gitee.com/crystalSummer/multi-terminal-single-page" target="_blank" rel="noopener"><strong>https://gitee.com/crystalSummer/multi-terminal-single-page</strong></a></p>
+<h2 id="多端多页面应用配置"><a href="#多端多页面应用配置" class="headerlink" title="多端多页面应用配置"></a>多端多页面应用配置</h2><p>多端多页面应用，遵循一个端多个页面原则创建文件，创建文件的规则写在配置文件夹 config 里。</p>
+<ul>
+<li>在 config/fileName 文件 新增端和文件名；</li>
+<li>在 config/create 文件夹下新增端文件；</li>
+<li>在根目录创建进程文件，规定当前进程对象(eg:.env.gov .env.govDev)；</li>
+<li>在 package.json 文件创建 script 脚本命令，包括启动命令和打包命令 (eg:”vue-cli-service serve –open –mode govDev)；</li>
+<li>在 config/template 创建模板文件；</li>
+<li>运行 npm run new gov ，或者可以 node createGov.js 创建某个端的多页面文件；</li>
+</ul>
+<p>文件夹config内部是通过fileName指定文件夹和文件名，然后自动生成文件夹以及文件的配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  publicPath: process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;production&#39; ? &#39;&#39; : &#39;&#x2F;&#39;,</span><br><span class="line">  outputDir: &#39;dist&#x2F;&#39; + process.env.selfDirName,</span><br><span class="line">  assetsDir: &#39;static&#39;,</span><br><span class="line">  lintOnSave: process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;development&#39;,</span><br><span class="line">  productionSourceMap: false,</span><br><span class="line">  pages, &#x2F;&#x2F;所有页面的配置</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    index: &#39;login.html&#39;,</span><br><span class="line">    contentBase: path.join(__dirname, process.env.selfDirName),</span><br><span class="line">    port: process.env.port,</span><br><span class="line">  &#125;,</span><br><span class="line">  chainWebpack(config)&#123;</span><br><span class="line">    let staticPath &#x3D; &#39;&#39;</span><br><span class="line">    if (process.env.NODE_ENV &#x3D;&#x3D;&#x3D; &#39;production&#39;) &#123;</span><br><span class="line">      config.devtool &#x3D; &#39;eval-source-map&#39;</span><br><span class="line">      staticPath &#x3D; path.resolve(__dirname, &#96;.&#x2F;dist&#x2F;&#96; + &#96;static&#96;)</span><br><span class="line">      &#x2F;&#x2F; staticPath &#x3D; path.resolve(__dirname, &#96;.&#x2F;dist&#x2F;&#96; + process.env.selfDirName + &#96;&#x2F;static&#96;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      staticPath &#x3D; &#39;static&#39;</span><br><span class="line">    &#125;</span><br><span class="line">    config</span><br><span class="line">      .plugin(&#39;copy&#39;)</span><br><span class="line">      .init((CopyWebpackPlugin) &#x3D;&gt; new CopyWebpackPlugin([&#123;</span><br><span class="line">        from: path.resolve(__dirname, &#39;.&#x2F;static&#39;),</span><br><span class="line">        to: staticPath</span><br><span class="line">      &#125;])).end()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>GitHub完整代码地址：<a href="https://github.com/crystal-summer/multi-terminal-multi-page" target="_blank" rel="noopener"><strong>https://github.com/crystal-summer/multi-terminal-multi-page</strong></a><br>gitee完整代码地址：<a href="https://gitee.com/crystalSummer/multi-terminal-multi-page" target="_blank" rel="noopener"><strong>https://gitee.com/crystalSummer/multi-terminal-multi-page</strong></a></p>
+
+    </div>
+
+    
+    
+    
+    
+    
+      <div>
+          <div>
+    
+        <div style="text-align:center;color: #666;font-size:14px;">-------------本文结束　<i class="fa fa-hourglass-end" style="color:rgb(90,85,85)"></i>　感谢阅读-------------</div>
+    
+</div>
+      </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Crystal
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://crystalsummer.gitee.io/2020/01/24/Vue%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E9%85%8D%E7%BD%AE/" title="Vue项目框架配置">http://crystalsummer.gitee.io/2020/01/24/Vue项目框架配置/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"><i class="fa fa-tag"></i> Vue</a>
+              <a href="/tags/Frame/" rel="tag"><i class="fa fa-tag"></i> Frame</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/17/Vue2%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="prev" title="Vue2（二）">
+      <i class="fa fa-chevron-left"></i> Vue2（二）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/29/Webpack/" rel="next" title="Webpack">
+      Webpack <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MDEyMC8yNjYxMA"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#知识梳理"><span class="nav-number">1.</span> <span class="nav-text">知识梳理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#publicPath"><span class="nav-number">1.1.</span> <span class="nav-text">publicPath</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#productionSourceMap"><span class="nav-number">1.2.</span> <span class="nav-text">productionSourceMap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pages"><span class="nav-number">1.3.</span> <span class="nav-text">pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#devServer"><span class="nav-number">1.4.</span> <span class="nav-text">devServer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#涉及文档"><span class="nav-number">1.5.</span> <span class="nav-text">涉及文档</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单页面应用配置"><span class="nav-number">2.</span> <span class="nav-text">单页面应用配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多页面应用配置"><span class="nav-number">3.</span> <span class="nav-text">多页面应用配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多端应用配置"><span class="nav-number">4.</span> <span class="nav-text">多端应用配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多端单页面应用配置"><span class="nav-number">4.1.</span> <span class="nav-text">多端单页面应用配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多端多页面应用配置"><span class="nav-number">4.2.</span> <span class="nav-text">多端多页面应用配置</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Crystal"
+      src="/uploads/avatar2.png">
+  <p class="site-author-name" itemprop="name">Crystal</p>
+  <div class="site-description" itemprop="description">Only for recording life</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/crystal-summer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;crystal-summer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:herr_510@163.com" title="E-Mail → mailto:herr_510@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/5596982190/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;5596982190&#x2F;profile?rightmod&#x3D;1&amp;wvr&#x3D;6&amp;mod&#x3D;personnumber&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ruanyifeng.com/blog/" title="http:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;" rel="noopener" target="_blank">阮一峰</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhangxinxu.com/" title="https:&#x2F;&#x2F;www.zhangxinxu.com&#x2F;" rel="noopener" target="_blank">张鑫旭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">CodePen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nowcoder.com/" title="https:&#x2F;&#x2F;www.nowcoder.com&#x2F;" rel="noopener" target="_blank">牛客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dandyweng.com/" title="https:&#x2F;&#x2F;www.dandyweng.com&#x2F;" rel="noopener" target="_blank">翁天信</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Crystal Summer</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">478k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">7:14</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='34,34,34' opacity='0.5' zIndex='' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

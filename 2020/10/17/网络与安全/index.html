@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"crystalsummer.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "4b921942"
+    }); 
+  daovoice('update');
+  </script>
+
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="网络与安全">
+<meta property="og:url" content="http://crystalsummer.gitee.io/2020/10/17/%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%AE%89%E5%85%A8/index.html">
+<meta property="og:site_name" content="Crystal&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2020/08/06/20/18/wheat-5469124_960_720.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/03/25/GCtJkL6D4F2Qoic.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/25/9z53cBkH6lWAoMs.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/25/YtJpXx6LfGiz3QM.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/25/1XLcMgeAVusUGra.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/29/TNw4K2vd1JzYXhQ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/08/r3aKd8AXDskNhUQ.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/03/30/WBnX4xbrh2tGCwg.png">
+<meta property="article:published_time" content="2020-10-17T04:45:50.000Z">
+<meta property="article:modified_time" content="2022-08-10T07:37:05.812Z">
+<meta property="article:author" content="Crystal">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2020/08/06/20/18/wheat-5469124_960_720.jpg">
+
+<link rel="canonical" href="http://crystalsummer.gitee.io/2020/10/17/%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%AE%89%E5%85%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>网络与安全 | Crystal's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Crystal's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Crystal's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/crystal-summer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://crystalsummer.gitee.io/2020/10/17/%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%AE%89%E5%85%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.png">
+      <meta itemprop="name" content="Crystal">
+      <meta itemprop="description" content="Only for recording life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crystal's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络与安全
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">posted</span>
+
+              <time title="创建时间：2020-10-17 12:45:50" itemprop="dateCreated datePublished" datetime="2020-10-17T12:45:50+08:00">2020-10-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="count">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">count：</span>
+              <span>18k</span>
+            </span>
+            <span class="post-meta-item" title="readingTime">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">readingTime &asymp;</span>
+              <span>16 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://cdn.pixabay.com/photo/2020/08/06/20/18/wheat-5469124_960_720.jpg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="HTTP简介"><a href="#HTTP简介" class="headerlink" title="HTTP简介"></a>HTTP简介</h2><p>HTTP协议是超文本传输协议的缩写，用于从万维网服务器传输超文本到本地浏览器的传送协议。</p>
+<p>HTTP协议是基于TCP/IP通信协议来传递数据（HTML文件、图片文件、查询结果）的。</p>
+<p>HTTP协议与TCP协议不冲突，HTTP协议定义在七层协议的应用层，TCP解决的是传输层逻辑。</p>
+<p>HTTP使用TCP而不用UDP是因为网页传送的数据很多，而TCP协议提供传输控制，按顺序组织数据和错误纠正。</p>
+<h2 id="TCP-和-UDP"><a href="#TCP-和-UDP" class="headerlink" title="TCP 和 UDP"></a>TCP 和 UDP</h2><ul>
+<li><strong>TCP面向连接，UDP无连接</strong><br>TCP需要经过三次握手建立连接，而UDP不需要，想发送数据就可以直接发送。</li>
+<li><strong>TCP可靠传输，提供流量控制和拥塞控制，UDP不可靠传输，不提供流量控制和拥塞控制</strong><br>由于TCP需要经过三次握手建立连接，所以TCP属于可靠传输，当网络出现堵塞的时候，TCP会减小向网络注入数据的数量和速率，缓解堵塞情况，但是UDP完全相反，UDP一直以恒定的速度发送数据，不管网络条件是好是坏。</li>
+<li><strong>TCP一对一，UDP支持一对一，一对多，多对一和多对多的交互通信</strong></li>
+<li><strong>TCP面向字节流，UDP面向报文</strong></li>
+<li><strong>TCP首部最小为20字节，最大60字节，而UDP仅有8字节</strong></li>
+<li><strong>TCP适用于可靠传输，如文件传输，UDP适用于实时应用，如电话、视频、直播</strong></li>
+</ul>
+<h2 id="HTTP版本区别"><a href="#HTTP版本区别" class="headerlink" title="HTTP版本区别"></a>HTTP版本区别</h2><h3 id="HTTP0-9"><a href="#HTTP0-9" class="headerlink" title="HTTP0.9"></a>HTTP0.9</h3><p>最早的版本，只能发送GET请求，返回的数据只能是HTML格式。</p>
+<h3 id="HTTP1-0"><a href="#HTTP1-0" class="headerlink" title="HTTP1.0"></a>HTTP1.0</h3><p>优点：</p>
+<ul>
+<li>第一个在通讯中指定版本号的HTTP协议版本；</li>
+<li>任何格式的内容都可以发送，除文字外，增加了视频、图像、二进制文件；</li>
+<li>除了GET命令，还引入了POST和HEAD命令；</li>
+<li>请求和回应格式发生改变：<br>  请求格式：第一行是请求命令，尾部跟着协议版本号，后面是多行头信息，描述客户端情况。<br>  回应格式：头信息（ASCII码）+空行+数据（任何数据），其中第一行是协议版本号+状态码+状态描述。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>连接无法复用：每个TCP连接只能发送一个请求。发送数据完毕，连接就关闭，如果还要请求其他资源，就必须再新建一个连接。</li>
+<li>性能差：TCP连接的新建成本很高，因为需要客户端和服务器三次握手，并且开始时发送速率较慢。所以，HTTP 1.0版本的性能比较差。随着网页加载的外部资源越来越多，这个问题就愈发突出了。</li>
+</ul>
+<p>解决连接无法复用的方法：<br>请求时声明一个非标准字段Connection:keep-alive，这个字段要求服务器不关闭TCP连接，服务器同样返回这个字段。但这不是根本的解决之法。</p>
+<h3 id="HTTP1-1"><a href="#HTTP1-1" class="headerlink" title="HTTP1.1"></a>HTTP1.1</h3><p>优点：</p>
+<ul>
+<li><strong>持久连接</strong><br>TCP连接默认不关闭，可以被多个请求复用，不用声明Connection:keep-alive，客户端和服务器发现对方一段时间没有活动，就可以主动关闭连接。不过，规范的做法是，客户端在最后一个请求时，发送Connection: close，明确要求服务器关闭TCP连接。大多数浏览器允许同时建立6个长久连接。</li>
+<li><strong>管道机制</strong><br>同一个TCP连接里，可以同时发送多个请求，提高了传输速度。举例来说，客户端需要请求两个资源。以前的做法是，在同一个TCP连接里面，先发送A请求，然后等待服务器做出回应，收到后再发出B请求。管道机制则是允许浏览器同时发出A请求和B请求，但是服务器还是按照顺序，先回应A请求，完成后再回应B请求。</li>
+<li><strong>新增了许多动词方法</strong><br>PUT、PATCH、HEAD、 OPTIONS、DELETE。</li>
+<li><strong>客户端请求的头信息新增了Host字段，用来指定服务器的域名</strong>。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>队头堵塞</strong><br>虽然1.1版允许复用TCP连接，但是同一个TCP连接里面，所有的数据通信是按次序进行的。服务器只有处理完一个回应，才会进行下一个回应。要是前面的回应特别慢，后面就会有许多请求排队等着。</li>
+</ul>
+<h3 id="HTTP2-0"><a href="#HTTP2-0" class="headerlink" title="HTTP2.0"></a>HTTP2.0</h3><p>优点：</p>
+<ul>
+<li><strong>二进制协议</strong><br>HTTP/1.1 版的头信息肯定是文本（ASCII编码），数据体可以是文本，也可以是二进制。HTTP/2 则是一个彻底的二进制协议，头信息和数据体都是二进制，并且统称为”帧”（frame）：头信息帧和数据帧。<br>二进制协议的一个好处是，可以定义额外的帧。HTTP/2 定义了近十种帧，为将来的高级应用打好了基础。如果使用文本实现这种功能，解析数据将会变得非常麻烦，二进制解析则方便得多。</li>
+<li><strong>多工</strong><br>HTTP/2 复用TCP连接，在一个连接里，客户端和浏览器都可以同时发送多个请求或回应，而且不用按照顺序一一对应，这样就避免了”队头堵塞”。<br>举例来说，在一个TCP连接里面，服务器同时收到了A请求和B请求，于是先回应A请求，结果发现处理过程非常耗时，于是就发送A请求已经处理好的部分， 接着回应B请求，完成后，再发送A请求剩下的部分。<br>这样双向的、实时的通信，就叫做多工（Multiplexing）。</li>
+<li><strong>数据流</strong><br>因为 HTTP/2 的数据包是不按顺序发送的，同一个连接里面连续的数据包，可能属于不同的回应。因此，必须要对数据包做标记，指出它属于哪个回应。<br>HTTP/2 将每个请求或回应的所有数据包，称为一个数据流（stream）。每个数据流都有一个独一无二的编号。数据包发送的时候，都必须标记数据流ID，用来区分它属于哪个数据流。另外还规定，客户端发出的数据流，ID一律为奇数，服务器发出的，ID为偶数。<br>数据流发送到一半的时候，客户端和服务器都可以发送信号（RST_STREAM帧），取消这个数据流。1.1版取消数据流的唯一方法，就是关闭TCP连接。这就是说，HTTP/2 可以取消某一次请求，同时保证TCP连接还打开着，可以被其他请求使用。<br>客户端还可以指定数据流的优先级。优先级越高，服务器就会越早回应。</li>
+<li><strong>头信息压缩</strong><br>HTTP 协议不带有状态，每次请求都必须附上所有信息。所以，请求的很多字段都是重复的，比如Cookie和User Agent，一模一样的内容，每次请求都必须附带，这会浪费很多带宽，也影响速度。<br>HTTP/2 对这一点做了优化，引入了头信息压缩机制（header compression）。一方面，头信息使用gzip或compress压缩后再发送；另一方面，客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，以后就不发送同样字段了，只发送索引号，这样就提高速度了。</li>
+<li><strong>服务器推送</strong><br>HTTP/2 允许服务器未经请求，主动向客户端发送资源，这叫做服务器推送（server push）。<br>常见场景是客户端请求一个网页，这个网页里面包含很多静态资源。正常情况下，客户端必须收到网页后，解析HTML源码，发现有静态资源，再发出静态资源请求。其实，服务器可以预期到客户端请求网页后，很可能会再请求静态资源，所以就主动把这些静态资源随着网页一起发给客户端了。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>往返时延</strong><br>信号传播延迟(光在光纤和铜介质导线中传播速度是不同的)、网络服务器端以及用户端路由器跨越的数量、路由器是否拥堵以及路由器自身容量等。</li>
+<li><strong>多工导致服务器压力上升，容易TimeOut</strong><br>多工没有限制同时请求的数量，大批量的请求同时发送，由于服务器资源有限，有可能导致超时。</li>
+</ul>
+<h3 id="HTTP3"><a href="#HTTP3" class="headerlink" title="HTTP3"></a>HTTP3</h3><p>HTTP3在2022年6月官宣，实现了巨大的改革，底层支撑协议由TCP换成UDP。该协议基于 UDP，又取了 TCP 中的精华，实现了即快又可靠的协议。</p>
+<ul>
+<li><strong>实现快速握手功能</strong><br>由于UDP是无连接的，这意味着可以用最快的速度来发送和接收数据，这样可以大大提升首次打开页面的速度。</li>
+<li><strong>实现了类似TCP的可靠传输、流量控制和拥塞控制</strong></li>
+</ul>
+<h2 id="HTTP工作原理"><a href="#HTTP工作原理" class="headerlink" title="HTTP工作原理"></a>HTTP工作原理</h2><p>HTTP协议工作于客户端-服务端架构上，浏览器作为HTTP客户端通过URL向HTTP服务端即WEB服务器发送所有请求。WEB服务器根据接收到的请求，向客户端发送响应信息。</p>
+<p>HTTP默认端口号是80，也可以改成8080或者其他。</p>
+<p>HTTP工作流程：</p>
+<ul>
+<li>客户端与服务端通过三次握手建立TCP连接；</li>
+<li>客户端发送HTTP请求；</li>
+<li>服务端解析请求并返回响应；</li>
+<li>客户端与服务端通过四次挥手关闭TCP连接。</li>
+</ul>
+<p>详情请查看 <a href="https://crystalsummer.gitee.io/2021/01/17/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5URL%E4%B9%8B%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/#%E5%BB%BA%E7%AB%8BTCP%E8%BF%9E%E6%8E%A5"><strong>浏览器输入URL之后发生了什么</strong></a>，里面详细介绍了建立TCP连接的三次握手和关闭TCP连接的四次挥手过程。</p>
+<h2 id="HTTP消息结构"><a href="#HTTP消息结构" class="headerlink" title="HTTP消息结构"></a>HTTP消息结构</h2><h3 id="客户端请求消息"><a href="#客户端请求消息" class="headerlink" title="客户端请求消息"></a>客户端请求消息</h3><p>HTTP请求报文构成：请求行、请求头、空行、请求正文<br><img src="https://s2.loli.net/2022/03/25/GCtJkL6D4F2Qoic.png" alt=""></p>
+<ul>
+<li>请求行：请求方法 URI协议 版本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET&#x2F;sample.jsp HTTP&#x2F;1.1 \r\n</span><br></pre></td></tr></table></figure></li>
+<li>请求头：包含客户端环境和请求正文的有用信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 浏览器可接受的MIME类型</span><br><span class="line">Accept: application&#x2F;json, text&#x2F;plain, *&#x2F;*</span><br><span class="line">&#x2F;&#x2F; 浏览器能够进行解码的数据编码方式</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">&#x2F;&#x2F; 浏览器所希望的语言种类</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.9</span><br><span class="line">&#x2F;&#x2F; 表示是否需要持久连接</span><br><span class="line">Connection: keep-alive</span><br><span class="line">&#x2F;&#x2F; 表示请求消息正文的长度</span><br><span class="line">Content-Length: 179</span><br><span class="line">&#x2F;&#x2F; 文档支持的MIME类型</span><br><span class="line">Content-Type: application&#x2F;json;charset&#x3D;UTF-8</span><br><span class="line">&#x2F;&#x2F; Host头域指定请求资源的主机和端口号。</span><br><span class="line">Host: localhost:1001</span><br><span class="line">Origin: http:&#x2F;&#x2F;localhost:1001</span><br><span class="line">&#x2F;&#x2F; 浏览器类型</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;99.0.4844.51 Safari&#x2F;537.36</span><br><span class="line">&#x2F;&#x2F; Referer 设置响应体的过期时间</span><br><span class="line">&#x2F;&#x2F; Last-Modified的值</span><br><span class="line">if-Modified-Since</span><br><span class="line">&#x2F;&#x2F; Etag的值</span><br><span class="line">if-None-Match</span><br></pre></td></tr></table></figure></li>
+<li>空行：表示请求头已经结束；</li>
+<li>请求正文：请求正文包含客户提交的查询字符串信息。</li>
+</ul>
+<h3 id="服务器响应消息"><a href="#服务器响应消息" class="headerlink" title="服务器响应消息"></a>服务器响应消息</h3><p>HTTP响应报文由三部分构成：状态行、响应头、空行、响应正文。<br><img src="https://s2.loli.net/2022/03/25/9z53cBkH6lWAoMs.png" alt=""></p>
+<ul>
+<li>状态行：协议版本、状态码、状态描述，各部分用空格分隔开。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.0 200 OK \r\n</span><br></pre></td></tr></table></figure></li>
+<li>响应头：包含服务端有用信息。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Expires 设置响应体的过期时间</span><br><span class="line">&#x2F;&#x2F; 跨域资源设置</span><br><span class="line">Access-Control-Allow-Origin: http:&#x2F;&#x2F;wxdev9.600280.com</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">Access-Control-Allow-Origin: *</span><br><span class="line">&#x2F;&#x2F; 设置请求响应链上所有的缓存机制必须遵守的指令</span><br><span class="line">Cache-Control: no-cache, no-store</span><br><span class="line">Express</span><br><span class="line">&#x2F;&#x2F; 表示是否需要持久连接</span><br><span class="line">Connection: keep-alive</span><br><span class="line">&#x2F;&#x2F; 文档支持的MIME类型</span><br><span class="line">Content-Type: application&#x2F;json</span><br><span class="line">&#x2F;&#x2F; 当前的GMT时间</span><br><span class="line">Date: Sun, 27 Mar 2022 12:23:20 GMT</span><br><span class="line">&#x2F;&#x2F; 服务器名称</span><br><span class="line">Server: nginx&#x2F;1.11.6</span><br><span class="line">&#x2F;&#x2F; 设置传输实体的编码格式，目前支持的格式： chunked, compress, deflate, gzip, identity</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line">Etag 资源文件的一个唯一标识</span><br></pre></td></tr></table></figure></li>
+<li>空行：表示响应头已经结束；</li>
+<li>响应正文：包含客户端需要的具体信息，比如页面需要的HTML、CSS、JS、图片等等。</li>
+</ul>
+<h2 id="HTTP请求方法"><a href="#HTTP请求方法" class="headerlink" title="HTTP请求方法"></a>HTTP请求方法</h2><p>常用的方法有: GET, POST, PUT, DELETE, OPTIONS, HEAD等等。<br><img src="https://s2.loli.net/2022/03/25/YtJpXx6LfGiz3QM.png" alt=""></p>
+<p><strong>GET和POST有什么区别？</strong></p>
+<ul>
+<li>GET：可被缓存，会被历史记录保存，请求长度受限</li>
+<li>POST：安全，大数据，更多编码类型<br><img src="https://s2.loli.net/2022/03/25/1XLcMgeAVusUGra.png" alt=""></li>
+</ul>
+<p><strong>fetch()请求两次的原因？</strong><br>当使用fetch发送POST请求时，会先发送一个OPTION请求进行预检查，用来获知服务端是否允许该跨域请求，服务器确认允许之后会返回204状态码，表示允许该跨域请求，这时才发起实际的 HTTP 请求。在预检请求的返回中，服务器端也可以通知客户端，是否需要携带身份凭证（包括 Cookies 和 HTTP 认证相关数据）</p>
+<ul>
+<li><strong>状态码204</strong>：当服务器返回这个状态码时，就表示服务器已经成功收到请求，但是没有数据。对应到浏览器，不会刷新界面，也不会导向新界面。当我们只关注于请求是否成功，而无所谓返回数据时，就可以借助204状态码，省掉了多余的数据传输，从而节省开销。</li>
+<li><strong>OPTION请求</strong>：属于请求中的复杂请求，该类请求有一个特点，在正式发送请求之前，都会先发送一个请求，进行一个预检查，简称：预检请求。</li>
+<li><strong>预检请求</strong>：可以向服务器请求权限信息，也可以获取目的资源所支持的通信选项（例如：检查HTTP请求方法），还可以用来检查服务器性能。</li>
+</ul>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><ul>
+<li><p>1xx：信息性状态码，表示服务器已接收了客户端请求，客户端可继续发送请求。</p>
+</li>
+<li><p>2xx：成功状态码，表示服务器已成功接收到请求并进行处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">200: 请求成功。一般用于GET与POST请求</span><br><span class="line">201: 已创建。成功请求并创建了新的资源</span><br><span class="line">202: 已接受。已经接受请求，但未处理完成</span><br><span class="line">203: 成为，但未授权</span><br><span class="line">204: 成功，无内容</span><br><span class="line">205: 成功，重置内容</span><br><span class="line">206: 成功，部分内容</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3xx：重定向状态码，表示服务器要求客户端重定向。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">301: 永久移动，重定向</span><br><span class="line">302: 临时移动，可使用原有URI</span><br><span class="line">303：请求的资源存在着另一个URI，客户端应使用GET方法定向获取请求的资源</span><br><span class="line">304: 资源未修改，可使用缓存</span><br><span class="line">305: 需代理访问</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>4xx：客户端错误状态码，表示客户端的请求有非法内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">400: 请求语法错误</span><br><span class="line">401: 要求身份认证</span><br><span class="line">403: 拒绝请求，通常会在响应正文中给出拒绝的原因</span><br><span class="line">404: 资源不存在</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>5xx：服务器错误状态码，表示服务器未能正常处理客户端的请求而出现意外错误。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">500: 服务器未知错误</span><br><span class="line">503：服务器当前不能够处理客户端的请求，在一段时间之后，服务器可能会恢复正常</span><br><span class="line">505：服务器不支持请求的HTTP协议的版本，无法完成处理</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><h2 id="HTTPS简介"><a href="#HTTPS简介" class="headerlink" title="HTTPS简介"></a>HTTPS简介</h2><p>HTTP协议传输的数据都是未加密的，也就是明文的，因此使用HTTP协议传输隐私信息非常不安全。为了保证这些隐私数据能加密传输，于是网景公司设计了SSL（Secure Sockets Layer）协议用于对HTTP协议传输的数据进行加密，从而就诞生了HTTPS。现在的HTTPS都是用的TLS(SSL3.0)协议，但是由于SSL出现的时间比较早，并且依旧被现在浏览器所支持，因此SSL依然是HTTPS的代名词。</p>
+<p>HTTPS在传输数据之前需要客户端（浏览器）与服务端（网站）之间进行一次握手，在握手过程中将确立双方加密传输数据的密码信息。TLS/SSL协议不仅仅是一套加密传输的协议，TLS/SSL中使用了 非对称加密，对称加密以及HASH算法。</p>
+<p><strong>对称加密算法</strong>：使用同一个密钥对数据进行加密和解密，速度快，但是密钥明文传输存在安全隐患，如DES，AES，3DES，RC2，RC4；</p>
+<p><strong>非对称加密算法</strong>：使用不同的密钥（公钥、私钥）对数据进行加密和解密，公钥和算法都是公开的，私钥是保密的，安全性强，但是性能低，耗时长，如RSA，DSA、ECDSA、 DH、ECDHE；</p>
+<p><strong>哈希算法</strong>：将任意长度的信息转换为较短的固定长度的值，通常其长度要比信息小得多，且算法不可逆，如MD5，SHA-1，SHA-2(SHA-224 SHA-256 SHA-384 SHA-512)；</p>
+<h2 id="HTTP和HTTPS的区别"><a href="#HTTP和HTTPS的区别" class="headerlink" title="HTTP和HTTPS的区别"></a>HTTP和HTTPS的区别</h2><ul>
+<li><p>HTTPS协议需要到ca申请证书，一般免费证书较少，因而需要一定费用。</p>
+</li>
+<li><p>HTTP是超文本传输协议，信息是明文传输，安全性差，HTTPS则是具有安全性的SSL加密传输协议，安全性好；</p>
+</li>
+<li><p>HTTP和HTTPS使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。</p>
+</li>
+<li><p>HTTP页面响应速度比HTTPS快，主要是因为HTTP使用TCP三次握手建立连接，客户端和服务器需要交换3个包，而HTTPS除了TCP的三个包，还要加上SSL握手需要的9个包，所以一共是12个包。</p>
+</li>
+<li><p>HTTPS其实就是建构在SSL/TLS之上的HTTP协议，所以HTTPS比HTTP要更耗费服务器资源。</p>
+</li>
+</ul>
+<h2 id="HTTPS工作原理"><a href="#HTTPS工作原理" class="headerlink" title="HTTPS工作原理"></a>HTTPS工作原理</h2><p>HTTPS的工作原理和HTTP类似，只是在通过三次握手建立TCP连接后，再建立SSL会话：</p>
+<ul>
+<li>客户端与服务端通过三次握手建立TCP连接；</li>
+<li><strong>客户端与服务端建立SSL会话</strong>；</li>
+<li>客户端发送HTTP请求；</li>
+<li>服务端解析请求并返回响应；</li>
+<li>客户端与服务端通过四次挥手关闭TCP连接。</li>
+</ul>
+<p>客户端与服务端建立SSL会话具体过程如下：<br><img src="https://s2.loli.net/2022/03/29/TNw4K2vd1JzYXhQ.png" alt=""></p>
+<ul>
+<li>浏览器将自己支持的一套加密规则发送给服务端；<ul>
+<li>SSL/TLS协议版本号</li>
+<li>支持的加密算法种类</li>
+<li>支持的HASH算法种类</li>
+<li>session ID</li>
+<li>握手消息</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>服务端从中选出一组加密算法和HASH算法，并将证书返回给客户端；<ul>
+<li>证书包含了网站信息、加密公钥、证书签名、证书的颁发机构和过期时间等等。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>客户端接收到证书之后对其进行解析，这一过程由浏览器内置的TSL完成：<ul>
+<li>验证证书的合法性：<strong>验证签名</strong>是否一致，证书颁发机构是否合法，证书的网站地址是否和正在访问的地址一致，证书有没有过期等等，如果证书可以信任，浏览器的地址栏前面就会出现一个锁；</li>
+<li>如果证书合法，客户端产生一个随机数 R，并用证书的公钥对随机数进行加密，生成<strong>对称密码</strong>；</li>
+<li>根据服务端指定的HASH算法（如SHA1）计算握手消息，并使用生成的对称密码对握手消息进行加密；</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>客户端将握手消息、对称密码和加密的握手消息发送给服务端；</p>
+</li>
+<li><p>服务端接收到数据后对数据进行解析：</p>
+<ul>
+<li>用私钥对对称密码进行解密，获取随机数R；</li>
+<li>将随机数R保存在客户端对应的session ID下面，这样的话就不需要每次请求都要建立握手传输密钥了；</li>
+<li>用随机数R对加密后的握手消息进行解密得到hash1；</li>
+<li>使用指定的HASH算法计算握手消息得到hash2;</li>
+<li>判断hash1和hash2是否一致；</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>服务端使用随机数加密握手信息，发送给客户端；</p>
+</li>
+<li><p>客户端使用随机数解密握手消息，并比较服务端发送的hash是否一致；一致此时握手结束，以后的通讯都是使用这个随机数加密。</p>
+</li>
+</ul>
+<p>总结：</p>
+<ul>
+<li>使用服务端的公钥和密钥对客户端产生的随机数进行加密和解密，这一过程是非对称加密；</li>
+<li>使用随机数对客户端和服务端的数据进行加密和解密，这一过程是对称加密；</li>
+<li>使用HASH算法将数据转换为较短的固定长度的值。</li>
+</ul>
+<h2 id="只用对称加密可行吗？"><a href="#只用对称加密可行吗？" class="headerlink" title="只用对称加密可行吗？"></a>只用对称加密可行吗？</h2><p>不可行，因为密钥在传输过程中会被别人劫持，然后去解密客户端和服务端传输的数据，不安全。</p>
+<h2 id="只用非对称加密可行吗？"><a href="#只用非对称加密可行吗？" class="headerlink" title="只用非对称加密可行吗？"></a>只用非对称加密可行吗？</h2><p>不可行，服务端将公钥传给客户端，客户端用公钥对数据进行加密传给服务端，服务端在用私钥解密，客户端到服务端的单向传输过程是安全的。</p>
+<p>但是如果公钥被人劫持，服务端发送用私钥数据加密的数据给客户端，那么劫持者就可以用劫持的公钥解密数据，服务端到客户端的单向传输就存在安全问题。</p>
+<p>除非客户端有自己的公钥和私钥，服务端也有自己的公钥和私钥，双方交换公钥，然后用公钥加密传输数据，用私钥解密数据，这样的话双向传输都是安全的。但是<strong>非对称加密算法非常复杂，耗时长</strong>。</p>
+<p>所以就需要对称加密 + 非对称机密的结合，既可以保证安全，又可以节省时间。但是使用此方法依然有安全漏洞，那就是<strong>中间人攻击</strong>。</p>
+<h2 id="数字证书的作用"><a href="#数字证书的作用" class="headerlink" title="数字证书的作用"></a>数字证书的作用</h2><p>只采用对称加密 + 非对称加密的算法，但是没有数字证书传输数据的时候，还是存在安全漏洞–<strong>中间人攻击</strong>。</p>
+<p>中间人攻击：中间人劫持服务端的公钥A，并将数据包中的公钥A换成自己的公钥B，然后客户端使用公钥B加密数据并传送给服务端，中间人就可以劫持数据并用私钥B对数据进行解密，得到客户端生成的随机数R，中间人再使用公钥A加密后传输给服务端。这样在客户端和服务端不知情的情况下，调包了服务端的公钥，并且得到了随机数R，<strong>根本原因是浏览器无法确认收到的公钥是不是网站自己的，因为公钥本身是明文传输的。</strong></p>
+<p>为了解决中间人攻击的问题，CA机构给网站办法身份证明–数字证书。服务端把证书传输给客户端，客户端从证书里获取公钥就可以完美的解决中间人攻击的问题。</p>
+<h2 id="如何防止证书被篡改-数字签名"><a href="#如何防止证书被篡改-数字签名" class="headerlink" title="如何防止证书被篡改 - 数字签名"></a>如何防止证书被篡改 - 数字签名</h2><p>数字签名的制作过程：</p>
+<ul>
+<li>CA机构拥有非对称加密的私钥和公钥；</li>
+<li>CA机构对证书明文数据T进行hash；</li>
+<li>对hash后的值用私钥加密，得到数字签名S；</li>
+</ul>
+<p>客户端验证数字签名的过程：</p>
+<ul>
+<li>拿到证书，得到明文数据T和数字签名S；</li>
+<li>使用公钥对数字签名S进行解密，得到S’；</li>
+<li>用证书中指明的HASH算法对明文数据T进行hash，得到T’；</li>
+<li>判断S’和T’是否相等，相等说明证书可信，不相等说明证书被篡改。</li>
+</ul>
+<p>如果中间人篡改证书，但是由于拿不到CA机构的私钥，就无法篡改相对应的数字签名S。</p>
+<p>如果中间人掉包整个证书也不会发生问题，因为证书包含了网站的信息，包括域名，浏览器把自己的域名和证书中的域名一比对就知道证书有没有被调包。</p>
+<h2 id="为什么制作数字签名需要hash一下？"><a href="#为什么制作数字签名需要hash一下？" class="headerlink" title="为什么制作数字签名需要hash一下？"></a>为什么制作数字签名需要hash一下？</h2><p>如果把数字签名过程中的hash步骤省略，在安全方面也是没有问题的，但是会有性能问题。</p>
+<p>证书的明文数据一般都很长，如果直接用非对称加密算法加密或者解密的话，会非常耗时，但是证书明文经过hash之后得到固定长度的信息，比如用md5算法hash后可以得到固定的128位的值，这样加密解密过程就会快很多。</p>
+<h2 id="每次进行HTTPS请求时都必须在SSL-TLS层进行握手传输密钥吗？"><a href="#每次进行HTTPS请求时都必须在SSL-TLS层进行握手传输密钥吗？" class="headerlink" title="每次进行HTTPS请求时都必须在SSL/TLS层进行握手传输密钥吗？"></a>每次进行HTTPS请求时都必须在SSL/TLS层进行握手传输密钥吗？</h2><p>不是。服务端会为每个客户端维护一个 <strong>session ID</strong>，在建立SSL会话阶段传给客户端，客户端把生成好的对称密码发送个服务端后，服务端会把对称密码保存到对应的session ID下面，之后客户端每次请求都会携带session ID，服务端根据session ID去找到对称密码进行加密和解密，这样就不必要每次重新制作、传输密钥了！</p>
+<h1 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h1><h2 id="缓存定义"><a href="#缓存定义" class="headerlink" title="缓存定义"></a>缓存定义</h2><p>浏览器缓存机制，也叫HTTP缓存机制，其机制是根据HTTP报文的缓存标识进行的。</p>
+<p>浏览器缓存就是把一个已经请求过的资源（如html页面，图片，JS，数据）拷贝一份放在浏览器中。当下一个请求到来的时候，如果是相同的URL，浏览器会根据缓存机制决定是直接从缓存中获取资源还是向服务器再次发起请求。</p>
+<p>使用浏览器缓存的原因：</p>
+<ul>
+<li>减少网络延迟：缓存的使用可以明显加快页面打开速度，达到更好的用户体验。</li>
+<li>减少网络带宽消耗：从缓存中获取资源只会产生极小的网络流量，可以有效降低运营成本。</li>
+<li>降低服务器压力：缓存可以减少对服务器的请求</li>
+</ul>
+<h2 id="缓存位置"><a href="#缓存位置" class="headerlink" title="缓存位置"></a>缓存位置</h2><p>缓存位置有以下四种，按照顺序查找缓存：</p>
+<ul>
+<li><p><strong>Service Worker</strong>：Service Worker 是运行在浏览器背后的独立线程，一般可以用来实现缓存功能。使用 Service Worker的话，传输协议必须为 HTTPS。Service Worker可以自由的控制哪些文件可以缓存，如何读取缓存，缓存的持续时间等等；</p>
+</li>
+<li><p><strong>Memory Cache</strong>：将资源缓存到内存中，读取速度快，但是容量小，并且持续性短，当页面关闭的时候内存就会被释放。当刷新页面的时候，很多资源都是来自内存。一般脚本、字体、图片会存在内存当中。</p>
+</li>
+<li><p><strong>Disk Cache</strong>：将资源缓存到磁盘中，读取速度慢，但是容量大，持续时间长，一般非脚本会存在磁盘当中，如css等。</p>
+</li>
+<li><p><strong>Push Cache</strong>：推送缓存，只在会话(session)中存在，一旦会话结束就会释放。</p>
+</li>
+</ul>
+<p>如果以上四种缓存都没有找到的话，那么只能发起请求来获取资源了。</p>
+<h2 id="缓存分类"><a href="#缓存分类" class="headerlink" title="缓存分类"></a>缓存分类</h2><p>浏览器在第一次请求资源后，会获取到请求的结果以及缓存规则。接下来，浏览器会根据第一次请求返回的响应头来确定缓存处理的方式，分别是强缓存和协商缓存。</p>
+<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>强缓存：不会向服务端发送请求，直接从缓存中读取资源，但是会返回200状态码。</p>
+<p>我们第一次进入页面，请求服务器，然后服务器进行应答，浏览器会根据response Header来判断是否对资源进行缓存，如果响应头中有Expires或者Cache-Control字段，代表这是强缓存，浏览器就会把资源缓存下来。</p>
+<ul>
+<li><p><strong>Expires</strong><br>  服务器响应消息头字段，HTTP1.0的规范，指明缓存失效时间，是一个绝对时间。<br>  <strong>缺点</strong>：由于失效时间是一个绝对时间，所以当服务器与客户端时间偏差较大时，就会导致缓存混乱。</p>
+</li>
+<li><p><strong>Cache-Control</strong><br>服务器响应消息头字段，HTTP1.1的规范，指明缓存失效时间，是一个相对时间。</p>
+<ul>
+<li>public：所有内容都将被缓存（客户端和代理服务器都可缓存）；</li>
+<li>private：所有内容只有客户端可以缓存，Cache-Control的默认取值；</li>
+<li>no-store：所有内容都不会被缓存，即不使用强制缓存，也不使用协商缓存；</li>
+<li>no-cache：客户端缓存内容，是否使用缓存则需要经过协商缓存来验证决定。</li>
+<li>max-age=N：缓存内容将在N秒后失效；</li>
+</ul>
+</li>
+</ul>
+<p><strong>Expires和Cache-Control两者对比</strong><br>两者差别不大，区别就在于 Expires 是http1.0的产物，Cache-Control是http1.1的产物，两者同时存在的话，Cache-Control优先级高于Expires。</p>
+<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>协商缓存就是强缓存失效后，浏览器携带缓存标识向服务器发送请求，由服务器根据缓存标识来决定是否使用缓存的过程。<br><strong>Etag 的优先级高于 Last-Modified。</strong></p>
+<ul>
+<li><p><strong>Last-Modified / If-Modified-Since</strong><br>  Last-Modified是服务器响应请求时，返回该资源文件在服务器最后被修改的时间。</p>
+<p>  If-Modified-Since则是客户端再次发起该请求时，携带上次请求返回的Last-Modified值，通过此字段值告诉服务器该资源上次请求返回的最后被修改时间。</p>
+<p>  服务器收到该请求，发现请求头含有If-Modified-Since字段，则会根据If-Modified-Since的字段值与该资源在服务器的最后被修改时间做对比，若服务器的资源最后被修改时间大于If-Modified-Since的字段值，则重新返回资源，状态码为200；否则则返回304，代表资源无更新，可继续使用缓存文件。</p>
+<p>  <strong>缺点</strong>：最小粒度只到 s， s 以内的改动无法检测到；周期性变化，如果这个资源在一个周期内修改回原来的样子了，我们认为是可以使用缓存的，但是 Last-Modified 可不这样认为，因此便有了 ETag。</p>
+</li>
+<li><p><strong>Etag / If-None-Match</strong><br>  Etag是服务器响应请求时，返回当前资源文件的一个唯一标识(由服务器生成)。</p>
+<p>  If-None-Match是客户端再次发起该请求时，携带上次请求返回的唯一标识Etag值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。</p>
+<p>  服务器收到该请求后，发现该请求头中含有If-None-Match，则会根据If-None-Match的字段值与该资源在服务器的Etag值做对比，一致则返回304，代表资源无更新，继续使用缓存文件；不一致则重新返回资源文件，状态码为200。</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://s2.loli.net/2022/04/08/r3aKd8AXDskNhUQ.jpg" alt=""></p>
+<h2 id="缓存实践"><a href="#缓存实践" class="headerlink" title="缓存实践"></a>缓存实践</h2><ul>
+<li><p><strong>频繁变动的资源</strong>：使用 Cache-Control:no-cache 使浏览器每次都请求服务器，然后配合 ETag 或者 Last-Modified 来验证资源是否有效。这样的做法虽然不能节省请求数量，但是能显著减少响应数据大小。</p>
+</li>
+<li><p><strong>不常变化的资源</strong>：给它们的 Cache-Control 配置一个很大的 max-age=31536000 (一年)，这样浏览器之后请求相同的 URL 会命中强制缓存。而为了解决更新的问题，就需要在文件名(或者路径)中添加 hash， 版本号等动态字符，之后更改动态字符，从而达到更改引用 URL 的目的，让之前的强制缓存失效 (其实并未立即失效，只是不再使用了而已)。在线提供的类库 (如 jquery-3.3.1.min.js, lodash.min.js 等) 均采用这个模式。</p>
+</li>
+</ul>
+<h1 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h1><h2 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h2><p>浏览器有一个同源策略的安全功能，若协议、域名(主域名+子域名)和端口号都相同才属于同源，当不同源的客户端脚本在没有明确授权的情况下读写对方的资源，就会产生跨域问题。<br><img src="https://s2.loli.net/2022/03/30/WBnX4xbrh2tGCwg.png" alt=""></p>
+<p>注意：<a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a> = <a href="http://www.baidu.com:80" target="_blank" rel="noopener">http://www.baidu.com:80</a> ，http协议默认端口号就是80，https默认端口号是443.</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>以下是解决跨域的方法，前四种是最常用的方法，后面的方法了解即可。</p>
+<h3 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h3><p><strong>CORS</strong>：跨域资源分享的缩写，是解决跨域的根本方法，支持任何类型的请求，需要服务端和浏览器同时支持。</p>
+<p><strong>CORS方法</strong>：<br>普通跨域请求 —— 服务端在响应头上添加<code>Access-Control-Allow-Origin</code>属性，指定同源策略的地址，可以使用通配符  *；</p>
+<p>带cookie的跨域请求 —— 前后端都需要设置，前端设置<code>widthCredentials</code>是否带cookie，服务端设置<code>Access-Control-Allow-Origin</code>，这里不可以使用通配符 *，必须指定同源策略的地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; axios</span><br><span class="line">axios.default.widthCredentials &#x3D; true</span><br></pre></td></tr></table></figure>
+
+<p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。</p>
+<ul>
+<li><strong>简单请求</strong>：只要同时满足以下两大条件，就属于简单请求：<br>条件一：请求方法为 GET POST HEAD 三个之一；<br>条件二：HTTP的头信息不超出以下几种字段：<ul>
+<li>Accept  </li>
+<li>Accept-Language  </li>
+<li>Content-Language  </li>
+<li>Last-Event-ID</li>
+<li>Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain</li>
+</ul>
+</li>
+</ul>
+<p>对于简单请求，浏览器直接发出CORS请求，就是在头信息之中，增加一个Origin字段。Origin字段用来说明，本次请求来自哪个源（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。</p>
+<p>如果Origin指定的源，不在许可范围内，服务器会返回一个正常的HTTP回应。浏览器发现，这个回应的头信息没有包含Access-Control-Allow-Origin字段，就知道出错了，从而抛出一个错误，被XMLHttpRequest的onerror回调函数捕获。注意，这种错误无法通过状态码识别，因为HTTP回应的状态码有可能是200。</p>
+<p>如果Origin指定的域名在许可范围内，服务器返回的响应，会多出几个头信息字段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 该字段是必须的。它的值要么是请求时Origin字段的值，要么是一个*，表示接受任意域名的请求。</span><br><span class="line">Access-Control-Allow-Origin: http:&#x2F;&#x2F;api.bob.com</span><br><span class="line">&#x2F;&#x2F; 该字段可选。它的值是一个布尔值，表示是否允许发送Cookie。</span><br><span class="line">&#x2F;&#x2F; 设为true，即表示服务器明确许可，Cookie可以包含在请求中，一起发给服务器。</span><br><span class="line">&#x2F;&#x2F; 这个值也只能设为true，如果服务器不要浏览器发送Cookie，删除该字段即可。</span><br><span class="line">Access-Control-Allow-Credentials: true</span><br><span class="line">&#x2F;&#x2F; 该字段可选。CORS请求时，XMLHttpRequest对象的getResponseHeader()方法只能拿到6个基本字段：</span><br><span class="line">&#x2F;&#x2F; Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma</span><br><span class="line">&#x2F;&#x2F; 如果想拿到其他字段，就必须在Access-Control-Expose-Headers里面指定</span><br><span class="line">Access-Control-Expose-Headers: FooBar</span><br><span class="line">Content-Type: text&#x2F;html; charset&#x3D;utf-8</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>非简单请求</strong>：不满足简单请求条件的都是非简单请求。<br>对于非简单请求，会在正式通信之前，增加一次HTTP查询请求，称为<strong>“预检”请求</strong>（preflight）。</li>
+</ul>
+<p>浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。</p>
+<h3 id="Node中间件代理"><a href="#Node中间件代理" class="headerlink" title="Node中间件代理"></a>Node中间件代理</h3><p>node中间件实现跨域代理，是通过启动一个代理服务器，实现数据的转发。<br>实现原理：同源策略是浏览器需要遵循的标准，而如果是服务器向服务器请求就无需遵循同源策略。</p>
+<ul>
+<li>非Vue框架<br>使用 node + express + http-proxy-middleware 搭建一个proxy服务器</li>
+<li>Vue框架<br>使用 node + webpack + webpack-dev-server 代理接口跨域<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; webpack vec-cli 配置proxy代理如下：</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    devServer: &#123;</span><br><span class="line">        host: &#39;0.0.0.0&#39;,</span><br><span class="line">        port: 8000,</span><br><span class="line">        open: true,</span><br><span class="line">        proxy: &#123;</span><br><span class="line">            &#39;&#x2F;market&#39;: &#123;</span><br><span class="line">                target: &#96;http:&#x2F;&#x2F;wxdev6.600280.com&#96;,</span><br><span class="line">                changeOrigin: true,</span><br><span class="line">                pathRewrite: &#123;</span><br><span class="line">                    &#39;^&#x2F;market&#39;: &#39;&#39;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        disableHostCheck: true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Nignx反向代理"><a href="#Nignx反向代理" class="headerlink" title="Nignx反向代理"></a>Nignx反向代理</h3><p>实现原理类似于Node中间件代理，需要搭建一个中转nginx服务器，用于转发请求。</p>
+<p>使用nginx反向代理实现跨域，是最简单的跨域方式。只需要修改nginx的配置即可解决跨域问题，支持所有浏览器，支持session，不需要修改任何代码，并且不会影响服务器性能。</p>
+<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>JSONP，填充式JSON，适合老版本的浏览器，只支持get请求。</p>
+<p><strong>JSONP原理</strong>：利用 script 标签没有跨域限制的漏洞，通过script标签引入JS文件，这个JS文件载入成功后会执行我们在url参数中指定的函数，并且把需要的json数据作为入参传入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 原生实现</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    var sc &#x3D; document.createElement(&#39;script&#39;)</span><br><span class="line">    sc.type &#x3D; &#39;text&#x2F;javascript&#39;</span><br><span class="line">    sc.src &#x3D; &#39;http:&#x2F;&#x2F;www.domain.com:8080&#x2F;login?user&#x3D;admin&amp;callback&#x3D;onBack&#39;</span><br><span class="line">    document.head.appendChild(sc)</span><br><span class="line">    &#x2F;&#x2F; 回调函数执行</span><br><span class="line">    function onBack(res)&#123;</span><br><span class="line">        console.log(res)</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&#x2F;&#x2F; 封装成功公共方法</span><br><span class="line">function jsonp(url, params, jsonpCallback) &#123;</span><br><span class="line">    return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">        const script &#x3D; document.createElement(&#39;script&#39;)</span><br><span class="line">        let arrs &#x3D; []</span><br><span class="line">        for (let key in params) &#123;</span><br><span class="line">            arrs.push(&#96;$&#123;key&#125;&#x3D;$&#123;params[key]&#125;&#96;)</span><br><span class="line">        &#125;</span><br><span class="line">        script.src &#x3D; &#96;$&#123;url&#125;?$&#123;arrs.join(&#39;&amp;&#39;)&#125;&#96;</span><br><span class="line">        script.async &#x3D; true</span><br><span class="line">        script.type &#x3D; &#39;text&#x2F;javascript&#39;</span><br><span class="line">        window[jsonpCallback] &#x3D; function(data) &#123;</span><br><span class="line">            resolve(data)</span><br><span class="line">            document.body.removeChild(script)</span><br><span class="line">        &#125;</span><br><span class="line">        document.body.appendChild(script)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 公共方法使用</span><br><span class="line">jsonp(&#123;</span><br><span class="line">  url: &#39;http:&#x2F;&#x2F;localhost:3000&#x2F;say&#39;,</span><br><span class="line">  params: &#123; wd: &#39;Iloveyou&#39; &#125;,</span><br><span class="line">  callback: &#39;show&#39;</span><br><span class="line">&#125;).then(data &#x3D;&gt; &#123;</span><br><span class="line">  console.log(data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="WebScoket"><a href="#WebScoket" class="headerlink" title="WebScoket"></a>WebScoket</h3><p>WebSocket 协议是HTML5一种新的协议。它实现了浏览器与服务器全双工通信，同时允许跨域通讯。</p>
+<h3 id="document-domain-iframe"><a href="#document-domain-iframe" class="headerlink" title="document.domain+iframe"></a>document.domain+iframe</h3><p>这个方案仅限于主域相同，子域不同的跨域场景。</p>
+<p>实现原理：两个页面都通过JS强制设置document.domain为基础主域，就实现了同域。</p>
+<p>注意：子窗口只能获取父窗口的cookie和iframe数据，localstorage和indexDB的数据获取不到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 父窗口</span><br><span class="line">&lt;iframe id&#x3D;&quot;iframe&quot; src&#x3D;&quot;http:&#x2F;&#x2F;child.domain.com&#x2F;b.html&quot;&gt;&lt;&#x2F;iframe&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">document.domain &#x3D; &#39;domain.com&#39;</span><br><span class="line">var user &#x3D; &#39;admin&#39;</span><br><span class="line">document.cookie&#x3D;&quot;userId&#x3D;0001&quot;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 子窗口</span><br><span class="line">&lt;script&gt;</span><br><span class="line">document.domain &#x3D; &#39;domain.com&#39;</span><br><span class="line">&#x2F;&#x2F; 获取父窗口的数据</span><br><span class="line">cosole.log(window.parent.user)</span><br><span class="line">cosole.log(document.cookie)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>还有 postMessage、window.name+iframe、document.hash+iframe等方法，这里不再一一赘述，平时开发用不到。</p>
+<h1 id="安全-XSS-CSRF"><a href="#安全-XSS-CSRF" class="headerlink" title="安全(XSS CSRF)"></a>安全(XSS CSRF)</h1><h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>XSS(Cross-Site Scripting)，跨站脚本攻击，是一种代码注入攻击，攻击者通过在目标网站上注入恶意脚本，使之在用户的浏览器上运行。利用这些恶意脚本，攻击者可获取用户的敏感信息如 Cookie、SessionID 等，进而危害数据安全。</p>
+<p>XSS 的本质是：恶意代码未经过滤，与网站正常的代码混在一起；浏览器无法分辨哪些脚本是可信的，导致恶意脚本被执行。</p>
+<p><strong>任何可以输入的地方都有可能引起XSS，包括URL！</strong></p>
+<p>为了和 CSS 区分，这里把攻击的第一个字母改成了 X，于是叫做 XSS。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
+<li><strong>存储型XSS</strong></li>
+</ol>
+<ul>
+<li>攻击者将恶意代码提交到目标网站的数据库中。</li>
+<li>用户打开目标网站时，网站服务端将恶意代码从数据库取出，拼接在 HTML 中返回给浏览器。</li>
+<li>用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。</li>
+<li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</li>
+</ul>
+<ol start="2">
+<li><strong>反射型XSS</strong></li>
+</ol>
+<ul>
+<li>攻击者构造出特殊的 URL，其中包含恶意代码。</li>
+<li>用户打开带有恶意代码的 URL 时，网站服务端将恶意代码从 URL 中取出，拼接在 HTML 中返回给浏览器。</li>
+<li>用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。</li>
+<li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</li>
+</ul>
+<ol start="3">
+<li><strong>DOM型XSS</strong></li>
+</ol>
+<ul>
+<li>攻击者构造出特殊的 URL，其中包含恶意代码。</li>
+<li>用户打开带有恶意代码的 URL。</li>
+<li>用户浏览器接收到响应后解析执行，前端 JavaScript 取出 URL 中的恶意代码并执行。</li>
+<li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</li>
+</ul>
+<p>三种XSS对比：</p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">存储区</th>
+<th align="center">插入点</th>
+<th align="center">常见操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">存储型XSS</td>
+<td align="center">后端数据库</td>
+<td align="center">响应HTML</td>
+<td align="center">常见于带有用户保存数据的功能的网站</td>
+</tr>
+<tr>
+<td align="center">反射型XSS</td>
+<td align="center">URL</td>
+<td align="center">响应HTML</td>
+<td align="center">常见于通过URL传递参数，如网站搜索、跳转等</td>
+</tr>
+<tr>
+<td align="center">DOM型XSS</td>
+<td align="center">后端数据库/前端存储/URL</td>
+<td align="center">前端JavaScript</td>
+<td align="center">常见于前端从浏览器某个地方直接获取内容中包含恶意代码</td>
+</tr>
+</tbody></table>
+<h3 id="防范方法"><a href="#防范方法" class="headerlink" title="防范方法"></a>防范方法</h3><ol>
+<li><strong>cookie设置HttpOnly属性</strong><br>后台在响应的头部设置HttpOnly属性，如果浏览器支持该属性的话，客户端就无法读取cookie的信息。</li>
+<li><strong>输入过滤</strong><br>对于要输入的内容进行格式校验，比如手机号、邮箱等等，不仅前端要这么做，后端也需要，防止攻击者绕过正常的输入流程，直接利用接口向服务器发送相关配置。</li>
+<li><strong>转义页面上的输入和输出内容</strong><br>如果前端需要拼接HTML，可以使用转义库将尖括号、引号、斜杠等进行转义，可以看一下这个<a href="https://jsxss.com/zh/index.html" target="_blank" rel="noopener"><strong>转义库</strong></a>。</li>
+</ol>
+<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>CSRF(Cross-site request forgery)，跨站请求伪造，是一种挟制用户在当前已登录的 Web 应用程序上执行非本意的操作的攻击方法。如:攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求。利用受害者在被攻击网站已经获取的注册凭证，绕过后台的用户验证，达到冒充用户对被攻击的网站执行某项操作的目的。</p>
+<h3 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h3><ol>
+<li><strong>get类型的CSRF</strong><br>用户访问某个页面中包含一张第三方网站的图片，浏览器会自动发送一个get请求给第三方网站。</li>
+<li><strong>post类型的CSRF</strong><br>用户访问某个页面的时候，自动提交表单，模拟用户完成一次post操作。</li>
+<li><strong>链接类型的CSRF</strong><br>这种CSRF并不常见，需要用户主动点击链接才会触发，常见的是以广告的形式引导用户点击。</li>
+</ol>
+<h3 id="防范方法-1"><a href="#防范方法-1" class="headerlink" title="防范方法"></a>防范方法</h3><ol>
+<li><strong>验证码</strong><br>强制用户必须与应用进行交互，才能完成最终请求，但是用户体验差。</li>
+<li><strong>请求校验</strong><br>在接口请求中都上token，<strong>token 验证的 CSRF 防御机制是公认最合适的方案</strong>。</li>
+<li><strong>阻止外域访问</strong><br>同源检测，根据请求的Referer判断请求的来源。</li>
+</ol>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://www.ruanyifeng.com/blog/2016/08/http.html" target="_blank" rel="noopener">HTTP 协议入门</a><br><a href="https://zhuanlan.zhihu.com/p/43789231" target="_blank" rel="noopener">彻底搞懂HTTPS的加密原理</a><br><a href="https://juejin.cn/post/6947936223126093861" target="_blank" rel="noopener">前端浏览器缓存知识梳理</a><br><a href="https://blog.csdn.net/csdnnews/article/details/89324384" target="_blank" rel="noopener">彻底吃透浏览器的缓存机制！</a><br><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">跨域资源共享 CORS 详解</a><br><a href="https://segmentfault.com/a/1190000011145364" target="_blank" rel="noopener">前端常见跨域解决方案（全）</a><br><a href="https://juejin.cn/post/6844903781704925191" target="_blank" rel="noopener">XSS攻击与CSRF攻击</a></p>
+
+    </div>
+
+    
+    
+    
+    
+    
+      <div>
+          <div>
+    
+        <div style="text-align:center;color: #666;font-size:14px;">-------------本文结束　<i class="fa fa-hourglass-end" style="color:rgb(90,85,85)"></i>　感谢阅读-------------</div>
+    
+</div>
+      </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Crystal
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://crystalsummer.gitee.io/2020/10/17/%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%AE%89%E5%85%A8/" title="网络与安全">http://crystalsummer.gitee.io/2020/10/17/网络与安全/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Web/" rel="tag"><i class="fa fa-tag"></i> Web</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"><i class="fa fa-tag"></i> 网络</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/10/%E5%A4%A7%E5%B1%8F%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BC%80%E5%8F%91/" rel="prev" title="大屏可视化开发">
+      <i class="fa fa-chevron-left"></i> 大屏可视化开发
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/22/%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/" rel="next" title="工具函数">
+      工具函数 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MDEyMC8yNjYxMA"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP"><span class="nav-number">1.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP简介"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-和-UDP"><span class="nav-number">1.2.</span> <span class="nav-text">TCP 和 UDP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP版本区别"><span class="nav-number">1.3.</span> <span class="nav-text">HTTP版本区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP0-9"><span class="nav-number">1.3.1.</span> <span class="nav-text">HTTP0.9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP1-0"><span class="nav-number">1.3.2.</span> <span class="nav-text">HTTP1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP1-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">HTTP1.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP2-0"><span class="nav-number">1.3.4.</span> <span class="nav-text">HTTP2.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP3"><span class="nav-number">1.3.5.</span> <span class="nav-text">HTTP3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP工作原理"><span class="nav-number">1.4.</span> <span class="nav-text">HTTP工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP消息结构"><span class="nav-number">1.5.</span> <span class="nav-text">HTTP消息结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端请求消息"><span class="nav-number">1.5.1.</span> <span class="nav-text">客户端请求消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器响应消息"><span class="nav-number">1.5.2.</span> <span class="nav-text">服务器响应消息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP请求方法"><span class="nav-number">1.6.</span> <span class="nav-text">HTTP请求方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态码"><span class="nav-number">1.7.</span> <span class="nav-text">状态码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTPS"><span class="nav-number">2.</span> <span class="nav-text">HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS简介"><span class="nav-number">2.1.</span> <span class="nav-text">HTTPS简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP和HTTPS的区别"><span class="nav-number">2.2.</span> <span class="nav-text">HTTP和HTTPS的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS工作原理"><span class="nav-number">2.3.</span> <span class="nav-text">HTTPS工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只用对称加密可行吗？"><span class="nav-number">2.4.</span> <span class="nav-text">只用对称加密可行吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只用非对称加密可行吗？"><span class="nav-number">2.5.</span> <span class="nav-text">只用非对称加密可行吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字证书的作用"><span class="nav-number">2.6.</span> <span class="nav-text">数字证书的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何防止证书被篡改-数字签名"><span class="nav-number">2.7.</span> <span class="nav-text">如何防止证书被篡改 - 数字签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么制作数字签名需要hash一下？"><span class="nav-number">2.8.</span> <span class="nav-text">为什么制作数字签名需要hash一下？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#每次进行HTTPS请求时都必须在SSL-TLS层进行握手传输密钥吗？"><span class="nav-number">2.9.</span> <span class="nav-text">每次进行HTTPS请求时都必须在SSL&#x2F;TLS层进行握手传输密钥吗？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缓存机制"><span class="nav-number">3.</span> <span class="nav-text">缓存机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存定义"><span class="nav-number">3.1.</span> <span class="nav-text">缓存定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存位置"><span class="nav-number">3.2.</span> <span class="nav-text">缓存位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存分类"><span class="nav-number">3.3.</span> <span class="nav-text">缓存分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强缓存"><span class="nav-number">3.3.1.</span> <span class="nav-text">强缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协商缓存"><span class="nav-number">3.3.2.</span> <span class="nav-text">协商缓存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存实践"><span class="nav-number">3.5.</span> <span class="nav-text">缓存实践</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跨域"><span class="nav-number">4.</span> <span class="nav-text">跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#产生原因"><span class="nav-number">4.1.</span> <span class="nav-text">产生原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">4.2.</span> <span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CORS"><span class="nav-number">4.2.1.</span> <span class="nav-text">CORS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node中间件代理"><span class="nav-number">4.2.2.</span> <span class="nav-text">Node中间件代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nignx反向代理"><span class="nav-number">4.2.3.</span> <span class="nav-text">Nignx反向代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSONP"><span class="nav-number">4.2.4.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebScoket"><span class="nav-number">4.2.5.</span> <span class="nav-text">WebScoket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#document-domain-iframe"><span class="nav-number">4.2.6.</span> <span class="nav-text">document.domain+iframe</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安全-XSS-CSRF"><span class="nav-number">5.</span> <span class="nav-text">安全(XSS CSRF)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS"><span class="nav-number">5.1.</span> <span class="nav-text">XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">5.1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类"><span class="nav-number">5.1.2.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防范方法"><span class="nav-number">5.1.3.</span> <span class="nav-text">防范方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSRF"><span class="nav-number">5.2.</span> <span class="nav-text">CSRF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念-1"><span class="nav-number">5.2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类-1"><span class="nav-number">5.2.2.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防范方法-1"><span class="nav-number">5.2.3.</span> <span class="nav-text">防范方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">6.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Crystal"
+      src="/uploads/avatar2.png">
+  <p class="site-author-name" itemprop="name">Crystal</p>
+  <div class="site-description" itemprop="description">Only for recording life</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/crystal-summer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;crystal-summer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:herr_510@163.com" title="E-Mail → mailto:herr_510@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/5596982190/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;5596982190&#x2F;profile?rightmod&#x3D;1&amp;wvr&#x3D;6&amp;mod&#x3D;personnumber&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ruanyifeng.com/blog/" title="http:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;" rel="noopener" target="_blank">阮一峰</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhangxinxu.com/" title="https:&#x2F;&#x2F;www.zhangxinxu.com&#x2F;" rel="noopener" target="_blank">张鑫旭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">CodePen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nowcoder.com/" title="https:&#x2F;&#x2F;www.nowcoder.com&#x2F;" rel="noopener" target="_blank">牛客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dandyweng.com/" title="https:&#x2F;&#x2F;www.dandyweng.com&#x2F;" rel="noopener" target="_blank">翁天信</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Crystal Summer</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">478k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">7:14</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='34,34,34' opacity='0.5' zIndex='' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
