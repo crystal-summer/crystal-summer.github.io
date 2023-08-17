@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"crystalsummer.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "4b921942"
+    }); 
+  daovoice('update');
+  </script>
+
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Vue3后台管理框架搭建">
+<meta property="og:url" content="http://crystalsummer.gitee.io/2022/09/25/Vue3%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="Crystal&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2018/04/28/22/03/dawn-3358468_960_720.jpg">
+<meta property="article:published_time" content="2022-09-25T10:45:50.000Z">
+<meta property="article:modified_time" content="2023-07-10T02:52:11.011Z">
+<meta property="article:author" content="Crystal">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="Frame">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2018/04/28/22/03/dawn-3358468_960_720.jpg">
+
+<link rel="canonical" href="http://crystalsummer.gitee.io/2022/09/25/Vue3%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Vue3后台管理框架搭建 | Crystal's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Crystal's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Crystal's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/crystal-summer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://crystalsummer.gitee.io/2022/09/25/Vue3%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.png">
+      <meta itemprop="name" content="Crystal">
+      <meta itemprop="description" content="Only for recording life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crystal's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue3后台管理框架搭建
+        </h1>
+
+        <div class="post-meta">
+
+           
+            <i class="fa fa-thumbtack"></i> <font color=7D26CD>top</font> <span class="post-meta-divider">|</span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">posted</span>
+
+              <time title="创建时间：2022-09-25 18:45:50" itemprop="dateCreated datePublished" datetime="2022-09-25T18:45:50+08:00">2022-09-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/Frame/" itemprop="url" rel="index"><span itemprop="name">Frame</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="count">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">count：</span>
+              <span>19k</span>
+            </span>
+            <span class="post-meta-item" title="readingTime">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">readingTime &asymp;</span>
+              <span>18 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://cdn.pixabay.com/photo/2018/04/28/22/03/dawn-3358468_960_720.jpg" alt=""></p>
+<a id="more"></a>
+
+<p>Vue3已经成功落地，并成为默认版本，这里使用以下技术栈搭建一套后台管理的前端框架：</p>
+<ul>
+<li><a href="https://v3.cn.vuejs.org/" target="_blank" rel="noopener">Vue3</a></li>
+<li><a href="https://cn.vitejs.dev/" target="_blank" rel="noopener">Vite2.9</a></li>
+<li><a href="https://router.vuejs.org/" target="_blank" rel="noopener">vue-router4</a></li>
+<li><a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">pinia</a></li>
+<li><a href="https://pnpm.io/zh/" target="_blank" rel="noopener">pnpm</a></li>
+<li><a href="https://element-plus.gitee.io/zh-CN/" target="_blank" rel="noopener">Element Plus</a></li>
+<li><a href="https://github.com/axios/axios/blob/master/README.md" target="_blank" rel="noopener">axios</a></li>
+<li><a href="https://www.sass.hk/" target="_blank" rel="noopener">Sass</a></li>
+</ul>
+<!-- 该框架的接口和数据均来自[若依](http://www.ruoyi.vip/)，在此特别声明。 -->
+
+<p>框架gitee地址：<a href="https://gitee.com/crystalSummer/vue3-admin" target="_blank" rel="noopener"><strong>vue3-admin-gitee</strong></a><br>框架github地址：<a href="https://github.com/crystal-summer/vue3-admin" target="_blank" rel="noopener"><strong>vue3-admin-github</strong></a></p>
+<h1 id="pnpm"><a href="#pnpm" class="headerlink" title="pnpm"></a>pnpm</h1><p><a href="https://pnpm.io/zh/" target="_blank" rel="noopener">pnpm</a>是包管理器，类似 npm，yarn，但是 npm 和 yarn 存在以下问题：</p>
+<ul>
+<li>扁平化算法要遍历所有的依赖关系，消耗时间，下载安装慢；</li>
+<li>依赖包非法访问；</li>
+<li>一个项目一个 node_modules，占磁盘空间。</li>
+</ul>
+<p>而 pnpm 速度快、不占磁盘空间，解决了扁平化算法复杂、避免依赖包非法访问的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 全局安装 pnpm</span><br><span class="line">npm install -g pnpm</span><br></pre></td></tr></table></figure>
+<h1 id="ni"><a href="#ni" class="headerlink" title="ni"></a>ni</h1><p><a href="https://github.com/antfu/ni" target="_blank" rel="noopener">ni</a>根据当前项目的锁文件，采用对应的包管理工具对项目进行依赖安装、脚本运行等操作的一个小工具，安装这个小工具，可以不用考虑当前项目的包管理工具是什么，也方便使用不同包管理工具的项目的管理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 全局安装 ni</span><br><span class="line">npm i -g @antfu&#x2F;ni</span><br><span class="line">&#x2F;&#x2F; 安装依赖</span><br><span class="line">ni  &#x3D;&#x3D;&#x3D; npm install &#x3D;&#x3D;&#x3D; pnpm install &#x3D;&#x3D;&#x3D; yarn install</span><br><span class="line">&#x2F;&#x2F; 运行脚本</span><br><span class="line">nr dev &#x3D;&#x3D;&#x3D; npm run dev &#x3D;&#x3D;&#x3D; pnpm run dev &#x3D;&#x3D;&#x3D; yarn run dev </span><br><span class="line">&#x2F;&#x2F; 安装某个包</span><br><span class="line">ni antd-mobile &#x3D;&#x3D;&#x3D; npm i antd-mobile</span><br></pre></td></tr></table></figure>
+<h1 id="框架搭建"><a href="#框架搭建" class="headerlink" title="框架搭建"></a>框架搭建</h1><h2 id="Vite初始化项目"><a href="#Vite初始化项目" class="headerlink" title="Vite初始化项目"></a>Vite初始化项目</h2><p><a href="https://cn.vitejs.dev/" target="_blank" rel="noopener">Vite</a>是新一代前端开发与构建工具，类似 webpack。</p>
+<p>webpack、Rollup 和 Parcel 等工具的诞生，极大地改善了前端开发者的开发体验。但是，当构建越来越大型的应用时，需要处理的 JavaScript 代码量也呈指数级增长。包含数千个模块的大型项目相当普遍。我们开始遇到性能瓶颈 —— <strong>使用 JavaScript 开发的工具通常需要很长时间（甚至是几分钟！）才能启动开发服务器</strong>。</p>
+<p>而Vite旨在解决这个问题，将应用中的模块区分为 依赖 和 源码 两类，让浏览器接管了打包程序的部分工作，改进了开发服务器启动时间；将动态模块热重载（HMR）在原生 ESM 上执行，保持 HMR 快速更新；利用 HTTP 头来加速整个页面的重新加载，源码模块请求根据 304 进行协商缓存，依赖模块请求进行强缓存。<br>总而言之，Vite神速！！！</p>
+<p>注意：如果使用Vite，那么vscode需要安装volar插件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 执行以下命令搭建一个 JS 版的 Vue 项目</span><br><span class="line">pnpm create vite vue3-admin -- --template vue</span><br><span class="line">&#x2F;&#x2F; 创建完成后执行以下命令运行项目</span><br><span class="line">cd vue3-admin</span><br><span class="line">pnpm install</span><br><span class="line">pnpm run dev</span><br></pre></td></tr></table></figure>
+<p>生成的项目初始目录如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public</span><br><span class="line">  - favicon.ico</span><br><span class="line">src</span><br><span class="line">  - assets</span><br><span class="line">    - logo.png</span><br><span class="line">  - components</span><br><span class="line">    - HelloWord.vue</span><br><span class="line">  - APP.vue</span><br><span class="line">  - main.js</span><br><span class="line">.gitignore</span><br><span class="line">index.html</span><br><span class="line">package.json</span><br><span class="line">README.md</span><br><span class="line">vite.config.js</span><br></pre></td></tr></table></figure>
+<h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h2><p>使用 Vite 初始化项目之后，使用 EditorConfig + Prettier + ESLint 设置代码规范。</p>
+<h3 id="EditorConfig"><a href="#EditorConfig" class="headerlink" title="EditorConfig"></a>EditorConfig</h3><p><a href="https://editorconfig.org/" target="_blank" rel="noopener">EditorConfig</a><br>vscode先安装插件：EditorConfig for VS Code，webstorm或者IDEA不需要安装插件，直接配置，在项目根目录下面新建.editorconfig文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># Editor configuration, see http:&#x2F;&#x2F;editorconfig.org </span><br><span class="line"></span><br><span class="line">root &#x3D; true # 表示是最顶层的 EditorConfig 配置文件 </span><br><span class="line"></span><br><span class="line">[*] # 表示所有文件适用 </span><br><span class="line">charset &#x3D; utf-8 # 设置文件字符集为 utf-8 </span><br><span class="line">indent_style &#x3D; space # 缩进风格（tab | space） </span><br><span class="line">indent_size &#x3D; 2 # 缩进大小 </span><br><span class="line">end_of_line &#x3D; lf # 控制换行类型(lf | cr | crlf) </span><br><span class="line">trim_trailing_whitespace &#x3D; true # 去除行首的任意空白字符 </span><br><span class="line">insert_final_newline &#x3D; true # 始终在文件末尾插入一个新行 </span><br><span class="line"></span><br><span class="line">[*.md] # 表示仅 md 文件适用以下规则 </span><br><span class="line">max_line_length &#x3D; off </span><br><span class="line">trim_trailing_whitespace &#x3D; false</span><br></pre></td></tr></table></figure>
+<h3 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h3><p><a href="https://prettier.io/" target="_blank" rel="noopener">Prettier</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm install prettier -D</span><br></pre></td></tr></table></figure>
+<p>vscode先安装插件：Prettier - Code formatter，webstorm或者IDEA不需要安装插件，直接配置，在项目根目录下面新建.prettierrc.js 和 .prettierignore文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; .prettierignore</span><br><span class="line">node_modules</span><br><span class="line">dist</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; .prettierrc.js</span><br><span class="line">module.exports &#x3D;&#123;</span><br><span class="line">  tabWidth: 2,</span><br><span class="line">  printWidth: 100,</span><br><span class="line">  singleQuote: true,</span><br><span class="line">  semi: false,</span><br><span class="line">  overrides: [</span><br><span class="line">    &#123;</span><br><span class="line">      files: &#39;*.json&#39;,</span><br><span class="line">      options: &#123;</span><br><span class="line">        printWidth: 200,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  arrowParens: &#39;always&#39;,</span><br><span class="line">  endOfLine: &#39;auto&#39;,</span><br><span class="line">  vueIndentScriptAndStyle: true,</span><br><span class="line">  trailingComma: &#39;all&#39;,</span><br><span class="line">  proseWrap: &#39;never&#39;,</span><br><span class="line">  htmlWhitespaceSensitivity: &#39;strict&#39;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>vscode打开文件-》首选项-》设置-》当前工作区，<br>搜索formatter，将 Editor:Default Formatter 选择为 prettier<br>搜索save，将 Editor:Formatter On Save勾选<br>这样保存文件的时候就会自动格式化代码。</p>
+<h3 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h3><p><a href="https://github.com/eslint/eslint" target="_blank" rel="noopener">ESLint</a><br>vscode先安装插件：ESLint，webstorm或者IDEA不需要安装插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 安装</span><br><span class="line">pnpm install eslint -D</span><br><span class="line">&#x2F;&#x2F; 执行以下命令完成设置，并创建.eslintrc.js配置文件</span><br><span class="line">pnpm init @eslint&#x2F;config</span><br><span class="line"> How would you like to use ESLint? （你想如何使用 ESLint?）</span><br><span class="line">     To check syntax, find problems, and enforce code style（检查语法、发现问题并强制执行代码风格）</span><br><span class="line"> What type of modules does your project use?（你的项目使用哪种类型的模块?）</span><br><span class="line">     JavaScript modules (import&#x2F;export)</span><br><span class="line"> Which framework does your project use? （你的项目使用哪种框架?）</span><br><span class="line">     Vue.js</span><br><span class="line">Does your project use TypeScript?（你的项目是否使用 TypeScript？）</span><br><span class="line">    Yes</span><br><span class="line">Where does your code run?（你的代码在哪里运行?）</span><br><span class="line">    Browser 和 Node（按空格键进行选择，a全选，选完按回车键确定）      </span><br><span class="line">How would you like to define a style for your project?（你想怎样为你的项目定义风格？）</span><br><span class="line">    Use a popular style guide（使用一种流行的风格指南）</span><br><span class="line">Which style guide do you want to follow?（你想遵循哪一种风格指南?）</span><br><span class="line">    Airbnb、Standard、Google中我选择了Airbnb(https:&#x2F;&#x2F;github.com&#x2F;airbnb&#x2F;javascript)</span><br><span class="line">What format do you want your config file to be in?（你希望你的配置文件是什么格式?）</span><br><span class="line">    JavaScript</span><br><span class="line">Would you like to install them now with npm?（你想现在就用 NPM 安装它们吗?）  </span><br><span class="line">    Yes    &#x2F;&#x2F; 如果安装失败，手动安装</span><br></pre></td></tr></table></figure>
+<p>配置完成后在项目根目录下面自动生成.eslintrc.js文件，在根目录下面新建.eslintignore文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; .eslintignore</span><br><span class="line"># eslint 忽略检查</span><br><span class="line">node_modules</span><br><span class="line">dist</span><br><span class="line">!.prettierrc.js</span><br></pre></td></tr></table></figure>
+<p>vscode在settings.json设置文件中增加以下代码，我是在工作区的设置文件中添加的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &#x2F;&#x2F; 每次保存时将代码按eslint格式进行保存</span><br><span class="line">  &quot;editor.codeActionsOnSave&quot;: &#123;</span><br><span class="line">    &quot;source.fixAll.eslint&quot;: true</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;eslint.run&quot;: &quot;onSave&quot;,</span><br><span class="line">  &#x2F;&#x2F; 添加vue支持</span><br><span class="line">  &quot;eslint.validate&quot;: [&quot;javascript&quot;, &quot;vue&quot;, &quot;html&quot;],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解决-ESLint-和-Prettier-的冲突"><a href="#解决-ESLint-和-Prettier-的冲突" class="headerlink" title="解决 ESLint 和 Prettier 的冲突"></a>解决 ESLint 和 Prettier 的冲突</h3><p>比如Airbnb代码结束需要增加封号，而Prettier不需要。<br>解决两者冲突问题，需要用到 eslint-plugin-prettier 和 eslint-config-prettier。</p>
+<ul>
+<li>eslint-plugin-prettier 将 Prettier 的规则设置到 ESLint 的规则中;</li>
+<li>eslint-config-prettier 关闭 ESLint 中与 Prettier 中会发生冲突的规则;</li>
+</ul>
+<p>最后形成优先级：Prettier 配置规则 &gt; ESLint 配置规则。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 安装</span><br><span class="line">pnpm install eslint-plugin-prettier eslint-config-prettier -D</span><br><span class="line">&#x2F;&#x2F; 修改.eslintrc.js文件</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">     ... extends: [ </span><br><span class="line">         &#39;plugin:vue&#x2F;essential&#39;, </span><br><span class="line">         &#39;airbnb-base&#39;, </span><br><span class="line">         &#39;plugin:prettier&#x2F;recommended&#39; &#x2F;&#x2F; 添加 prettier 插件 </span><br><span class="line">     ], ... </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置vite-config-js"><a href="#配置vite-config-js" class="headerlink" title="配置vite.config.js"></a>配置vite.config.js</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import &#123; defineConfig &#125; from &#39;vite&#39;</span><br><span class="line">import &#123; resolve &#125; from &#39;path&#39;</span><br><span class="line">import createVitePlugins from &#39;.&#x2F;vite&#x2F;plugins&#39;</span><br><span class="line"></span><br><span class="line">function resolvePath(paths) &#123;</span><br><span class="line">  return resolve(__dirname, paths)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; https:&#x2F;&#x2F;vitejs.dev&#x2F;config&#x2F;</span><br><span class="line">export default defineConfig((&#123; mode, command &#125;) &#x3D;&gt; &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    &#x2F;&#x2F; 项目中用到的插件集合</span><br><span class="line">    plugins: createVitePlugins(command &#x3D;&#x3D;&#x3D; &#39;build&#39;),</span><br><span class="line">    resolve: &#123;</span><br><span class="line">      &#x2F;&#x2F; alias - 路径别名 https:&#x2F;&#x2F;cn.vitejs.dev&#x2F;config&#x2F;#resolve-alias</span><br><span class="line">      alias: &#123;</span><br><span class="line">        &#39;@&#39;: resolvePath(&#39;src&#39;),</span><br><span class="line">      &#125;,</span><br><span class="line">      &#x2F;&#x2F; 导入时想要省略的扩展名列表 https:&#x2F;&#x2F;cn.vitejs.dev&#x2F;config&#x2F;#resolve-extensions</span><br><span class="line">      extensions: [&#39;.mjs&#39;, &#39;.js&#39;, &#39;.ts&#39;, &#39;.jsx&#39;, &#39;.tsx&#39;, &#39;.json&#39;, &#39;.vue&#39;],</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F; server - 本地开发相关配置</span><br><span class="line">    server: &#123;</span><br><span class="line">      host: &#39;0.0.0.0&#39;, &#x2F;&#x2F; IP配置，支持从IP启动</span><br><span class="line">      port: 3000, &#x2F;&#x2F; 端口号</span><br><span class="line">      open: true, &#x2F;&#x2F; 自动打开浏览器</span><br><span class="line">      &#x2F;&#x2F; 接口代理</span><br><span class="line">      proxy: &#123;</span><br><span class="line">        &#39;&#x2F;vue3-admin&#39;: &#123;</span><br><span class="line">          target: &#96;http:&#x2F;&#x2F;vue.ruoyi.vip&#x2F;prod-api&#96;,</span><br><span class="line">          changeOrigin: true,</span><br><span class="line">          rewrite: (path) &#x3D;&gt; path.replace(&#x2F;^\&#x2F;vue3-admin&#x2F;, &#39;&#39;),</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="element-plus"><a href="#element-plus" class="headerlink" title="element-plus"></a>element-plus</h2><ol>
+<li>安装并引入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 安装</span><br><span class="line">pnpm install element-plus</span><br><span class="line">&#x2F;&#x2F; main.js 完整引入</span><br><span class="line">import &#123; createApp &#125; from &#39;vue&#39;</span><br><span class="line">import ElementPlus from &#39;element-plus&#39;</span><br><span class="line">import &#39;element-plus&#x2F;dist&#x2F;index.css&#39;</span><br><span class="line">&#x2F;&#x2F; element-plus 国际化</span><br><span class="line">import zhCn from &#39;element-plus&#x2F;es&#x2F;locale&#x2F;lang&#x2F;zh-cn&#39;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;</span><br><span class="line"></span><br><span class="line">const app &#x3D; createApp(App)</span><br><span class="line">app.use(ElementPlus, &#123; size: &#39;small&#39;, locale: zhCn &#125;)</span><br><span class="line">app.mount(&#39;#app&#39;)</span><br></pre></td></tr></table></figure></li>
+<li>自定义主题<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; assets&#x2F;styles&#x2F;element-index.scss</span><br><span class="line">&#x2F;*</span><br><span class="line">  只需要重写你需要改变的颜色即可</span><br><span class="line">  可以在  element-plus&#x2F;theme-chalk&#x2F;src&#x2F;common&#x2F;var.scss 文件中查找SCSS变量。</span><br><span class="line">*&#x2F;</span><br><span class="line">$--color-primary: #409eff;</span><br><span class="line">$--color-success: #67c23a;</span><br><span class="line">$--color-warning: #e6a23c;</span><br><span class="line">$--color-danger: #f56c6c;</span><br><span class="line">$--color-info: #909399;</span><br><span class="line">@forward &#39;element-plus&#x2F;theme-chalk&#x2F;src&#x2F;common&#x2F;var.scss&#39; with (</span><br><span class="line">  $colors: (</span><br><span class="line">    &#39;primary&#39;: (</span><br><span class="line">      &#39;base&#39;: $--color-primary,</span><br><span class="line">    ),</span><br><span class="line">    &#39;success&#39;: (</span><br><span class="line">      &#39;base&#39;: $--color-success,</span><br><span class="line">    ),</span><br><span class="line">    &#39;warning&#39;: (</span><br><span class="line">      &#39;base&#39;: $--color-warning,</span><br><span class="line">    ),</span><br><span class="line">    &#39;danger&#39;: (</span><br><span class="line">      &#39;base&#39;: $--color-danger,</span><br><span class="line">    ),</span><br><span class="line">    &#39;error&#39;: (</span><br><span class="line">      &#39;base&#39;: $--color-danger,</span><br><span class="line">    ),</span><br><span class="line">    &#39;info&#39;: (</span><br><span class="line">      &#39;base&#39;: $--color-info,</span><br><span class="line">    ),</span><br><span class="line">  )</span><br><span class="line">);</span><br><span class="line">&#x2F;&#x2F; 如果你想导入所有样式:</span><br><span class="line">@use &#39;element-plus&#x2F;theme-chalk&#x2F;src&#x2F;index.scss&#39; as *;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; main.js修改</span><br><span class="line">&#x2F;&#x2F; 引入element-index.scss文件，必须在引入element-plus之前，防止样式错乱</span><br><span class="line">import &#39;@&#x2F;assets&#x2F;styles&#x2F;element-index.scss&#39;</span><br><span class="line">import ElementPlus from &#39;element-plus&#39;</span><br></pre></td></tr></table></figure></li>
+<li>全局使用icon<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1、安装</span><br><span class="line">pnpm install @element-plus&#x2F;icons-vue</span><br><span class="line">&#x2F;&#x2F; 2、components&#x2F;SvgIcon&#x2F;svgicon.js</span><br><span class="line">&#x2F;**</span><br><span class="line"> * @name install</span><br><span class="line"> * @description 全局注册使用element-plus的icon</span><br><span class="line"> *&#x2F;</span><br><span class="line">import * as components from &#39;@element-plus&#x2F;icons-vue&#39;</span><br><span class="line">export default &#123;</span><br><span class="line">  install: (app) &#x3D;&gt; &#123;</span><br><span class="line">    for (const key in components) &#123;</span><br><span class="line">      const componentConfig &#x3D; components[key]</span><br><span class="line">      app.component(componentConfig.name, componentConfig)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 3、全局注册main.js</span><br><span class="line">import elementIcons from &#39;@&#x2F;components&#x2F;SvgIcon&#x2F;svgicon&#39;</span><br><span class="line">app.use(elementIcons)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="vue-router4"><a href="#vue-router4" class="headerlink" title="vue-router4"></a>vue-router4</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 安装</span><br><span class="line">pnpm install vue-router@4</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; src下新建router&#x2F;index.js，里面有constantRoutes（公共路由）</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; main.js</span><br><span class="line">import &#123; createApp &#125; from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;</span><br><span class="line">import router from &#39;.&#x2F;router&#39;</span><br><span class="line">const app &#x3D; createApp(App)</span><br><span class="line">app.use(router)</span><br></pre></td></tr></table></figure>
+<h2 id="pinia"><a href="#pinia" class="headerlink" title="pinia"></a>pinia</h2><p><a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">pinia</a>状态管理，类似Vuex。<br><strong>Vuex 和 Pinia 的区别？</strong></p>
+<ul>
+<li>Pinia更轻量，比Vuex快；</li>
+<li>没有mutations，更加简洁；</li>
+<li>Pinia完整的支持TypeScript，添加TS比Vuex更容易；</li>
+<li>Pinia支持多个store，Vuex一般只定义一个；</li>
+<li>Pinia的action和普通函数一样，直接调用，而Vuex的action需要使用dispatch或者mapaction辅助函数；</li>
+<li>Pinia不支持时间旅行和编辑等调试功能，而Vuex支持；</li>
+<li>Pinia适合中小型项目，Vuex适合大型、高复杂度的项目。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 安装</span><br><span class="line">pnpm install pinia</span><br><span class="line">&#x2F;&#x2F; 2. 使用 src&#x2F;store</span><br><span class="line">&#x2F;&#x2F; src&#x2F;store&#x2F;index.js  全局pinia</span><br><span class="line">import &#123; createPinia &#125; from &#39;pinia&#39;</span><br><span class="line">const pinia &#x3D; createPinia()</span><br><span class="line">export default pinia</span><br><span class="line">&#x2F;&#x2F; src&#x2F;store&#x2F;modules  pinia模块</span><br><span class="line">app.js - 侧边栏配置、当前设备、element-plus的size</span><br><span class="line">permission.js - 动态路由</span><br><span class="line">settings.js - 项目布局模块</span><br><span class="line">tagsView.js - 框架顶部tags模块</span><br><span class="line">user.js - 用户操作模块：登录、用户信息、退出登录</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 3. main.js</span><br><span class="line">import &#123; createApp &#125; from &#39;vue&#39;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;</span><br><span class="line">import store from &#39;.&#x2F;store&#39;</span><br><span class="line">const app &#x3D; createApp(App)</span><br><span class="line">app.use(store)</span><br></pre></td></tr></table></figure>
+
+<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1、安装</span><br><span class="line">pnpm install axios</span><br><span class="line">&#x2F;&#x2F; 2、src&#x2F;utils&#x2F;request.js 定义通讯</span><br><span class="line">&#x2F;&#x2F; 具体请查看https:&#x2F;&#x2F;gitee.com&#x2F;crystalSummer&#x2F;vue3-admin&#x2F;blob&#x2F;master&#x2F;src&#x2F;utils&#x2F;request.js</span><br></pre></td></tr></table></figure>
+<h2 id="css处理器-–-Sass"><a href="#css处理器-–-Sass" class="headerlink" title="css处理器 – Sass"></a>css处理器 – Sass</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pnpm install sass</span><br><span class="line">&#x2F;&#x2F; src&#x2F;assets&#x2F;styles下写样式</span><br><span class="line">&#x2F;&#x2F; 具体请查看https:&#x2F;&#x2F;gitee.com&#x2F;crystalSummer&#x2F;vue3-admin&#x2F;tree&#x2F;master&#x2F;src&#x2F;assets&#x2F;styles</span><br></pre></td></tr></table></figure>
+
+<h1 id="Vite插件"><a href="#Vite插件" class="headerlink" title="Vite插件"></a>Vite插件</h1><p>在项目根目录新建vite/plugins文件夹，下面是所有用到的Vite插件的配置。</p>
+<h2 id="unplugin-auto-import-vite"><a href="#unplugin-auto-import-vite" class="headerlink" title="unplugin-auto-import/vite"></a>unplugin-auto-import/vite</h2><p><a href="https://www.npmjs.com/package/unplugin-auto-import" target="_blank" rel="noopener">unplugin-auto-import/vite</a>的作用是按需引入项目中常用的api，比如ref、computed就不需要手动引入，项目运行时会自动生成auto-imports.d.js文件，里面是全局声明的api。</p>
+<h2 id="unplugin-vue-components-vite"><a href="#unplugin-vue-components-vite" class="headerlink" title="unplugin-vue-components/vite"></a>unplugin-vue-components/vite</h2><p><a href="https://www.npmjs.com/package/unplugin-vue-components" target="_blank" rel="noopener">unplugin-vue-components/vite</a>的作用是自动引入页面需要的组件，项目运行的时候会自动新建components.d.js文件，里面是全局安装的自动引入的组件。</p>
+<p><strong>本框架未使用该插件</strong>。</p>
+<h2 id="vite-plugin-svg-icons"><a href="#vite-plugin-svg-icons" class="headerlink" title="vite-plugin-svg-icons"></a>vite-plugin-svg-icons</h2><p><a href="https://github.com/vbenjs/vite-plugin-svg-icons/blob/main/README.zh_CN.md" target="_blank" rel="noopener">vite-plugin-svg-icons</a>用于生成svg雪碧图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1、安装</span><br><span class="line">pnpm install vite-plugin-svg-icons -D</span><br><span class="line">&#x2F;&#x2F; 2、在 src&#x2F;main.js 内引入注册脚本</span><br><span class="line">import &#39;virtual:svg-icons-register&#39;</span><br><span class="line">import SvgIcon from &#39;@&#x2F;components&#x2F;SvgIcon&#39;</span><br><span class="line">app.component(&#39;svg-icon&#39;, SvgIcon)</span><br><span class="line">&#x2F;&#x2F; 3、使用-新增svgIcon组件</span><br><span class="line">&#x2F;&#x2F; 详情请查看https:&#x2F;&#x2F;gitee.com&#x2F;crystalSummer&#x2F;vue3-admin&#x2F;blob&#x2F;master&#x2F;src&#x2F;components&#x2F;SvgIcon&#x2F;index.vue</span><br></pre></td></tr></table></figure>
+<h2 id="vite-plugin-compression"><a href="#vite-plugin-compression" class="headerlink" title="vite-plugin-compression"></a>vite-plugin-compression</h2><p><a href="https://github.com/vbenjs/vite-plugin-compression/blob/main/README.zh_CN.md" target="_blank" rel="noopener">vite-plugin-compression</a>的作用是使用 gzip 或者 brotli 来压缩资源。</p>
+<h2 id="vite-plugin-vue-setup-extend"><a href="#vite-plugin-vue-setup-extend" class="headerlink" title="vite-plugin-vue-setup-extend"></a>vite-plugin-vue-setup-extend</h2><p><a href="https://github.com/vbenjs/vite-plugin-vue-setup-extend" target="_blank" rel="noopener">vite-plugin-vue-setup-extend</a>的作用是解决vue3下 script setup语法糖 下 ，手动设置组件name不方便的问题。</p>
+<h1 id="其他插件"><a href="#其他插件" class="headerlink" title="其他插件"></a>其他插件</h1><h2 id="nprogress"><a href="#nprogress" class="headerlink" title="nprogress"></a>nprogress</h2><p><a href="https://ricostacruz.com/nprogress/" target="_blank" rel="noopener">nprogress</a>是一个进度条插件，通过和路由配合，显示页面切换进程的进度条。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 安装</span><br><span class="line">pnpm  install --save nprogress</span><br><span class="line">&#x2F;&#x2F; 2. 使用</span><br><span class="line">import NProgress from &#39;nprogress&#39;</span><br><span class="line">import &#39;nprogress&#x2F;nprogress.css&#39;</span><br><span class="line">NProgress.configure(&#123; showSpinner: false &#125;)</span><br><span class="line">NProgress.start()</span><br><span class="line">NProgress.done()</span><br></pre></td></tr></table></figure>
+
+<h1 id="工具库"><a href="#工具库" class="headerlink" title="工具库"></a>工具库</h1><h2 id="js-cookie"><a href="#js-cookie" class="headerlink" title="js-cookie"></a>js-cookie</h2><p><a href="https://www.npmjs.com/package/js-cookie" target="_blank" rel="noopener">js-cookie</a>一个简单、轻量级的处理cookie的js API。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 安装</span><br><span class="line">pnpm install js-cookie</span><br><span class="line">&#x2F;&#x2F; 2. 使用 src&#x2F;utils&#x2F;auth.js 用于操作token</span><br><span class="line">import Cookies from &#39;js-cookie&#39;</span><br><span class="line">const TokenKey &#x3D; &#39;Admin-Token&#39;</span><br><span class="line">export function getToken() &#123;</span><br><span class="line">  return Cookies.get(TokenKey)</span><br><span class="line">&#125;</span><br><span class="line">export function setToken(token) &#123;</span><br><span class="line">  return Cookies.set(TokenKey, token)</span><br><span class="line">&#125;</span><br><span class="line">export function removeToken() &#123;</span><br><span class="line">  return Cookies.remove(TokenKey)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="file-saver"><a href="#file-saver" class="headerlink" title="file-saver"></a>file-saver</h2><p><a href="https://www.npmjs.com/package/file-saver" target="_blank" rel="noopener">file-saver</a>浏览器下载文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 安装</span><br><span class="line">pnpm install file-saver --save</span><br><span class="line">&#x2F;&#x2F; 2. 使用 src&#x2F;utils&#x2F;request.js 下载</span><br><span class="line">import &#123; saveAs &#125; from &#39;file-saver&#39;;</span><br><span class="line">saveAs(Blob&#x2F;File&#x2F;Url, optional DOMString filename, optional Object &#123; autoBom &#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="jsencrypt"><a href="#jsencrypt" class="headerlink" title="jsencrypt"></a>jsencrypt</h2><p>jsencrypt是基于RSA对数据进行加解密的JS工具，RSA是非对称加密，采用不同的密钥（加密用公钥，解密用私钥）对数据进行加密和解密操作，具体的算法原理可以查看以下文章：</p>
+<ul>
+<li><a href="https://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank" rel="noopener"><strong>阮一峰网络日志-RSA算法原理（一）</strong></a></li>
+<li><a href="https://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html" target="_blank" rel="noopener"><strong>阮一峰网络日志-RSA算法原理（二）</strong></a></li>
+</ul>
+<p>密钥对生成：</p>
+<ul>
+<li>MAC系统内置OpenSSL(开源加密库),所以可以直接在终端上使用命令；</li>
+<li>Windows系统可以使用Git命令行工具；</li>
+<li>在线生成密钥对：<a href="http://web.chacuo.net/netrsakeypair" target="_blank" rel="noopener"><strong>http://web.chacuo.net/netrsakeypair</strong></a>。</li>
+</ul>
+<p>目前最常用的场景就是前端记住密码的操作，将密码加密保存在cookie中，回显的时候获取加密的数据进行解密，比如若依前端。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 安装</span><br><span class="line">pnpm install jsencrypt</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 2. 引入</span><br><span class="line">import JSEncrypt from &#39;jsencrypt&#x2F;bin&#x2F;jsencrypt.min&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 3. 具体使用</span><br><span class="line">const publicKey &#x3D; &#39;...........&#39;</span><br><span class="line">const privateKey &#x3D; &#39;...........&#39;</span><br><span class="line">&#x2F;&#x2F; 加密</span><br><span class="line">export function encrypt(txt: string) &#123;</span><br><span class="line">  const encryptor &#x3D; new JSEncrypt()</span><br><span class="line">  encryptor.setPublicKey(publicKey) &#x2F;&#x2F; 设置公钥</span><br><span class="line">  return encryptor.encrypt(txt) &#x2F;&#x2F; 对数据进行加密</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 解密</span><br><span class="line">export function decrypt(txt: string) &#123;</span><br><span class="line">  const encryptor &#x3D; new JSEncrypt()</span><br><span class="line">  encryptor.setPrivateKey(privateKey) &#x2F;&#x2F; 设置私钥</span><br><span class="line">  return encryptor.decrypt(txt) &#x2F;&#x2F; 对数据进行解密</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vueuse-core"><a href="#vueuse-core" class="headerlink" title="@vueuse/core"></a>@vueuse/core</h2><p>@vueuse/core是为Vue 2和3服务的一套Vue Composition API的常用工具集，通俗的来说，就是一个工具函数包，它可以帮助快速实现一些常见的功能，不用自己手写，解决重复手写工具函数实现的问题。</p>
+<p>常见常用的API如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 安装</span><br><span class="line">pnpm install @vueuse&#x2F;core</span><br><span class="line">&#x2F;&#x2F; 监听视窗尺寸</span><br><span class="line">import &#123; useWindowSize &#125; from &#39;@vueuse&#x2F;core&#39;</span><br><span class="line">const windowSize &#x3D; reactive(useWindowSize())</span><br><span class="line">console.log(windowSize.width,windowSize.height)</span><br><span class="line">&#x2F;&#x2F; 监听鼠标坐标位置</span><br><span class="line">import &#123; useMouse &#125; from &#39;@vueuse&#x2F;core&#39;</span><br><span class="line">const mousePosition &#x3D; reactive(useMouse())</span><br><span class="line">console.log(mousePosition.x,mousePosition.y)</span><br><span class="line">&#x2F;&#x2F; 判断用户是否喜欢深色</span><br><span class="line">import &#123; usePreferredDark &#125; from &#39;@vueuse&#x2F;core&#39;</span><br><span class="line">const isDark &#x3D; usePreferredDark()</span><br><span class="line">&#x2F;&#x2F; 设置浏览器title</span><br><span class="line">import &#123; useTitle &#125; from &#39;@vueuse&#x2F;core&#39;</span><br><span class="line">const title &#x3D; useTitle()</span><br><span class="line">console.log(title.value) &#x2F;&#x2F; print current title</span><br><span class="line">title.value &#x3D; &#39;Hello&#39; &#x2F;&#x2F; change current title</span><br><span class="line">&#x2F;&#x2F; copy</span><br><span class="line">import &#123; useClipboard &#125; from &#39;@vueuse&#x2F;core&#39;</span><br><span class="line">const source &#x3D; ref(&#39;Hello&#39;)</span><br><span class="line">const &#123; text, copy, copied, isSupported &#125; &#x3D; useClipboard(&#123; source &#125;)</span><br><span class="line">&#x2F;&#x2F; 防抖</span><br><span class="line">import &#123; debounceFilter &#125; from &#39;@vueuse&#x2F;core&#39;</span><br><span class="line">&#x2F;&#x2F; 100ms后更新鼠标的位置</span><br><span class="line">const &#123; x, y &#125; &#x3D; useMouse(&#123; eventFilter: debounceFilter(100) &#125;)</span><br><span class="line">&#x2F;&#x2F; 节流</span><br><span class="line">import &#123; throttleFilter，useLocalStorage &#125; from &#39;@vueuse&#x2F;core&#39;</span><br><span class="line">&#x2F;&#x2F; 以节流的方式去改变 localStorage 的值</span><br><span class="line">const storage &#x3D; useLocalStorage(&#39;my-key&#39;, &#123; foo: &#39;bar&#39; &#125;, &#123; eventFilter: throttleFilter(1000) &#125;)</span><br><span class="line">&#x2F;&#x2F; 全屏</span><br><span class="line">import &#123; useFullscreen &#125; from &#39;@vueuse&#x2F;core&#39;</span><br><span class="line">const &#123; isFullscreen, enter, exit, toggle &#125; &#x3D; useFullscreen();</span><br></pre></td></tr></table></figure>
+<p>VueUse封装了很多其他的API，具体内容可以查看<a href="https://vueuse.org/" target="_blank" rel="noopener"><strong>VueUse官网</strong></a>。</p>
+<h2 id="fuse-js"><a href="#fuse-js" class="headerlink" title="fuse.js"></a>fuse.js</h2><p><a href="https://fusejs.io/" target="_blank" rel="noopener">Fuse.js</a>是一个功能强大、轻量级的模糊搜索库，没有依赖关系。一般来说，模糊搜索（更正式地称为近似字符串匹配）是一种寻找近似等于给定模式（而不是精确地）的字符串的技术。</p>
+<h1 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a>开发规范</h1><h2 id="新增-view"><a href="#新增-view" class="headerlink" title="新增 view"></a>新增 view</h2><p>在<code>@/views</code>文件下创建对应的文件夹，一般一个路由对应一个文件，该模块下的功能就建议在本文件夹下创建一个新文件夹，各个功能模块维护自己的<code>utils</code>或<code>components</code>组件。</p>
+<h2 id="新增-api"><a href="#新增-api" class="headerlink" title="新增 api"></a>新增 api</h2><p>在<code>@/api</code>文件夹下创建本模块对应的 api 服务。</p>
+<h2 id="新增组件"><a href="#新增组件" class="headerlink" title="新增组件"></a>新增组件</h2><p>在全局的<code>@/components</code>写一些全局的组件，如富文本，各种搜索组件，封装的分页组件等等能被公用的组件。<br>每个页面或者模块特定的业务组件则会写在当前<code>@/views</code>下面。如：<code>@/views/system/user/components/xxx.vue</code>。这样拆分大大减轻了维护成本。</p>
+<h2 id="新增样式"><a href="#新增样式" class="headerlink" title="新增样式"></a>新增样式</h2><p>页面的样式和组件是一个道理，全局的<code>@/style</code>放置一下全局公用的样式，每一个页面的样式就写在当前<code>views</code>下面，请记住加上<code>scoped</code>就只会作用在当前组件内了，避免造成全局的样式污染。</p>
+<h1 id="权限-角色使用"><a href="#权限-角色使用" class="headerlink" title="权限/角色使用"></a>权限/角色使用</h1><p>框架封装了全局指令<code>v-hasPermi</code>权限字符串和<code>v-hasRole</code>角色字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 单个权限</span><br><span class="line">&lt;el-button v-hasPermi&#x3D;&quot;[&#39;system:user:add&#39;]&quot;&gt;存在权限字符串才能看到&lt;&#x2F;el-button&gt;</span><br><span class="line">&#x2F;&#x2F; 多个权限</span><br><span class="line">&lt;el-button v-hasPermi&#x3D;&quot;[&#39;system:user:add&#39;, &#39;system:user:edit&#39;]&quot;&gt;包含权限字符串才能看到&lt;&#x2F;el-button&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 单个角色</span><br><span class="line">&lt;el-button v-hasRole&#x3D;&quot;[&#39;admin&#39;]&quot;&gt;管理员才能看到&lt;&#x2F;el-button&gt;</span><br><span class="line">&#x2F;&#x2F; 多个角色</span><br><span class="line">&lt;el-button v-hasRole&#x3D;&quot;[&#39;role1&#39;, &#39;role2&#39;]&quot;&gt;包含角色才能看到&lt;&#x2F;el-button&gt;</span><br></pre></td></tr></table></figure>
+<p>在某些情况下，不适合使用指令，只能通过<code>v-if</code>手动设置，以使用全局权限/角色判断函数<code>checkPermi</code>和<code>checkRole</code>，用法和指令 <code>v-hasPermi</code>和<code>v-hasRole</code> 类似。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-tabs&gt;</span><br><span class="line">    &lt;el-tab-pane v-if&#x3D;&quot;checkPermi([&#39;system:user:add&#39;])&quot; label&#x3D;&quot;用户管理&quot; name&#x3D;&quot;user&quot;&gt;用户管理&lt;&#x2F;el-tab-pane&gt;</span><br><span class="line">    &lt;el-tab-pane v-if&#x3D;&quot;checkPermi([&#39;system:user:add&#39;, &#39;system:user:edit&#39;])&quot; label&#x3D;&quot;参数管理&quot; name&#x3D;&quot;menu&quot;&gt;参数管理&lt;&#x2F;el-tab-pane&gt;</span><br><span class="line">    &lt;el-tab-pane v-if&#x3D;&quot;checkRole([&#39;admin&#39;])&quot; label&#x3D;&quot;角色管理&quot; name&#x3D;&quot;role&quot;&gt;角色管理&lt;&#x2F;el-tab-pane&gt;</span><br><span class="line">    &lt;el-tab-pane v-if&#x3D;&quot;checkRole([&#39;admin&#39;,&#39;common&#39;])&quot; label&#x3D;&quot;定时任务&quot; name&#x3D;&quot;job&quot;&gt;定时任务&lt;&#x2F;el-tab-pane&gt;</span><br><span class="line">   &lt;&#x2F;el-tabs&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"> &#x2F;&#x2F; 权限判断函数</span><br><span class="line">import &#123; checkPermi, checkRole &#125; from &quot;@&#x2F;utils&#x2F;permission&quot;;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="通用方法"><a href="#通用方法" class="headerlink" title="通用方法"></a>通用方法</h1><h2 id="auth对象"><a href="#auth对象" class="headerlink" title="$auth对象"></a>$auth对象</h2><p><code>$auth</code>对象用于验证用户是否拥有某（些）权限或角色，它定义在<code>plugins/auth.js</code>文件中，它有如下方法：</p>
+<ul>
+<li>验证用户权限<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 验证用户是否具备某权限</span><br><span class="line">this.$auth.hasPermi(&quot;system:user:add&quot;);</span><br><span class="line">&#x2F;&#x2F; 验证用户是否含有指定权限，只需包含其中一个</span><br><span class="line">this.$auth.hasPermiOr([&quot;system:user:add&quot;, &quot;system:user:update&quot;]);</span><br><span class="line">&#x2F;&#x2F; 验证用户是否含有指定权限，必须全部拥有</span><br><span class="line">this.$auth.hasPermiAnd([&quot;system:user:add&quot;, &quot;system:user:update&quot;]);</span><br></pre></td></tr></table></figure></li>
+<li>验证用户角色<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 验证用户是否具备某角色</span><br><span class="line">this.$auth.hasRole(&quot;admin&quot;);</span><br><span class="line">&#x2F;&#x2F; 验证用户是否含有指定角色，只需包含其中一个</span><br><span class="line">this.$auth.hasRoleOr([&quot;admin&quot;, &quot;common&quot;]);</span><br><span class="line">&#x2F;&#x2F; 验证用户是否含有指定角色，必须全部拥有</span><br><span class="line">this.$auth.hasRoleAnd([&quot;admin&quot;, &quot;common&quot;]);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="download对象"><a href="#download对象" class="headerlink" title="$download对象"></a>$download对象</h2><p><code>$download</code>对象用于文件下载，它定义在<code>plugins/download.js</code>文件中，它有如下方法：</p>
+<ul>
+<li>根据名称下载download路径下的文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const name &#x3D; &quot;be756b96-c8b5-46c4-ab67-02e988973090.xlsx&quot;;</span><br><span class="line">const isDelete &#x3D; true;</span><br><span class="line">&#x2F;&#x2F; 默认下载方法</span><br><span class="line">this.$download.name(name);</span><br><span class="line">&#x2F;&#x2F; 下载完成后是否删除文件</span><br><span class="line">this.$download.name(name, isDelete);</span><br></pre></td></tr></table></figure></li>
+<li>根据名称下载upload路径下的文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const resource &#x3D; &quot;&#x2F;profile&#x2F;upload&#x2F;2021&#x2F;09&#x2F;27&#x2F;be756b96-c8b5-46c4-ab67-02e988973090.png&quot;;</span><br><span class="line">&#x2F;&#x2F; 默认方法</span><br><span class="line">this.$download.resource(resource);</span><br></pre></td></tr></table></figure></li>
+<li>根据请求地址下载zip包<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const url &#x3D; &quot;&#x2F;tool&#x2F;gen&#x2F;batchGenCode?tables&#x3D;&quot; + tableNames;</span><br><span class="line">const name &#x3D; &quot;vue3-admin&quot;;</span><br><span class="line">&#x2F;&#x2F; 默认方法</span><br><span class="line">this.$download.zip(url, name);</span><br></pre></td></tr></table></figure></li>
+<li>更多文件下载操作<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 自定义文本保存</span><br><span class="line">var blob &#x3D; new Blob([&quot;Hello, world!&quot;], &#123;type: &quot;text&#x2F;plain;charset&#x3D;utf-8&quot;&#125;);</span><br><span class="line">this.$download.saveAs(blob, &quot;hello world.txt&quot;);</span><br><span class="line">&#x2F;&#x2F; 自定义文件保存</span><br><span class="line">var file &#x3D; new File([&quot;Hello, world!&quot;], &quot;hello world.txt&quot;, &#123;type: &quot;text&#x2F;plain;charset&#x3D;utf-8&quot;&#125;);</span><br><span class="line">this.$download.saveAs(file);</span><br><span class="line">&#x2F;&#x2F; 自定义data数据保存</span><br><span class="line">const blob &#x3D; new Blob([data], &#123; type: &#39;text&#x2F;plain;charset&#x3D;utf-8&#39; &#125;)</span><br><span class="line">this.$download.saveAs(blob, name)</span><br><span class="line">&#x2F;&#x2F; 根据地址保存文件</span><br><span class="line">this.$download.saveAs(&quot;https:&#x2F;&#x2F;ruoyi.vip&#x2F;images&#x2F;logo.png&quot;, &quot;logo.jpg&quot;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="modal对象"><a href="#modal对象" class="headerlink" title="$modal对象"></a>$modal对象</h2><p><code>$modal</code>对象用于做消息提示、通知提示、对话框提醒、二次确认、遮罩等，它定义在<code>plugins/modal.js</code>文件中，它有如下方法：</p>
+<ul>
+<li>提供成功、警告和错误等反馈信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">this.$modal.msg(&quot;默认反馈&quot;);</span><br><span class="line">this.$modal.msgError(&quot;错误反馈&quot;);</span><br><span class="line">this.$modal.msgSuccess(&quot;成功反馈&quot;);</span><br><span class="line">this.$modal.msgWarning(&quot;警告反馈&quot;);</span><br></pre></td></tr></table></figure></li>
+<li>提供成功、警告和错误等提示信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">this.$modal.alert(&quot;默认提示&quot;);</span><br><span class="line">this.$modal.alertError(&quot;错误提示&quot;);</span><br><span class="line">this.$modal.alertSuccess(&quot;成功提示&quot;);</span><br><span class="line">this.$modal.alertWarning(&quot;警告提示&quot;);</span><br></pre></td></tr></table></figure></li>
+<li>提供成功、警告和错误等通知信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">this.$modal.notify(&quot;默认通知&quot;);</span><br><span class="line">this.$modal.notifyError(&quot;错误通知&quot;);</span><br><span class="line">this.$modal.notifySuccess(&quot;成功通知&quot;);</span><br><span class="line">this.$modal.notifyWarning(&quot;警告通知&quot;);</span><br></pre></td></tr></table></figure></li>
+<li>提供确认窗体信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">this.$modal.confirm(&#39;确认信息&#39;).then(function() &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;).then(() &#x3D;&gt; &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;).catch(() &#x3D;&gt; &#123;&#125;);</span><br></pre></td></tr></table></figure></li>
+<li>提供遮罩层信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 打开遮罩层</span><br><span class="line">this.$modal.loading(&quot;正在导出数据，请稍后...&quot;);</span><br><span class="line">&#x2F;&#x2F; 关闭遮罩层</span><br><span class="line">this.$modal.closeLoading();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="cache对象"><a href="#cache对象" class="headerlink" title="$cache对象"></a>$cache对象</h2><p><code>$cache</code>对象用于处理缓存。不建议直接使用sessionStorage或localStorage，因为项目的缓存策略可能发生变化，通过$cache对象做一层调用代理则是一个不错的选择。$cache提供session和local两种级别的缓存。</p>
+<h2 id="tab对象"><a href="#tab对象" class="headerlink" title="$tab对象"></a>$tab对象</h2><p><code>$tab</code>对象用于做页签操作、刷新页签、关闭页签、打开页签、修改页签等，它定义在<code>plugins/tab.js</code>文件中。</p>
+
+    </div>
+
+    
+    
+    
+    
+    
+      <div>
+          <div>
+    
+        <div style="text-align:center;color: #666;font-size:14px;">-------------本文结束　<i class="fa fa-hourglass-end" style="color:rgb(90,85,85)"></i>　感谢阅读-------------</div>
+    
+</div>
+      </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Crystal
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://crystalsummer.gitee.io/2022/09/25/Vue3%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" title="Vue3后台管理框架搭建">http://crystalsummer.gitee.io/2022/09/25/Vue3后台管理框架搭建/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"><i class="fa fa-tag"></i> Vue</a>
+              <a href="/tags/Frame/" rel="tag"><i class="fa fa-tag"></i> Frame</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/27/Vue3/" rel="prev" title="Vue3">
+      <i class="fa fa-chevron-left"></i> Vue3
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/22/Element%20Plus/" rel="next" title="Element Plus">
+      Element Plus <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MDEyMC8yNjYxMA"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pnpm"><span class="nav-number">1.</span> <span class="nav-text">pnpm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ni"><span class="nav-number">2.</span> <span class="nav-text">ni</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#框架搭建"><span class="nav-number">3.</span> <span class="nav-text">框架搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vite初始化项目"><span class="nav-number">3.1.</span> <span class="nav-text">Vite初始化项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码规范"><span class="nav-number">3.2.</span> <span class="nav-text">代码规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EditorConfig"><span class="nav-number">3.2.1.</span> <span class="nav-text">EditorConfig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prettier"><span class="nav-number">3.2.2.</span> <span class="nav-text">Prettier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ESLint"><span class="nav-number">3.2.3.</span> <span class="nav-text">ESLint</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决-ESLint-和-Prettier-的冲突"><span class="nav-number">3.2.4.</span> <span class="nav-text">解决 ESLint 和 Prettier 的冲突</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置vite-config-js"><span class="nav-number">3.3.</span> <span class="nav-text">配置vite.config.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#element-plus"><span class="nav-number">3.4.</span> <span class="nav-text">element-plus</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-router4"><span class="nav-number">3.5.</span> <span class="nav-text">vue-router4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pinia"><span class="nav-number">3.6.</span> <span class="nav-text">pinia</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#axios"><span class="nav-number">3.7.</span> <span class="nav-text">axios</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css处理器-–-Sass"><span class="nav-number">3.8.</span> <span class="nav-text">css处理器 – Sass</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vite插件"><span class="nav-number">4.</span> <span class="nav-text">Vite插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#unplugin-auto-import-vite"><span class="nav-number">4.1.</span> <span class="nav-text">unplugin-auto-import&#x2F;vite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unplugin-vue-components-vite"><span class="nav-number">4.2.</span> <span class="nav-text">unplugin-vue-components&#x2F;vite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vite-plugin-svg-icons"><span class="nav-number">4.3.</span> <span class="nav-text">vite-plugin-svg-icons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vite-plugin-compression"><span class="nav-number">4.4.</span> <span class="nav-text">vite-plugin-compression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vite-plugin-vue-setup-extend"><span class="nav-number">4.5.</span> <span class="nav-text">vite-plugin-vue-setup-extend</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他插件"><span class="nav-number">5.</span> <span class="nav-text">其他插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nprogress"><span class="nav-number">5.1.</span> <span class="nav-text">nprogress</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工具库"><span class="nav-number">6.</span> <span class="nav-text">工具库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#js-cookie"><span class="nav-number">6.1.</span> <span class="nav-text">js-cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file-saver"><span class="nav-number">6.2.</span> <span class="nav-text">file-saver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsencrypt"><span class="nav-number">6.3.</span> <span class="nav-text">jsencrypt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vueuse-core"><span class="nav-number">6.4.</span> <span class="nav-text">@vueuse&#x2F;core</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fuse-js"><span class="nav-number">6.5.</span> <span class="nav-text">fuse.js</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发规范"><span class="nav-number">7.</span> <span class="nav-text">开发规范</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新增-view"><span class="nav-number">7.1.</span> <span class="nav-text">新增 view</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增-api"><span class="nav-number">7.2.</span> <span class="nav-text">新增 api</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增组件"><span class="nav-number">7.3.</span> <span class="nav-text">新增组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增样式"><span class="nav-number">7.4.</span> <span class="nav-text">新增样式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#权限-角色使用"><span class="nav-number">8.</span> <span class="nav-text">权限&#x2F;角色使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通用方法"><span class="nav-number">9.</span> <span class="nav-text">通用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#auth对象"><span class="nav-number">9.1.</span> <span class="nav-text">$auth对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#download对象"><span class="nav-number">9.2.</span> <span class="nav-text">$download对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#modal对象"><span class="nav-number">9.3.</span> <span class="nav-text">$modal对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cache对象"><span class="nav-number">9.4.</span> <span class="nav-text">$cache对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tab对象"><span class="nav-number">9.5.</span> <span class="nav-text">$tab对象</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Crystal"
+      src="/uploads/avatar2.png">
+  <p class="site-author-name" itemprop="name">Crystal</p>
+  <div class="site-description" itemprop="description">Only for recording life</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/crystal-summer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;crystal-summer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:herr_510@163.com" title="E-Mail → mailto:herr_510@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/5596982190/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;5596982190&#x2F;profile?rightmod&#x3D;1&amp;wvr&#x3D;6&amp;mod&#x3D;personnumber&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ruanyifeng.com/blog/" title="http:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;" rel="noopener" target="_blank">阮一峰</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhangxinxu.com/" title="https:&#x2F;&#x2F;www.zhangxinxu.com&#x2F;" rel="noopener" target="_blank">张鑫旭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">CodePen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nowcoder.com/" title="https:&#x2F;&#x2F;www.nowcoder.com&#x2F;" rel="noopener" target="_blank">牛客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dandyweng.com/" title="https:&#x2F;&#x2F;www.dandyweng.com&#x2F;" rel="noopener" target="_blank">翁天信</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Crystal Summer</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">480k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">7:16</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='34,34,34' opacity='0.5' zIndex='' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

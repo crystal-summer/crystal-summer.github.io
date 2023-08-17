@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"crystalsummer.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "4b921942"
+    }); 
+  daovoice('update');
+  </script>
+
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Git">
+<meta property="og:url" content="http://crystalsummer.gitee.io/2019/09/01/Git/index.html">
+<meta property="og:site_name" content="Crystal&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://w.wallhaven.cc/full/2e/wallhaven-2em38y.jpg">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190624141311297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x6YjM0ODExMDE3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190624142358314.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x6YjM0ODExMDE3NQ==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2019-09-01T03:31:06.000Z">
+<meta property="article:modified_time" content="2022-08-10T07:37:05.809Z">
+<meta property="article:author" content="Crystal">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://w.wallhaven.cc/full/2e/wallhaven-2em38y.jpg">
+
+<link rel="canonical" href="http://crystalsummer.gitee.io/2019/09/01/Git/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Git | Crystal's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Crystal's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Crystal's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/crystal-summer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://crystalsummer.gitee.io/2019/09/01/Git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.png">
+      <meta itemprop="name" content="Crystal">
+      <meta itemprop="description" content="Only for recording life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crystal's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">posted</span>
+
+              <time title="创建时间：2019-09-01 11:31:06" itemprop="dateCreated datePublished" datetime="2019-09-01T11:31:06+08:00">2019-09-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="count">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">count：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="readingTime">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">readingTime &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://w.wallhaven.cc/full/2e/wallhaven-2em38y.jpg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>　　由于公司进行统一化管理，代码的提交不再使用Git命令，而是使用SourceTree工具，防止时间久了之后忘记，这里记录一下Git的学习。</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>　　Git是Linus用C语言写的一个分布式版本控制系统，并且开源，可用于敏捷高效地处理任何或小或大的项目。<br>集中式（SVN、CVS）：将项目集中存放在中央服务器中，在工作的时候，大家只在自己电脑上操作，从同一个地方下载最新版本，然后开始工作，做完的工作再提交给中央服务器保存，这种方式需要联网。</p>
+<ul>
+<li>版本库是集中存放在一个中央服务器</li>
+<li>必须联网才能工作</li>
+<li>分支的创建和切换很慢</li>
+</ul>
+<p>分布式（Git）：只要提供一台电脑作为版本集中存的服务器放就够了，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它也一样干活，只是交换修改不方便而已。而每一台电脑有各自独立的开发环境，不需要联网，本地直接运行，相对集中式安全系数高很多。</p>
+<ul>
+<li>无中央服务器，每个人的电脑都有一个完整的版本库</li>
+<li>开源、不必联网工作</li>
+<li>管理的是修改，而非文件</li>
+<li>分支的创建和切换很快，不管分支里面是有多少文件</li>
+</ul>
+<div style='color:#F56C6C;border:1px solid #F56C6C;border-radius:4px;background:rgba(245,108,108,0.1);padding:5px 10px;margin-bottom:20px;'>
+    <i class="fa fa-exclamation-triangle" style='margin-right:10px;'></i>注意：此篇所有内容都是基于Windows系统。
+</div>
+
+<p>　　Git具体安装教程，请点击<a href="https://www.runoob.com/git/git-install-setup.html" target="_blank" rel="noopener"><strong>这里</strong></a>，在此不再赘述。</p>
+<h1 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h1><p>　　版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。</p>
+<div style='color:#F56C6C;border:1px solid #F56C6C;border-radius:4px;background:rgba(245,108,108,0.1);padding:5px 10px;margin-bottom:20px;'>
+    <i class="fa fa-exclamation-triangle" style='margin-right:10px;'></i>注意：Windows系统，为了避免遇到各种莫名其妙的问题，请确保目录名（包括父目录）不包含中文。
+</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 在需要新建仓库的地方，点击右键选择Git Bash here</span><br><span class="line">&#x2F;&#x2F; 2. 新建一个空目录，用于存放所有git管理的文件</span><br><span class="line">mkdir testGit</span><br><span class="line">&#x2F;&#x2F; 3. 切换目录至新建的文件</span><br><span class="line">cd testGit</span><br><span class="line">&#x2F;&#x2F; 4. 查看当前目录</span><br><span class="line">pwd</span><br><span class="line">&#x2F;&#x2F; 5. 将当前目录变成Git仓库</span><br><span class="line">git init</span><br><span class="line">&#x2F;&#x2F; 6. 仓库建好后，会提示是一个空的仓库（empty Git repository），然后testGit下面就会出现一个.git文件夹，</span><br><span class="line">&#x2F;&#x2F;如果没有看到这个文件夹，是因为被隐藏了，可以执行以下命令查看</span><br><span class="line">ls -ah</span><br></pre></td></tr></table></figure>
+
+<h1 id="添加文件"><a href="#添加文件" class="headerlink" title="添加文件"></a>添加文件</h1><p>　　Git只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，但是图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是只知道图片从100KB改成了120KB，但到底改了什么，版本控制系统不知道，也没法知道。<br>　　不幸的是，Microsoft的Word格式是二进制格式，因此，版本控制系统是没法跟踪Word文件的改动的。</p>
+<div style='color:#F56C6C;border:1px solid #F56C6C;border-radius:4px;background:rgba(245,108,108,0.1);padding:5px 10px;margin-bottom:20px;'>
+    <i class="fa fa-exclamation-triangle" style='margin-right:10px;'></i>注意：Windows系统，不要使用Windows自带的记事本编辑任何文本文件，原因是Microsoft开发记事本的团队保存UTF-8编码的文件的时候，在每个文件开头添加了0xefbbbf（十六进制）的字符，你会遇到很多不可思议的问题，比如，网页第一行可能会显示一个“?”，明明正确的程序一编译就报语法错误等等，都是由记事本的这个行为带来的。
+</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 在testGit目录下新建一个readme.txt文件(使用vi命令，i切换成输入模式，按Esc退出输入模式，:wq保存并退出)</span><br><span class="line">&#x2F;&#x2F; readme.txt 里面的内容暂时是123456 qwerty</span><br><span class="line">vi readme.txt</span><br><span class="line">&#x2F;&#x2F; 2. 将readme.txt文件添加到暂存区</span><br><span class="line">git add readme.txt</span><br><span class="line">&#x2F;&#x2F; 3. 提交readme.txt文件</span><br><span class="line">git commit -m &#39;feat:wrote a readme.txt&#39;</span><br><span class="line">&#x2F;&#x2F; 我们可以多次add不同的文件，然后一次commit多个文件</span><br><span class="line">git add file1.txt</span><br><span class="line">git add file2.txt file3.txt</span><br><span class="line">&#x2F;&#x2F; 或者一次性将本地所有文件add</span><br><span class="line">git add .</span><br><span class="line">git commit -m &#39;add 3 files.&#39;</span><br></pre></td></tr></table></figure>
+
+<h1 id="内容管理"><a href="#内容管理" class="headerlink" title="内容管理"></a>内容管理</h1><h2 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h2><p>接下来对readme.txt文件内容进行修改，每修改一次就提交一次，修改内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;第一次 feat:wrote a readme.txt</span><br><span class="line">123456</span><br><span class="line">qwerty</span><br><span class="line">&#x2F;&#x2F;第二次 feat:add content asdfgh</span><br><span class="line">123456</span><br><span class="line">qwerty</span><br><span class="line">asdfgh</span><br><span class="line">&#x2F;&#x2F;第三次 feat:append content 789</span><br><span class="line">123456789</span><br><span class="line">qwerty</span><br><span class="line">asdfgh</span><br><span class="line">git status &#x2F;&#x2F;查看当前工作区的状态，是否有文件被修改等等</span><br><span class="line">git diff &#x2F;&#x2F;查看修改内容</span><br><span class="line">&#x2F;&#x2F;执行以下命令可以查看从最近到最远的提交日志</span><br><span class="line">git log</span><br><span class="line">&#x2F;&#x2F;加上--pretty&#x3D;oneline参数就可以查看简略版的日志</span><br><span class="line">git log --pretty&#x3D;oneline</span><br></pre></td></tr></table></figure>
+<div style='color:#409EFF;border:1px solid #409EFF;border-radius:4px;background:rgba(64,158,255,0.1);padding:5px 10px;margin-bottom:20px;'>
+    日志中出现的一大串类似1094adb...的是commit id（版本号），和SVN不一样，Git的commit id不是1，2，3……递增的数字，而是一个SHA1计算出来的一个非常大的数字，用十六进制表示。为什么commit id需要用这么一大串数字表示呢？因为Git是分布式的版本控制系统，后面我们还要研究多人在同一个版本库里工作，如果大家都用1，2，3……作为版本号，那肯定就冲突了。
+</div>
+<div style='color:#67C23A;border:1px solid #67C23A;border-radius:4px;background:rgba(103,194,58,0.1);padding:5px 10px;margin-bottom:20px;'>
+    在Git中，用HEAD表示当前版本，也就是最新的提交，上一个版本就是HEAD^，上上一个版本就是HEAD^^，往上100个版本可以写成HEAD~100。
+</div>
+
+<p>接下来使用Git命令进行版本回退</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br><span class="line">cat readme.txt</span><br><span class="line">&#x2F;&#x2F;此时readme.txt文件里面的内容是上一个版本feat:add content asdfgh的内容，feat:append content 789的内容被回退掉了</span><br><span class="line">123456</span><br><span class="line">qwerty</span><br><span class="line">asdfgh</span><br></pre></td></tr></table></figure>
+
+<p>回退到上一版本后，如果后悔了，有两种解决方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 如果命令行窗口还没有关闭，可以顺着往上找到feat:append content 789的commit id，就执行以下命令</span><br><span class="line">&#x2F;&#x2F; commit id不需要全部写全，前几位就可以了，Git会自动去找。当然也不能只写前一两位，因为Git可能会找到多个版本号，就无法确定是哪一个了。</span><br><span class="line">git reset --hard d7e3708711f6cc</span><br><span class="line">&#x2F;&#x2F; 2. 如果找不到版本号，这个时候就执行以下命令查找版本号，然后回退就可以了</span><br><span class="line">git reflog     &#x2F;&#x2F;该命令用来记录每一次命令日志，而git log仅用来记录提交的日志</span><br><span class="line"></span><br><span class="line">cat readme.txt</span><br><span class="line">&#x2F;&#x2F;此时readme.txt文件里面的内容是feat:append content 789</span><br><span class="line">123456789</span><br><span class="line">qwerty</span><br><span class="line">asdfgh</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>工作区：就是你在电脑里能看到的目录，比如testGit文件夹就是一个工作区。</li>
+<li>版本库：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。</li>
+<li>暂存区：英文叫stage, 或index。一般存放在 “.git目录下” 下的index文件（.git/index）中，所以我们把暂存区有时也叫作索引（index）。<br>前面讲了我们把文件往Git版本库里添加的时候，是分两步执行的：<br>第一步是用<code>git add</code>把文件添加进去，实际上就是把文件修改添加到暂存区；<br>第二步是用<code>git commit</code>提交更改，实际上就是把暂存区的所有内容提交到当前分支。</li>
+</ul>
+<h2 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h2><p>场景介绍：第一次修改readme.txt -&gt; <code>git add</code> -&gt; 第二次修改readme.txt -&gt; <code>git commit</code></p>
+<p>这个时候如果使用<code>git status</code>查看仓库当前的状态，会发现第二次的修改并没有被提交。</p>
+<p>原因：Git管理的是修改，当使用<code>git add</code>命令后，在工作区的第一次修改被放入暂存区，准备提交，但是，在工作区的第二次修改并没有放入暂存区，所以，<code>git commit</code>只负责把暂存区的修改提交了，也就是第一次的修改被提交了，第二次的修改不会被提交。</p>
+<p>解决方法：第一次修改 -&gt; <code>git add</code> -&gt; 第二次修改 -&gt; <code>git add</code> -&gt; git commit</p>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>场景1：修改readme.txt文件 -&gt; 并没有执行<code>git add</code>放到暂存区 -&gt; 想要回到修改前</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- readme.txt &#x2F;&#x2F;把readme.txt文件在工作区的修改全部撤销</span><br><span class="line">git status</span><br><span class="line">&#x2F;&#x2F; 撤销在工作区的所有更改，不会撤销未跟踪或者新增的文件</span><br><span class="line">git checkout .</span><br></pre></td></tr></table></figure>
+<p>场景2：修改readme.txt文件 -&gt; <code>git add</code> -&gt; 想要回到修改前</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD readme.txt</span><br><span class="line">git status</span><br><span class="line">git checkout -- readme.txt</span><br><span class="line">git status</span><br><span class="line">&#x2F;&#x2F; 将暂存区所有文件恢复到工作区</span><br><span class="line">git reset HEAD</span><br></pre></td></tr></table></figure>
+<p>场景3：修改readme.txt文件 -&gt; <code>git add</code> -&gt; <code>git commit</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 回退上一个版本就好了，但是此次改动的代码全没了</span><br><span class="line">git reset --hard HEAD^</span><br><span class="line">&#x2F;&#x2F; 回退上一个版本，回退的内容回到工作区</span><br><span class="line">git reset --soft HEAD^</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 新建一个文件</span><br><span class="line">vi test.txt</span><br><span class="line">&#x2F;&#x2F; 2. 放到暂存区</span><br><span class="line">git add test.txt</span><br><span class="line">&#x2F;&#x2F; 3. 提交</span><br><span class="line">git commit -m &#39;feat:add test.txt&#39;</span><br><span class="line">&#x2F;&#x2F; 4. 查看当前工作区的文件</span><br><span class="line">ls</span><br><span class="line">&#x2F;&#x2F; 5. 手动删除该文件或者命令删除的文件</span><br><span class="line">rm test.txt</span><br><span class="line">&#x2F;&#x2F; 6. 查看工作区状态-此时工作区和版本库不一致，会提示那些文件被删除了</span><br><span class="line">git status</span><br></pre></td></tr></table></figure>
+<p>删除工作区的test.txt文件后，可能会遇到两种情况：<br>情况一：删除工作区的文件之后后悔了，不想删除了，想恢复回来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- test.txt</span><br></pre></td></tr></table></figure>
+<p>情况二：确定删除该文件，删除版本库里面的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rm test.txt  或者使用 git add test.txt</span><br><span class="line">git status</span><br><span class="line">git commit -m &#39;feat:remove test.txt&#39;</span><br></pre></td></tr></table></figure>
+<p>情况三：已经把版本库里面的文件删除后，后悔了，这个时候版本回退就可以了。</p>
+<h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><p>　　找一台电脑充当服务器的角色，每天24小时开机，其他每个人都从这个“服务器”仓库克隆一份到自己的电脑上，并且各自把各自的提交推送到服务器仓库里，也从服务器仓库中拉取别人的提交。完全可以自己搭建一台运行Git的服务器，不过现阶段，为了学Git先搭个服务器绝对是小题大作。我们可以使用<a href="https://github.com/" target="_blank" rel="noopener"><strong>GitHub</strong></a>网站，从名字就可以看出，这个网站就是提供Git仓库托管服务的，所以，只要注册一个GitHub账号，就可以免费获得Git远程仓库。</p>
+<ol>
+<li>注册GitHub账号</li>
+<li>创建SSH Key：<br>在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Git Bash，创建SSH Key：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</span><br></pre></td></tr></table></figure>
+一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</li>
+<li>添加公钥：<br>登录GitHub，打开“Account settings”，“SSH Keys”页面，添加公钥。因为GitHub需要识别出推送的提交确实是本人推送的，而不是别人冒充的，而Git支持SSH协议，所以，GitHub只要知道了公钥，就可以确认只有本人才能推送。GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。</li>
+</ol>
+<div style='color:#409EFF;border:1px solid #409EFF;border-radius:4px;background:rgba(64,158,255,0.1);padding:5px 10px;margin-bottom:20px;'>
+   友情提醒：在GitHub上免费托管的Git仓库，任何人都可以看到，所以不要把敏感信息放进去。
+</div>
+
+<h2 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h2><p>　　场景：先有本地库，后有远程库的时候，如何关联远程库？（现在需要在GitHub上创建一个远程仓库，具体创建过程这里不再描述。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 本地库关联远程库：远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库</span><br><span class="line">git remote add origin 仓库名</span><br><span class="line">&#x2F;&#x2F; 2. 将本地库所有内容推送到远程库</span><br><span class="line">&#x2F;&#x2F;由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，</span><br><span class="line">&#x2F;&#x2F;还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。</span><br><span class="line">git push -u origin master</span><br><span class="line">&#x2F;&#x2F; 3. 之后本地做了提交，可以执行以下命令</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<h2 id="从远程仓库克隆"><a href="#从远程仓库克隆" class="headerlink" title="从远程仓库克隆"></a>从远程仓库克隆</h2><p>　　场景：先有远程库，无本地库，将远程库克隆到本地</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 仓库名</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin &#39;仓库地址&#39;</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除再添加远程仓库"><a href="#删除再添加远程仓库" class="headerlink" title="删除再添加远程仓库"></a>删除再添加远程仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br><span class="line">git remote rm origin</span><br><span class="line">git remote add origin &#39;仓库地址&#39;</span><br></pre></td></tr></table></figure>
+
+<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><h2 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h2><p>　　在Git里，有一个分支叫主分支，即master分支。HEAD严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支。<br>　　当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上。<br>　　Git创建一个分支很快，是因为除了增加一个dev指针，改变HEAD的指向，工作区的文件都没有任何变化！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch dev &#x2F;&#x2F;创建dev分支</span><br></pre></td></tr></table></figure>
+
+<h2 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h2><p>　　切换分支使用<code>git checkout &lt;branch&gt;</code>，和撤销修改<code>git checkout -- &lt;file&gt;</code>是同一个命令，有两种作用，会有点令人迷惑，所以推荐使用<code>git switch</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;切换至dev分支</span><br><span class="line">git switch dev</span><br><span class="line">git checkout dev</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看当前分支"><a href="#查看当前分支" class="headerlink" title="查看当前分支"></a>查看当前分支</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. 创建并切换dev分支：-b 参数表示创建并切换</span><br><span class="line">git switch -c dev 或者 git checkout -b dev</span><br><span class="line">&#x2F;&#x2F; 相当于以下两个命令的缩写</span><br><span class="line">git branch dev &#x2F;&#x2F;创建dev分支</span><br><span class="line">git checkout dev &#x2F;&#x2F;切换到dev分支</span><br><span class="line">&#x2F;&#x2F; 2. 查看当前分支</span><br><span class="line">git branch</span><br></pre></td></tr></table></figure>
+
+<h2 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h2><p>　　假如我们在dev上的工作完成了，就可以把dev合并到master上。Git怎么合并呢？最简单的方法，就是直接把master指向dev的当前提交，就完成了合并。<br>　　Git合并分支也很快，是因为就改变了指针，工作区内容也没有改变！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 将dev分支的内容合并到当前分支，如果是要合并到master分支，必须保证当前分支是master</span><br><span class="line">git merge dev</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -d dev</span><br><span class="line">&#x2F;&#x2F;如果要删除一个没有被合并过的分支，执行上面的命令会发出警告，可以执行下面强制删除的指令</span><br><span class="line">git branch -D dev</span><br></pre></td></tr></table></figure>
+
+<h2 id="推送分支"><a href="#推送分支" class="headerlink" title="推送分支"></a>推送分支</h2><p>推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 将dev分支推送到远程库</span><br><span class="line">git push origin dev</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h2><p>　　当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。<br>　　解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。<br>　　用<code>git log --graph</code>命令可以看到分支合并图。</p>
+<h2 id="分支合并模式"><a href="#分支合并模式" class="headerlink" title="分支合并模式"></a>分支合并模式</h2><ol>
+<li>Fast Forward<br>　　当前分支合并另一个分支的时候，如果合并的过程中没有Conflict冲突，则会通过直接移动两个分支的指针，来达到合并的过程，这个过程就叫做Fast Forward。<br>　　在Fast Forward模式下，当我们merge合并后，将会删除无用的分支，在这种情况下，Fast Forward就有一个弊端暴露了，即：删除分支之后，会丢掉分支的所有信息。<br>　　场景：新建一个分支dev，在分支dev上做了三次操作：①新增用户功能  ②新增角色功能  ③新增权限功能，然后切换至master主分支，使用Fast Forward模式进行合并分支。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20190624141311297.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x6YjM0ODExMDE3NQ==,size_16,color_FFFFFF,t_70" alt=""></p>
+<ol start="2">
+<li>–no-ff<br>　　如果要强制禁用Fast Forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。此处就会使用到 <code>--no-ff</code> 参数方式merge提交了。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20190624142358314.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x6YjM0ODExMDE3NQ==,size_16,color_FFFFFF,t_70" alt=""></p>
+<h2 id="贮藏"><a href="#贮藏" class="headerlink" title="贮藏"></a>贮藏</h2><p>　　场景1：dev分支有进行到一半的工作，但是现在有需要切换到release分支去改一个bug。<br>　　解决方法：将当前分支的工作内容贮藏来，切换到release分支改完bug后切回dev分支，将贮藏的工作内容释放出来就可以继续工作了。<br>　　场景2：多人协作的项目，个人在提交代码之前需要拉一下别人提交的代码，这个时候可能会发生冲突。<br>　　解决方法：先把自己的代码贮藏起来，然后把别人的代码拉下来，再释放自己的代码，有冲突就解决冲突，没有就直接提交代码即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 贮藏</span><br><span class="line">git stash</span><br><span class="line">&#x2F;&#x2F; 查看贮藏列表</span><br><span class="line">git stash list</span><br><span class="line">&#x2F;&#x2F; 恢复贮藏区的内容，但不删除贮藏区内容</span><br><span class="line">git stash apply</span><br><span class="line">&#x2F;&#x2F; 恢复贮藏区并删除贮藏区内容</span><br><span class="line">git stash pop</span><br><span class="line">&#x2F;&#x2F; 如果多次stash，可以指定恢复某一次的stash</span><br><span class="line">git stash apply stash@&#123;0&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="复制部分提交到当前分支"><a href="#复制部分提交到当前分支" class="headerlink" title="复制部分提交到当前分支"></a>复制部分提交到当前分支</h2><p>　　场景：dev1分支和dev2分支上有相同的一个bug，我们在dev1分支上解决bug之后，需要去dev2分支上解决相同的bug。<br>　　注意：当前分支必须在dev2分支，如果复制的时候发生代码冲突，cherry-pick 会停下来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 将dev1指定的提交应用于dev2分支 commit_id（版本号）</span><br><span class="line">git cherry-pick &lt;commit_id&gt;</span><br><span class="line">&#x2F;&#x2F; 将dev1最新一次提交应用于dev2分支</span><br><span class="line">git cherry-pick dev1</span><br><span class="line">&#x2F;&#x2F; 将dev1多个指定的提交应用于dev2分支</span><br><span class="line">git cherry-pick &lt;commit_id1&gt; &lt;commit_id2&gt; &lt;commit_id3&gt;</span><br><span class="line">&#x2F;&#x2F; 将dev1 commit_id1 到 commit_id3 的提交全部应用于dev2，但是commit_id1的提交不会被应用</span><br><span class="line">git cherry-pick &lt;commit_id1&gt;...&lt;commit_id3&gt;</span><br><span class="line">&#x2F;&#x2F; 将dev1 commit_id1 到 commit_id3 的提交全部应用于dev2，commit_id1的提交也会被应用</span><br><span class="line">git cherry-pick &lt;commit_id1&gt;^...&lt;commit_id3&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h2><ol>
+<li><p>首先，可以试图用<code>git push origin &lt;branch-name&gt;</code>推送自己的修改；</p>
+</li>
+<li><p>如果推送失败，则因为远程分支比你的本地更新，需要先用<code>git pull</code>试图合并；</p>
+</li>
+<li><p>如果合并有冲突，则解决冲突，并在本地提交；</p>
+</li>
+<li><p>没有冲突或者解决掉冲突后，再用<code>git push origin &lt;branch-name&gt;</code>推送就能成功；</p>
+</li>
+<li><p>如果<code>git pull</code>提示<code>no tracking information</code>，则说明本地分支和远程分支的链接关系没有创建，用命令<code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code>。</p>
+</li>
+</ol>
+<h1 id="自定义Git"><a href="#自定义Git" class="headerlink" title="自定义Git"></a>自定义Git</h1><h2 id="忽略特殊文件"><a href="#忽略特殊文件" class="headerlink" title="忽略特殊文件"></a>忽略特殊文件</h2><p>　　场景：有时候我们必须将某些文件放在工作区，但是又不能提交它们，比如vue项目打包文件夹dist、安装依赖的文件夹node-modules。<br>　　解决方法：在工作区的根目录下新建一个<code>.gitignore</code>文件，然后把需要忽略的文件名称填写进去就可以了。</p>
+<h2 id="配置别名"><a href="#配置别名" class="headerlink" title="配置别名"></a>配置别名</h2><p>　　Git有一些命令很长或者很复杂，为了简化，我们可以配置别名，具体示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.st status</span><br><span class="line">git st 就相当于 git status</span><br></pre></td></tr></table></figure>
+<p>　　Git的配置文件放在了<code>.git/config</code>文件中，别名就在<code>[alias]</code>后面，要删除别名，直接把对应的行删掉即可。而当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig中,配置别名也可以直接修改这个文件，如果改错了，可以删掉文件重新通过命令配置。</p>
+<h1 id="GitHub和Gitee"><a href="#GitHub和Gitee" class="headerlink" title="GitHub和Gitee"></a>GitHub和Gitee</h1><p>　　我们一直用GitHub作为免费的远程仓库，如果是个人的开源项目，放到GitHub上是完全没有问题的。其实GitHub还是一个开源协作社区，通过GitHub，既可以让别人参与你的开源项目，也可以参与别人的开源项目。但是使用GitHub时，国内的用户经常遇到的问题是访问速度太慢，有时候还会出现无法连接的情况。<br>　　如果我们希望体验Git飞一般的速度，可以使用国内的Git托管服务——<a href="https://gitee.com/?utm_source=blog_lxf" target="_blank" rel="noopener"><strong>Gitee（gitee.com）</strong></a>。<br>　　将本地库既关联GitHub，又关联Gitee，方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git remote add github GitHub仓库名</span><br><span class="line">git remote add gitee Gitee仓库名</span><br><span class="line">git push github master</span><br><span class="line">git push gitee master</span><br></pre></td></tr></table></figure>
+
+<h1 id="SourceTree"><a href="#SourceTree" class="headerlink" title="SourceTree"></a>SourceTree</h1><p>　　Git有很多图形界面工具，这里我们推荐<a href="https://www.sourcetreeapp.com/" target="_blank" rel="noopener"><strong>SourceTree</strong></a>，它是由Atlassian开发的免费Git图形界面工具，可以操作任何Git库。<br>　　使用SourceTree可以以图形界面操作Git，省去了敲命令的过程，对于常用的提交、分支、推送等操作来说非常方便。<br>　　SourceTree使用Git命令执行操作，出错时，仍然需要阅读Git命令返回的错误信息。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li><code>git init</code> 初始化一个Git仓库</li>
+<li>添加文件到Git仓库的两个步骤<ul>
+<li><code>git add &lt;file&gt;</code>   暂存-将修改的文件放置暂存区</li>
+<li><code>git commit -m &lt;message&gt;</code>  提交-将暂存区的文件提交到当前分支，此时工作区清空</li>
+</ul>
+</li>
+<li><code>git status</code> 查看仓库当前的状态</li>
+<li>如果<code>git status</code>提示有文件被修改过，用<code>git diff</code>可以查看修改内容</li>
+<li><code>git diff HEAD -- readme.txt</code>可以查看工作区和版本库里面最新版本的区别</li>
+<li>HEAD指向的版本就是当前版本</li>
+<li><code>git log</code> 查看提交历史</li>
+<li><code>git reflog</code> 查看命令历史</li>
+<li><code>git checkout -- &lt;file&gt;</code> 可以把<strong>工作区</strong>的修改撤销掉（unstage）</li>
+<li><code>git reset HEAD &lt;file&gt;</code> 可以把<strong>暂存区</strong>的修改撤销掉（unstage），重新放回工作区</li>
+<li><code>git reset --hard commit_id/HEAD</code> 版本回退</li>
+<li><code>rm &lt;file&gt;</code> 删除<strong>工作区</strong>的文件</li>
+<li><code>git rm &lt;file&gt;</code> 删除<strong>版本库</strong>里面的文件</li>
+<li><code>git remote add origin 仓库名</code>本地库关联远程库</li>
+<li><code>git push -u origin master</code>第一次推送master分支的所有内容</li>
+<li><code>git push origin master</code>每次本地提交后，推送最新修改</li>
+<li><code>git clone 仓库名</code>克隆远程库</li>
+<li>Git支持多种协议，包括https，但ssh协议速度最快。</li>
+<li><code>git branch</code>查看分支</li>
+<li><code>git branch &lt;name&gt;</code>创建分支</li>
+<li><code>git switch &lt;name&gt;</code>或者<code>git checkout &lt;name&gt;</code>切换分支</li>
+<li><code>git switch -c &lt;name&gt;</code>或者<code>git checkout -b &lt;name&gt;</code>创建+切换分支</li>
+<li><code>git merge &lt;name&gt;</code>合并某分支到当前分支</li>
+<li><code>git branch -d &lt;name&gt;</code>删除分支</li>
+<li><code>git log --graph</code>查看分支合并图</li>
+<li><code>git remote rm origin</code>删除远程仓库</li>
+<li><code>git remote</code>查看远程库信息 <code>git remote -v</code>查看远程库详细信息</li>
+<li><code>git cherry-pick</code> 复制某次或者多次提交</li>
+<li><code>git checkout -b branch-name origin/branch-name</code>在本地创建和远程分支对应的分支</li>
+<li><code>git pull</code>拉取代码</li>
+<li><code>git push origin branch-name</code> 推送修改</li>
+<li><code>git branch --set-upstream branch-name origin/branch-name</code>建立本地分支和远程分支的关联</li>
+</ul>
+<p>参考文章：</p>
+<ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">廖雪峰官网-Git教程</a></li>
+<li><a href="https://www.runoob.com/git/git-tutorial.html" target="_blank" rel="noopener">菜鸟教程-Git</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+    
+    
+      <div>
+          <div>
+    
+        <div style="text-align:center;color: #666;font-size:14px;">-------------本文结束　<i class="fa fa-hourglass-end" style="color:rgb(90,85,85)"></i>　感谢阅读-------------</div>
+    
+</div>
+      </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Crystal
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://crystalsummer.gitee.io/2019/09/01/Git/" title="Git">http://crystalsummer.gitee.io/2019/09/01/Git/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Web/" rel="tag"><i class="fa fa-tag"></i> Web</a>
+              <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/07/26/web%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91/" rel="prev" title="web开发踩坑">
+      <i class="fa fa-chevron-left"></i> web开发踩坑
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/10/09/Vue2%EF%BC%88%E4%B8%80%EF%BC%89/" rel="next" title="Vue2（一）">
+      Vue2（一） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MDEyMC8yNjYxMA"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建版本库"><span class="nav-number">3.</span> <span class="nav-text">创建版本库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加文件"><span class="nav-number">4.</span> <span class="nav-text">添加文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容管理"><span class="nav-number">5.</span> <span class="nav-text">内容管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#版本回退"><span class="nav-number">5.1.</span> <span class="nav-text">版本回退</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">5.2.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理修改"><span class="nav-number">5.3.</span> <span class="nav-text">管理修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#撤销修改"><span class="nav-number">5.4.</span> <span class="nav-text">撤销修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除文件"><span class="nav-number">5.5.</span> <span class="nav-text">删除文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#远程仓库"><span class="nav-number">6.</span> <span class="nav-text">远程仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加远程仓库"><span class="nav-number">6.1.</span> <span class="nav-text">添加远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从远程仓库克隆"><span class="nav-number">6.2.</span> <span class="nav-text">从远程仓库克隆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改远程仓库地址"><span class="nav-number">6.3.</span> <span class="nav-text">修改远程仓库地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除再添加远程仓库"><span class="nav-number">6.4.</span> <span class="nav-text">删除再添加远程仓库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分支管理"><span class="nav-number">7.</span> <span class="nav-text">分支管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建分支"><span class="nav-number">7.1.</span> <span class="nav-text">创建分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#切换分支"><span class="nav-number">7.2.</span> <span class="nav-text">切换分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看当前分支"><span class="nav-number">7.3.</span> <span class="nav-text">查看当前分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并分支"><span class="nav-number">7.4.</span> <span class="nav-text">合并分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除分支"><span class="nav-number">7.5.</span> <span class="nav-text">删除分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送分支"><span class="nav-number">7.6.</span> <span class="nav-text">推送分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决冲突"><span class="nav-number">7.7.</span> <span class="nav-text">解决冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支合并模式"><span class="nav-number">7.8.</span> <span class="nav-text">分支合并模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贮藏"><span class="nav-number">7.9.</span> <span class="nav-text">贮藏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制部分提交到当前分支"><span class="nav-number">7.10.</span> <span class="nav-text">复制部分提交到当前分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多人协作"><span class="nav-number">7.11.</span> <span class="nav-text">多人协作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义Git"><span class="nav-number">8.</span> <span class="nav-text">自定义Git</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#忽略特殊文件"><span class="nav-number">8.1.</span> <span class="nav-text">忽略特殊文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置别名"><span class="nav-number">8.2.</span> <span class="nav-text">配置别名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GitHub和Gitee"><span class="nav-number">9.</span> <span class="nav-text">GitHub和Gitee</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SourceTree"><span class="nav-number">10.</span> <span class="nav-text">SourceTree</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">11.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Crystal"
+      src="/uploads/avatar2.png">
+  <p class="site-author-name" itemprop="name">Crystal</p>
+  <div class="site-description" itemprop="description">Only for recording life</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/crystal-summer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;crystal-summer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:herr_510@163.com" title="E-Mail → mailto:herr_510@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/5596982190/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;5596982190&#x2F;profile?rightmod&#x3D;1&amp;wvr&#x3D;6&amp;mod&#x3D;personnumber&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ruanyifeng.com/blog/" title="http:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;" rel="noopener" target="_blank">阮一峰</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhangxinxu.com/" title="https:&#x2F;&#x2F;www.zhangxinxu.com&#x2F;" rel="noopener" target="_blank">张鑫旭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">CodePen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nowcoder.com/" title="https:&#x2F;&#x2F;www.nowcoder.com&#x2F;" rel="noopener" target="_blank">牛客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dandyweng.com/" title="https:&#x2F;&#x2F;www.dandyweng.com&#x2F;" rel="noopener" target="_blank">翁天信</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Crystal Summer</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">480k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">7:16</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='34,34,34' opacity='0.5' zIndex='' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
