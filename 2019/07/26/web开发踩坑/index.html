@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"crystalsummer.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "4b921942"
+    }); 
+  daovoice('update');
+  </script>
+
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="web开发踩坑">
+<meta property="og:url" content="http://crystalsummer.gitee.io/2019/07/26/web%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91/index.html">
+<meta property="og:site_name" content="Crystal&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2017/08/01/00/37/architecture-2562316_960_720.jpg">
+<meta property="article:published_time" content="2019-07-26T01:51:02.000Z">
+<meta property="article:modified_time" content="2023-07-11T09:04:47.280Z">
+<meta property="article:author" content="Crystal">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="踩坑记录">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2017/08/01/00/37/architecture-2562316_960_720.jpg">
+
+<link rel="canonical" href="http://crystalsummer.gitee.io/2019/07/26/web%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>web开发踩坑 | Crystal's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Crystal's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Crystal's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/crystal-summer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://crystalsummer.gitee.io/2019/07/26/web%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.png">
+      <meta itemprop="name" content="Crystal">
+      <meta itemprop="description" content="Only for recording life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crystal's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          web开发踩坑
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">posted</span>
+
+              <time title="创建时间：2019-07-26 09:51:02" itemprop="dateCreated datePublished" datetime="2019-07-26T09:51:02+08:00">2019-07-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">踩坑记录</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="count">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">count：</span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="readingTime">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">readingTime &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://cdn.pixabay.com/photo/2017/08/01/00/37/architecture-2562316_960_720.jpg" alt=""></p>
+<a id="more"></a>
+
+<style>
+  .border{
+    padding: 10px;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .border .title{
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .border .content-slove{
+    text-indent: 20px;
+  }
+</style>
+
+<h3 id="页面抖动"><a href="#页面抖动" class="headerlink" title="页面抖动"></a>页面抖动</h3><div class="border">
+    <div class="title">页面抖动问题</div>
+    <div class="content-slove">页面疯狂抖动，那是因为页面在要滚不滚的边缘疯狂试探，看是高度还是宽度问题，设置值 100% 改成 99.9% 即可。</div>
+</div>
+
+<h3 id="验证码报错"><a href="#验证码报错" class="headerlink" title="验证码报错"></a>验证码报错</h3><div class="border">
+    <div class="title">登录页填写验证码报错问题</div>
+    <div class="content-slove">在登录之前需要填写验证码，但是在填写正确的情况下登录，后台老是提示验证码错误，由于获取验证码图片是使用 el-image 展示的，默认会调用两次接口，这个和 Element UI 的组件性有关，为了解决这个问题，使用了原生的 img 标签。</div>
+</div>
+
+<h3 id="子组件获取prop"><a href="#子组件获取prop" class="headerlink" title="子组件获取prop"></a>子组件获取prop</h3><div class="border">
+    <div class="title">Vue 父组件给子组件传值，子组件获取不到问题</div>
+    <div class="content-slove">是和父子组件的生命周期有关，为了解决这个问题，可以使用 <code>this.$nextTick()</code>。</div>
+</div>
+
+<h3 id="页面刷新"><a href="#页面刷新" class="headerlink" title="页面刷新"></a>页面刷新</h3><div class="border">
+    <div class="title">Vue 改变URL上面参数，第一遍不会刷新页面调用接口，必须刷新第二遍问题</div>
+    <div class="content-slove">Vue默认采用 hash 模式，而 hash 的变化不会导致浏览器发送请求到服务器。将获取数据的函数执行放在了created 或者 mounted 中，组件初次加载执行了created 或者 mounted 中的函数，但是改变参数，由于组件已经挂载结束而且不会重新加载，created 或者mounted 中的函数不会再执行。真正开发的时候页面跳转不会有问题，但是为了测试会直接改变 URL 上面的参数进行测试，出现了这一个问题。</div>
+</div>
+
+<h3 id="Echarts-雷达图名称过长"><a href="#Echarts-雷达图名称过长" class="headerlink" title="Echarts 雷达图名称过长"></a>Echarts 雷达图名称过长</h3><div class="border">
+    <div class="title">Echarts 雷达图名称过长问题</div>
+    <div class="content-slove">解决方法：1、换行；2、换行后 toolTip 提示会有空格，需要用 formatter 函数重置一下。</div>
+</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">radar: &#123;</span><br><span class="line">    name: &#123;</span><br><span class="line">        &#x2F;&#x2F; 解决文字太长问题-换行，但是换行之后 toolTip 提示里面就会出现空格</span><br><span class="line">        formatter: function (value, indicator) &#123;</span><br><span class="line">            if(value.length&gt;5)&#123;</span><br><span class="line">                    return value.substr(0,5)+&#96;\n&#96;+value.substr(5)</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                    return value</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">tooltip: &#123;</span><br><span class="line">    &#x2F;&#x2F; 解决 name 文字太长问题换行之后 toolTip 提示出现空格问题</span><br><span class="line">    &#x2F;&#x2F; names 是文字数组</span><br><span class="line">    formatter:function (params)&#123;</span><br><span class="line">        var data &#x3D; &#39;&#39;;</span><br><span class="line">        for(var i&#x3D;0; i&lt;params.data.value.length; i++)&#123;</span><br><span class="line">            data +&#x3D; names[i]+&#39;：&#39;+params.data.value[i]+ &#39;&lt;br&#x2F;&gt;&#39;;</span><br><span class="line">        &#125;</span><br><span class="line">        return params.data.name+&#39;&lt;br&#x2F;&gt;&#39;+data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据变更页面渲染问题"><a href="#数据变更页面渲染问题" class="headerlink" title="数据变更页面渲染问题"></a>数据变更页面渲染问题</h3><div class="border">
+    <div class="title">页面连续调用两个接口并且两个接口的数据用同一个对象接收，第二个接口返回的数据是在页面渲染完成之后获取到的，导致页面没有渲染出第二个接口返回的数据问题</div>
+</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 解决方法一：</span><br><span class="line">this.$set(this.entInfo,&#39;introduction&#39;,10)</span><br><span class="line">&#x2F;&#x2F; 解决方法二：</span><br><span class="line">this.entInfo &#x3D; Object.assign( &#123;&#125;, this.entInfo, &#123;</span><br><span class="line">    introduction: res.entBasic?(res.entBasic.entProfile || &#39;&#39;):&#39;&#39;,</span><br><span class="line">    labels: res.transitLabel || [],</span><br><span class="line">    entRule:res.entBasic?res.entBasic.entRule:&#39;&#39;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="el-upload-传文件没有反应"><a href="#el-upload-传文件没有反应" class="headerlink" title="el-upload 传文件没有反应"></a>el-upload 传文件没有反应</h3><div class="border">
+    <div class="title">Element UI 上传文件或者图片的组件 el-upload，上传文件第二次或者第 N 次没有反应问题。</div>
+    <div class="content-slove">是因为给 el-upload 组件设置了 limit 属性（最大允许上传个数）为1，把这个属性去掉就可以了。</div>
+</div>
+
+<h3 id="echarts-图表刷新超出容器范围"><a href="#echarts-图表刷新超出容器范围" class="headerlink" title="echarts 图表刷新超出容器范围"></a>echarts 图表刷新超出容器范围</h3><div class="border">
+    <div class="title">echarts 图表，路由跳转时各个页面图表显示正常，刷新页面图表会超出容器范围问题。</div>
+    <div class="content-slove">原因：在 Vue 中 echarts 的 init 我们一般会放在钩子函数 Mounted 中，以确保我们可以获取到图表容器的宽度，这样图表就会基于其父元素的宽度进行绘制，但项目初次
+启动进入页面或者在项目中刷新页面，受页面侧边栏的影响，mounted 中获取的 echarts 对象的 clientWidth 其实是有差别的：刷新页面的时候计算 clientWidth 是会忽略侧边栏的，所以计算结果会偏大，最终造成图表变宽，超出其容器宽度。当然如果页面没有侧边栏，或菜单是在头部的，则不会出现这种情况。</div>
+</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 解决方法一：过一点时间后再初始化echarts</span><br><span class="line">setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 初始化图表</span><br><span class="line">    this.initEchart()</span><br><span class="line">&#125;, 20)</span><br><span class="line">&#x2F;&#x2F; 解决方法二：初始化echarts后，过一点时间之后再resize一下</span><br><span class="line">let chart &#x3D; echarts.init(document.getElementById(&#39;echartsDiv&#39;))</span><br><span class="line">chart.setOption(newIndexOptions)</span><br><span class="line">setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">    window.addEventListener(&#39;resize&#39;, function() &#123;</span><br><span class="line">        chart.resize()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;, 20)</span><br></pre></td></tr></table></figure>
+
+<h3 id="浮点精准度"><a href="#浮点精准度" class="headerlink" title="浮点精准度"></a>浮点精准度</h3><div class="border">
+    <div class="title">后台返回小数，前端乘以100后小数位变多问题。</div>
+    <div class="content-slove">比如后台返回数据0.1284，前端获取到数据后对数据进行操作，就会出现这样的结果 0.1284*100=12.839999999999998。这和浮点精准度有关，float 精确到小数点后7位，
+double 精确到小数点后15位。使用 toFixed(n) 解决该问题</div>
+</div>
+
+<h3 id="el-image-引入本地图片"><a href="#el-image-引入本地图片" class="headerlink" title="el-image 引入本地图片"></a>el-image 引入本地图片</h3><div class="border">
+    <div class="title">Element UI 的 el-image 组件引入本地图片 undefined 问题。</div>
+    <div class="content-slove">el-image 的 src 属性值不要使用绝对路径或者相对路径，使用 require 即可，比如：src="require('@/assets/XXX.png')"</div>
+</div>
+
+<h3 id="路由重定向报错"><a href="#路由重定向报错" class="headerlink" title="路由重定向报错"></a>路由重定向报错</h3><div class="border">
+    <div class="title">Vue 路由重定向报错：Uncaught (in promise) Error: Redirected when going from "/login" to "/dashboard" via a navigation guard.。</div>
+    <div class="content-slove">简单的解决方法就是直接触发跳转的逻辑上,把error抛出来。</div>
+</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.$router.push(&#123;path: &#39;&#x2F;dashboard&#39;&#125;).catch(()&#x3D;&gt;&#123;&#125;);&#x2F;&#x2F;把error 抛出来</span><br></pre></td></tr></table></figure>
+
+<h3 id="切换路由组件刷新"><a href="#切换路由组件刷新" class="headerlink" title="切换路由组件刷新"></a>切换路由组件刷新</h3><div class="border">
+    <div class="title">切换子组件的路由，父组件会重新渲染的原因。</div>
+    <div class="content-slove">父组件的 router-view 上面定义了 key 值，该值改变后会导致父组件重新渲染。</div>
+</div>
+
+<h3 id="Vue-hover"><a href="#Vue-hover" class="headerlink" title="Vue hover"></a>Vue hover</h3><div class="border">
+    <div class="title">Vue hover事件。</div>
+    <div class="content-slove">Vue 没有 hover 事件，可以使用 mouseover 或者 mouseenter 事件代替。</div>
+</div>
+
+<h3 id="三个数据比较"><a href="#三个数据比较" class="headerlink" title="三个数据比较"></a>三个数据比较</h3><div class="border">
+    <div class="title">三个数据比较的问题。</div>
+    <div class="content-slove">有三个数字a,b,c，需要判断b是否在a和c之间，如果直接用 if(a<=b<=c) 来判断的话，结果可能不会达到预期的结果，因为这样判断的步骤是：如果a <= b为真，结果为1,否则为0，再与c比较，真正想要达到目的的写法是 if(a<=b && b<=c)。</div>
+</div>
+
+<h3 id="el-autocomplete-显示上一次的数据"><a href="#el-autocomplete-显示上一次的数据" class="headerlink" title="el-autocomplete 显示上一次的数据"></a>el-autocomplete 显示上一次的数据</h3><div class="border">
+    <div class="title">element UI 的 el-autocomplete 带输入建议的输入框，显示上一次后台返回的数据问题。</div>
+    <div class="content-slove">在承出租土地中，当输入企业名称的时候需要根据后台返回的输入建议选择企业并反显统代，但是在下次未输入企业名称，直接聚焦输入框的时候会反显上一次后台返回的数据，这是由于上一次的数据没有清空，解决方法就是给 el-autocomplete 绑定 ref="elaotocomplate"，调用 this.$refs.elaotocomplate.handleChange('') 清空上一次的数据。</div>
+</div>
+
+<h3 id="el-table-根据条件显示不同的列"><a href="#el-table-根据条件显示不同的列" class="headerlink" title="el-table 根据条件显示不同的列"></a>el-table 根据条件显示不同的列</h3><div class="border">
+    <div class="title">element UI 的 el-table 根据筛选条件显示不同的列出现的问题。</div>
+    <div class="content-slove">
+        1. 使用 v-show 出现的问题：使用 v-show 没有效果，所有的列都会显示，是因为 v-show 的本质就是对 dom 元素设置 display:none，但是 td 设置的 display:table-cell 并且权限层级高于 display:none，所以v-show 不会有效果；
+    </div>
+    <div class="content-slove">
+        2. 使用 v-if 出现的问题：使用 v-if 虽然实现了根据筛选条件显示不同列的需求，但是列的顺序出现错乱，这是因为 el-table 做了一些优化，可以复用列，不加 key，就成了 bug，所以给列加上不同的 key 就可以了；
+    </div>
+    <div class="content-slove">
+        3. 列加上 key 之后出现的问题：使用 v-if 和 key 之后，已经基本满足需求，但是这个时候出现了一个页面交互的 bug，由于页面底色是深色的，刷新页面或者列表的时候，表格头部会出现一闪而过的白色，极其明显，解决方法就是使用 template 将相同条件的列包裹判断，并在页面更新前重新渲染表格；
+    </div>
+    <div class="content-slove">
+       总结：template + v-if + key + doLayout
+    </div>
+</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table class&#x3D;&#39;analysis-table&#39;  :data&#x3D;&#39;tableData&#39; stripe ref&#x3D;&quot;table&quot;&gt;</span><br><span class="line">    &lt;el-table-column label&#x3D;&quot;排名&quot; width&#x3D;&#39;80&#39; align&#x3D;&#39;center&#39; type&#x3D;&quot;index&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;el-table-column prop&#x3D;&quot;town&quot; label&#x3D;&quot;乡镇名称&quot; width&#x3D;&#39;100&#39; align&#x3D;&#39;center&#39;&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;!-- 规上 --&gt;</span><br><span class="line">    &lt;template v-if&#x3D;&quot;entRule&#x3D;&#x3D;0&quot;&gt;</span><br><span class="line">        &lt;el-table-column prop&#x3D;&quot;entUpNumberA&quot; label&#x3D;&quot;A类&quot;  width&#x3D;&#39;60&#39; align&#x3D;&#39;center&#39; :key&#x3D;&quot;1&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line">        &lt;el-table-column prop&#x3D;&quot;entUpNumberB&quot; label&#x3D;&quot;B类&quot;  width&#x3D;&#39;60&#39; align&#x3D;&#39;center&#39; :key&#x3D;&quot;2&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">    &lt;!-- 规下 --&gt;</span><br><span class="line">    &lt;template v-else&gt;</span><br><span class="line">        &lt;el-table-column  label&#x3D;&quot;单位用电税收（万元&#x2F;万千瓦时）&quot; align&#x3D;&#39;center&#39; :key&#x3D;&quot;11&quot;&gt;&lt;&#x2F;el-table-column&gt;</span><br><span class="line">    &lt;&#x2F;template&gt;</span><br><span class="line">&lt;&#x2F;el-table&gt;</span><br><span class="line"></span><br><span class="line">beforeUpdate()&#123;</span><br><span class="line">    this.$nextTick(() &#x3D;&gt; &#123; </span><br><span class="line">      &#x2F;&#x2F; 数据加载完，重新渲染表格</span><br><span class="line">      this.$refs[&#39;table&#39;].doLayout();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="echarts-legend-滚动分页"><a href="#echarts-legend-滚动分页" class="headerlink" title="echarts legend 滚动分页"></a>echarts legend 滚动分页</h3><div class="border">
+    <div class="title">echarts 的 legend 滚动分页点击无反应，并且和真实数据不符合问题。</div>
+    <div class="content-slove">echarts低版本的bug，更新版本为4.2.1以上即可</div>
+</div>
+
+<h3 id="系统文字错乱"><a href="#系统文字错乱" class="headerlink" title="系统文字错乱"></a>系统文字错乱</h3><div class="border">
+    <div class="title">系统页面中文字错乱，变成其他文字。</div>
+    <div class="content-slove">原因：谷歌浏览器自动翻译功能开启。</div>
+</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">解决方法：</span><br><span class="line">&lt;html lang&#x3D;&quot;zh-CN&quot;&gt; 或者 &lt;html&gt; 或者 &lt;html translate&#x3D;&quot;no&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="系统登录弹出浏览器默认窗口填写用户名和密码"><a href="#系统登录弹出浏览器默认窗口填写用户名和密码" class="headerlink" title="系统登录弹出浏览器默认窗口填写用户名和密码"></a>系统登录弹出浏览器默认窗口填写用户名和密码</h3><div class="border">
+    <div class="title">系统登录时，会弹出浏览器默认窗口让我们填写用户名和密码。</div>
+    <div class="content-slove">原因：登录接口开启了basic认证，认证方式由前后端统一，如果认证失败，就会弹出这种窗口。</div>
+</div>
+
+<h3 id="模态框表单数据没有清空"><a href="#模态框表单数据没有清空" class="headerlink" title="模态框表单数据没有清空"></a>模态框表单数据没有清空</h3><div class="border">
+    <div class="title">element ui 编辑和新增使用同一个模态框，在关闭模态框的时候清空表单数据，但是如果先打开编辑，再打开新增，表单数据没有清空。</div>
+    <div class="content-slove">解决方法：在编辑打开时使用this.$nextTick(()=>{赋值操作})。</div>
+</div>
+
+<h3 id="日期选择器设置默认值后修改功能失效"><a href="#日期选择器设置默认值后修改功能失效" class="headerlink" title="日期选择器设置默认值后修改功能失效"></a>日期选择器设置默认值后修改功能失效</h3><div class="border">
+    <div class="title">element ui 日期选择器，设置默认值后修改功能失效，vue调试后，发现model值已经改变，但是页面上显示的数据没变。</div>
+    <div class="content-slove">解决方法：不要用=直接设置默认值，用this.$set(this.form,'time',2021-02)。</div>
+</div>
+
+<h3 id="filter-获取不到-this"><a href="#filter-获取不到-this" class="headerlink" title="filter 获取不到 this"></a>filter 获取不到 this</h3><div class="border">
+    <div class="title">vue filter过滤器里面获取不到vue对象this。</div>
+    <div class="content-slove">原因：因为过滤器是在vue示例初始化之前执行的，所以拿不到this。</div>
+    <div class="content-slove">解决方法：定义that=this，把that作为参数传进过滤器。</div>
+</div>
+
+<h3 id="项目打包部署缓存"><a href="#项目打包部署缓存" class="headerlink" title="项目打包部署缓存"></a>项目打包部署缓存</h3><div class="border">
+    <div class="title">vue 项目打包部署缓存导致浏览器必须强刷问题。</div>
+    <div class="content-slove">解决方法：项目打包时，都会将打出的静态资源文件名加个哈希后缀，且index.html中引入时也加了对应的哈希后缀，所以每个版本的静态资源都是全新的，不用担心因升级导致的缓存问题。那么只需让index.html不缓存，且让其他静态资源缓存就可以解决问题，在 nginx 加段配置add_header Cache-Control "no-cache, no-store";即可。详情请参考：<a href="https://blog.csdn.net/Mr_linjw/article/details/102812503?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1.no_search_link&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1.no_search_link" target="_blank" rel="noopener">vue前端缓存问题解决方案</a>。</div>
+</div>
+
+<h3 id="el-row-使用-gutter-出现横向滚动条"><a href="#el-row-使用-gutter-出现横向滚动条" class="headerlink" title="el-row 使用 gutter 出现横向滚动条"></a>el-row 使用 gutter 出现横向滚动条</h3><div class="border">
+    <div class="title">elementui 的 el-row 使用栅栏属性 gutter之后出现横向滚动条问题。</div>
+    <div class="content-slove">原因：使用 gutter 后，会给 el-row 左右加上 margin，导致超出容器范围。</div>
+    <div class="content-slove">解决方法：给 el-row 一个容器，如 div，让容器留出足够的空间 padding（值为gutter的一半），并设置 box-sizing:border-box;。</div>
+</div>
+
+<h3 id="谷歌低版本不兼容-flex-1"><a href="#谷歌低版本不兼容-flex-1" class="headerlink" title="谷歌低版本不兼容 flex:1"></a>谷歌低版本不兼容 flex:1</h3><div class="border">
+    <div class="title">谷歌低版本 flex:1;height:100% 不兼容问题。</div>
+</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 解决方法1：</span><br><span class="line">父元素：position:relative;</span><br><span class="line">子元素：position:absolute;top:0;bottom:0;left:0;right:0;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 解决方法2：</span><br><span class="line">父元素：display:flex;flex-direction:column;</span><br><span class="line">子元素：flex-grow:1;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ranstion-grop-循环-key-不可以使用-index"><a href="#ranstion-grop-循环-key-不可以使用-index" class="headerlink" title="ranstion-grop 循环 key 不可以使用 index"></a>ranstion-grop 循环 key 不可以使用 index</h3><div class="border">
+    <div class="title">transtion-grop 下的 div for循环，key 值用index无效。</div>
+    <div class="content-slove">原因：vue 源码中对 transtion-grop 下的 div for循环禁止使用 index 作为 key 值。</div>
+    <div class="content-slove">解决方法：自己设定唯一的 key 值然后绑定。</div>
+</div>
+
+<h3 id="表单-item-v-if-判断后表单校验失效"><a href="#表单-item-v-if-判断后表单校验失效" class="headerlink" title="表单 item v-if 判断后表单校验失效"></a>表单 item v-if 判断后表单校验失效</h3><div class="border">
+    <div class="title">element UI 表单 item，通过 v-if 判断是否显示后，表单校验失效。</div>
+    <div class="content-slove">解决方法：1.v-if + key;2.v-show;3.v-if + div。</div>
+</div>
+
+<h3 id="表格自定义表头更新后表头不更新"><a href="#表格自定义表头更新后表头不更新" class="headerlink" title="表格自定义表头更新后表头不更新"></a>表格自定义表头更新后表头不更新</h3><div class="border">
+    <div class="title">element UI 表格自定义表头，数据定义在data中，数据更新之后表头不更新问题。</div>
+    <div class="content-slove">原因：自定义表头的插槽没有加上 slot-scope='scope'，这和插槽的作用域有关，加上后作用指向data，data里面的数据更新，自定义表头也会更新。</div>
+</div>
+
+<h3 id="flex-wrap-换行后有空隙"><a href="#flex-wrap-换行后有空隙" class="headerlink" title="flex wrap 换行后有空隙"></a>flex wrap 换行后有空隙</h3><div class="border">
+    <div class="title">flex布局，flex-wrap:wrap换行之后中间有一段大空空隙问题。</div>
+    <div class="content-slove">解决：设置align-content:flex-start让div与交叉轴的起点对齐。</div>
+</div>
+
+<h3 id="vue3-deep-类名"><a href="#vue3-deep-类名" class="headerlink" title="vue3 :deep(类名)"></a>vue3 :deep(类名)</h3><div class="border">
+    <div class="title">vue3中scss使用::v-deep写法报警告。</div>
+    <div class="content-slove">解决：改为:deep(类名)的写法。</div>
+</div>
+
+<h3 id="自定义表单设置默认值后无法编辑"><a href="#自定义表单设置默认值后无法编辑" class="headerlink" title="自定义表单设置默认值后无法编辑"></a>自定义表单设置默认值后无法编辑</h3><div class="border">
+    <div class="title">vue2 element UI 表单，表单项是配置化，通过后台接口拿到表单项的label、prop、默认值、是否必填等，然后通过循环展示在页面，但是设置默认值的表单无法编辑。</div>
+    <div class="content-slove">这是因为在拿到数据后设置默认值直接用了 = 来设置，这个时候数据不是响应式的。可以使用 $set 赋值，这样就可以解决问题。</div>
+</div>
+
+<h3 id="Quill-富文本自动聚焦问题"><a href="#Quill-富文本自动聚焦问题" class="headerlink" title="Quill 富文本自动聚焦问题"></a>Quill 富文本自动聚焦问题</h3><div class="border">
+    <div class="title">弹框显示表单，表单内容很长，弹框出现滚动条，Quill在最下面，每次打开弹框Quill自动聚焦，导致弹框滚动条自动滚动到底部。</div>
+    <div class="content-slove">这是因为Quill回显内容，内容发生变更，Quill自动聚焦，解决方法就是设置enable来禁用和启用Quill。</div>
+</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Editor.vue 富文本</span><br><span class="line">watch: &#123;</span><br><span class="line">    value: &#123;</span><br><span class="line">      handler(val) &#123;</span><br><span class="line">        if (val !&#x3D;&#x3D; this.currentValue) &#123;</span><br><span class="line">          this.currentValue &#x3D; val &#x3D;&#x3D;&#x3D; null ? &#39;&#39; : val</span><br><span class="line">          if (this.Quill) &#123;</span><br><span class="line">            &#x2F;&#x2F; 取消自动聚焦 - 解决新增时聚焦问题</span><br><span class="line">            this.Quill.enable(false)</span><br><span class="line">            this.$nextTick(() &#x3D;&gt; &#123;</span><br><span class="line">              this.Quill.enable(true)</span><br><span class="line">            &#125;)</span><br><span class="line">            this.Quill.pasteHTML(this.currentValue)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      immediate: true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">mounted() &#123;</span><br><span class="line">    this.init()</span><br><span class="line">&#125;,</span><br><span class="line">beforeDestroy() &#123;</span><br><span class="line">    this.Quill &#x3D; null</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">    init() &#123;</span><br><span class="line">        .......</span><br><span class="line">        const editor &#x3D; this.$refs.editor</span><br><span class="line">        this.Quill &#x3D; new Quill(editor, this.options)</span><br><span class="line">        &#x2F;&#x2F; 取消自动聚焦 - 解决编辑时聚焦问题</span><br><span class="line">        &#x2F;&#x2F; 多个quill 默认取最后一个聚焦</span><br><span class="line">        this.Quill.enable(false)</span><br><span class="line">        this.$nextTick(() &#x3D;&gt; &#123;</span><br><span class="line">            this.Quill.enable(true)</span><br><span class="line">        &#125;)</span><br><span class="line">        ......</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="vueuse-的取色器-useEyeDropper-在测试环境无法使用问题"><a href="#vueuse-的取色器-useEyeDropper-在测试环境无法使用问题" class="headerlink" title="@vueuse 的取色器 useEyeDropper 在测试环境无法使用问题"></a>@vueuse 的取色器 useEyeDropper 在测试环境无法使用问题</h3><div class="border">
+    <div class="title">@vueuse 的取色器 <a href="https://vueuse.org/core/useEyeDropper/" target="_blank" rel="noopener">useEyeDropper</a> 在本地开发环境是可以正常使用的，但是打包发布到测试环境后浏览器不支持该 API 所用的底层方法 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EyeDropper" target="_blank" rel="noopener">EyeDropper</a>。</div>
+    <div class="content-slove">这是因为 EyeDropper 只支持在 HTTPS 下使用，而测试环境是 HTTP 的。</div>
+</div>
+
+    </div>
+
+    
+    
+    
+    
+    
+      <div>
+          <div>
+    
+        <div style="text-align:center;color: #666;font-size:14px;">-------------本文结束　<i class="fa fa-hourglass-end" style="color:rgb(90,85,85)"></i>　感谢阅读-------------</div>
+    
+</div>
+      </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Crystal
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://crystalsummer.gitee.io/2019/07/26/web%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91/" title="web开发踩坑">http://crystalsummer.gitee.io/2019/07/26/web开发踩坑/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Web/" rel="tag"><i class="fa fa-tag"></i> Web</a>
+              <a href="/tags/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" rel="tag"><i class="fa fa-tag"></i> 踩坑记录</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/05/20/Echarts/" rel="prev" title="Echarts">
+      <i class="fa fa-chevron-left"></i> Echarts
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/09/01/Git/" rel="next" title="Git">
+      Git <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MDEyMC8yNjYxMA"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#页面抖动"><span class="nav-number">1.</span> <span class="nav-text">页面抖动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证码报错"><span class="nav-number">2.</span> <span class="nav-text">验证码报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子组件获取prop"><span class="nav-number">3.</span> <span class="nav-text">子组件获取prop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面刷新"><span class="nav-number">4.</span> <span class="nav-text">页面刷新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Echarts-雷达图名称过长"><span class="nav-number">5.</span> <span class="nav-text">Echarts 雷达图名称过长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据变更页面渲染问题"><span class="nav-number">6.</span> <span class="nav-text">数据变更页面渲染问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#el-upload-传文件没有反应"><span class="nav-number">7.</span> <span class="nav-text">el-upload 传文件没有反应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#echarts-图表刷新超出容器范围"><span class="nav-number">8.</span> <span class="nav-text">echarts 图表刷新超出容器范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点精准度"><span class="nav-number">9.</span> <span class="nav-text">浮点精准度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#el-image-引入本地图片"><span class="nav-number">10.</span> <span class="nav-text">el-image 引入本地图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由重定向报错"><span class="nav-number">11.</span> <span class="nav-text">路由重定向报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换路由组件刷新"><span class="nav-number">12.</span> <span class="nav-text">切换路由组件刷新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-hover"><span class="nav-number">13.</span> <span class="nav-text">Vue hover</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三个数据比较"><span class="nav-number">14.</span> <span class="nav-text">三个数据比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#el-autocomplete-显示上一次的数据"><span class="nav-number">15.</span> <span class="nav-text">el-autocomplete 显示上一次的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#el-table-根据条件显示不同的列"><span class="nav-number">16.</span> <span class="nav-text">el-table 根据条件显示不同的列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#echarts-legend-滚动分页"><span class="nav-number">17.</span> <span class="nav-text">echarts legend 滚动分页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统文字错乱"><span class="nav-number">18.</span> <span class="nav-text">系统文字错乱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统登录弹出浏览器默认窗口填写用户名和密码"><span class="nav-number">19.</span> <span class="nav-text">系统登录弹出浏览器默认窗口填写用户名和密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模态框表单数据没有清空"><span class="nav-number">20.</span> <span class="nav-text">模态框表单数据没有清空</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期选择器设置默认值后修改功能失效"><span class="nav-number">21.</span> <span class="nav-text">日期选择器设置默认值后修改功能失效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter-获取不到-this"><span class="nav-number">22.</span> <span class="nav-text">filter 获取不到 this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目打包部署缓存"><span class="nav-number">23.</span> <span class="nav-text">项目打包部署缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#el-row-使用-gutter-出现横向滚动条"><span class="nav-number">24.</span> <span class="nav-text">el-row 使用 gutter 出现横向滚动条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谷歌低版本不兼容-flex-1"><span class="nav-number">25.</span> <span class="nav-text">谷歌低版本不兼容 flex:1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ranstion-grop-循环-key-不可以使用-index"><span class="nav-number">26.</span> <span class="nav-text">ranstion-grop 循环 key 不可以使用 index</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单-item-v-if-判断后表单校验失效"><span class="nav-number">27.</span> <span class="nav-text">表单 item v-if 判断后表单校验失效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格自定义表头更新后表头不更新"><span class="nav-number">28.</span> <span class="nav-text">表格自定义表头更新后表头不更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-wrap-换行后有空隙"><span class="nav-number">29.</span> <span class="nav-text">flex wrap 换行后有空隙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue3-deep-类名"><span class="nav-number">30.</span> <span class="nav-text">vue3 :deep(类名)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义表单设置默认值后无法编辑"><span class="nav-number">31.</span> <span class="nav-text">自定义表单设置默认值后无法编辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quill-富文本自动聚焦问题"><span class="nav-number">32.</span> <span class="nav-text">Quill 富文本自动聚焦问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vueuse-的取色器-useEyeDropper-在测试环境无法使用问题"><span class="nav-number">33.</span> <span class="nav-text">@vueuse 的取色器 useEyeDropper 在测试环境无法使用问题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Crystal"
+      src="/uploads/avatar2.png">
+  <p class="site-author-name" itemprop="name">Crystal</p>
+  <div class="site-description" itemprop="description">Only for recording life</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/crystal-summer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;crystal-summer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:herr_510@163.com" title="E-Mail → mailto:herr_510@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/5596982190/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;5596982190&#x2F;profile?rightmod&#x3D;1&amp;wvr&#x3D;6&amp;mod&#x3D;personnumber&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ruanyifeng.com/blog/" title="http:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;" rel="noopener" target="_blank">阮一峰</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhangxinxu.com/" title="https:&#x2F;&#x2F;www.zhangxinxu.com&#x2F;" rel="noopener" target="_blank">张鑫旭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">CodePen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nowcoder.com/" title="https:&#x2F;&#x2F;www.nowcoder.com&#x2F;" rel="noopener" target="_blank">牛客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dandyweng.com/" title="https:&#x2F;&#x2F;www.dandyweng.com&#x2F;" rel="noopener" target="_blank">翁天信</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Crystal Summer</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">479k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">7:16</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='34,34,34' opacity='0.5' zIndex='' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

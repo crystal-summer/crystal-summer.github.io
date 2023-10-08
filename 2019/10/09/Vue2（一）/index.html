@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"crystalsummer.gitee.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "4b921942"
+    }); 
+  daovoice('update');
+  </script>
+
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Vue2（一）">
+<meta property="og:url" content="http://crystalsummer.gitee.io/2019/10/09/Vue2%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="Crystal&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2016/11/22/23/49/bright-1851267_960_720.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/04/01/4HuN5VwAYhGPRoW.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/04/01/mI6L1RvDfQ4splz.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/04/01/upLhqPytw7BEmHi.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/04/06/4TivdM8X3jhOB2x.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/nwMZAUDzxVC7cNg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/xPjwhaL3Yu6vMc2.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/15/UrabpMosut2vYXH.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/08/cgPZud6QyU3pb1h.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/15/AnjPafBX9c1qLHU.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/18/ixXR1Qvulja6Ynb.png">
+<meta property="article:published_time" content="2019-10-09T02:45:50.000Z">
+<meta property="article:modified_time" content="2022-08-10T07:37:05.810Z">
+<meta property="article:author" content="Crystal">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.pixabay.com/photo/2016/11/22/23/49/bright-1851267_960_720.jpg">
+
+<link rel="canonical" href="http://crystalsummer.gitee.io/2019/10/09/Vue2%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Vue2（一） | Crystal's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Crystal's Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Crystal's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/crystal-summer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://crystalsummer.gitee.io/2019/10/09/Vue2%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.png">
+      <meta itemprop="name" content="Crystal">
+      <meta itemprop="description" content="Only for recording life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crystal's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue2（一）
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">posted</span>
+
+              <time title="创建时间：2019-10-09 10:45:50" itemprop="dateCreated datePublished" datetime="2019-10-09T10:45:50+08:00">2019-10-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">原理</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="count">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">count：</span>
+              <span>45k</span>
+            </span>
+            <span class="post-meta-item" title="readingTime">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">readingTime &asymp;</span>
+              <span>41 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://cdn.pixabay.com/photo/2016/11/22/23/49/bright-1851267_960_720.jpg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="架构模式"><a href="#架构模式" class="headerlink" title="架构模式"></a>架构模式</h1><h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>MVC：Model（模型层）View（视图层）Controller（控制层），单向通信。  </p>
+<p><strong>Model层</strong>：负责存储和处理数据；</p>
+<p><strong>View层</strong>：负责展示用户看到并与之交互的界面；</p>
+<p><strong>Controller层</strong>：负责连接 Model 层和 View 层，接受并处理 View 层触发的事件，并在 Model 层的数据状态变动时更新 View 层。</p>
+<p><strong>流程</strong>：View 层通过事件通知到 Controller 层，Controller 层经过对事件的处理完成相关业务逻辑，要求 Model 层改变数据状态，Model 层再将新数据更新到 View层<br><img src="https://s2.loli.net/2022/04/01/4HuN5VwAYhGPRoW.jpg" alt=""></p>
+<p><strong>问题</strong>：某些场景下，View 层直接采用观察者/发布订阅模式监听 Model 层的变化，这样 View层和 Model 层相互持有、相互操作，导致紧密耦合，在可维护性上有待提升。由此，MVP 模式应运而生</p>
+<h2 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h2><p>MVP：Model（模型层）View（视图层）Presenter（管理层） 是从MVC模式演变而来的，是双向通信。</p>
+<p><strong>Model层</strong>：只负责存储数据，与 View 呈现无关，也与 UI 处理逻辑无关，发生更新也不用主动通知 View；</p>
+<p><strong>View层</strong>：负责展示用户看到并与之交互的界面；</p>
+<p><strong>Presenter层</strong>：负责连接 Model 层和 View 层，处理 View 层的事件，负责获取数据并将获取的数据经过处理后更新 View。</p>
+<p>MVC 模式的 View 层和 Model 层存在耦合，为了解决这个问题，MVP 模式将 View 层和 Model 层解耦，之间的交互只能通过 Presenter 层，实际上，MVP 模式的目的就是将 View 层和 Model 层完全解耦，使得对 View 层的修改不会影响到 Model 层，而对 Model 层的数据改动也不会影响到View 层。</p>
+<p><strong>流程</strong>：View 层触发的事件传递到 Presenter 层中处理，Presenter 层去操作 Model 层，并且将数据返回给 View层，这个过程中，View 层和 Model 层没有直接联系。而 View 层不部署业务逻辑，除了展示数据和触发事件之外，其它时间都在等着 Presenter 层来更新自己，被称为「被动视图」。<br><img src="https://s2.loli.net/2022/04/01/mI6L1RvDfQ4splz.jpg" alt=""></p>
+<p><strong>问题</strong>：更新视图需要 Presenter 层直接持有 View 层，并通过调用 View 层中的方法来实现。这是手动实现，为了能够实现自动更新视图，MVVM 模式应运而生。</p>
+<h2 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h2><p>MVVM：Model（模型）View（视图）ViewModel（视图模型）。 </p>
+<p>MVVM 和 MVP 类似，Model 层和 View 层也被隔离开，彻底解耦，ViewModel 层相当于 Presenter 层，负责绑定 Model 层和 View 层，相比于 MVP 增加了双向绑定机制。</p>
+<p>MVVM 模式的特征是 ViewModel 层和 View 层采用双向绑定的形式（Binding），View 层的变动，将自动反映在 ViewModel 层，反之亦然。</p>
+<p><img src="https://s2.loli.net/2022/04/01/upLhqPytw7BEmHi.jpg" alt=""></p>
+<p><strong>Vue是否是MVVM框架</strong>：<br>Vue是MVVM框架，但是不是严格符合MVVM，因为MVVM规定Model和View不能直接通信，而Vue的ref可以做到这点。</p>
+<h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><p><strong>优点</strong>：</p>
+<ul>
+<li>渐进式框架；</li>
+<li>中心思想是组件化：代码可重复利用；</li>
+<li>轻量级：</li>
+<li>采用虚拟dom，页面运行速度快；</li>
+<li>响应式：双向数据绑定；</li>
+<li>单页面路由；</li>
+<li>数据与视图分开。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>不支持IE8及以下；</li>
+<li>单页面不利于SEO（搜索引擎最佳化）；</li>
+<li>首屏加载时间长。</li>
+</ul>
+<h1 id="Vue为什么说是渐进式框架"><a href="#Vue为什么说是渐进式框架" class="headerlink" title="Vue为什么说是渐进式框架"></a>Vue为什么说是渐进式框架</h1><p>渐进式就是需要使用什么由开发者自行决定，从设计角度讲，Vue涵盖了图片上所有的内容：</p>
+<p><img src="https://s2.loli.net/2022/04/06/4TivdM8X3jhOB2x.jpg" alt=""><br><strong>声明式渲染——组件系统——客户端路由——状态管理——构建工具</strong><br>其中vue的核心是声明式渲染和组件系统，任何情况下核心是必需的，其他的三个是可选的，可根据需要进行选择。</p>
+<h1 id="Vue与-Angular-相比"><a href="#Vue与-Angular-相比" class="headerlink" title="Vue与 Angular 相比"></a>Vue与 Angular 相比</h1><p>相同点：</p>
+<ul>
+<li>都支持内置指令和自定义指令；</li>
+<li>都支持过滤器；</li>
+<li>都支持数据双向绑定；</li>
+<li>都不支持低端浏览器。</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li>AngularJS学习成本高，而Vue.js的API简单、直观、易学习；</li>
+<li>AngularJS是定时检查数据是否发生变化而不是实时监听的，是依赖对数据做脏检查；Vue.js是实时监听数据变化然后重新渲染页面的。</li>
+</ul>
+<h1 id="Vue-与-React-相比"><a href="#Vue-与-React-相比" class="headerlink" title="Vue 与 React 相比"></a>Vue 与 React 相比</h1><p>相同点：</p>
+<ul>
+<li>都使用了虚拟DOM，都需要编译后使用；</li>
+<li>中心思想相同：一切都是组件，组件实例之间可以嵌套；</li>
+<li>都是单向数据流；</li>
+<li>都提供合理的钩子函数，可以让开发者定制化地去处理需求；</li>
+<li>都不内置AJAX，Route等功能到核心包，而是以插件的方式加载；</li>
+<li>在组件开发中都支持mixins的特性。</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li>React采用的Virtual DOM会对渲染出来的结果做脏检查；Vue.js在模板中提供了指令，过滤器等，可以非常方便，快捷地操作Virtual DOM。</li>
+</ul>
+<h1 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h1><p><strong>SPA</strong>：单页面应用，在页面初始化的时候加载相应的HTML、CSS、JavaScript，一旦页面加载完成，SPA不会因为用户的操作而进行页面的重新加载和跳转，取而代之的是利用<strong>路由机制</strong>实现HTML内容的变换（切换不同的组件），从而实现UI与用户的交互，避免页面的重新加载。</p>
+<p><strong>优点</strong> ：</p>
+<ul>
+<li><strong>用户体验好、快</strong>：内容的改变不需要重新加载整个页面，避免了不必要的跳转和重复渲染；</li>
+<li><strong>减轻服务器压力</strong>：服务器只需要出数据就可以，不用管展示逻辑和页面合成，吞吐能力会提高几倍；</li>
+<li><strong>前后端分离开发</strong>：前端进行交互逻辑，后端负责数据处理；</li>
+<li><strong>共用一套后端程序代码</strong>：不用修改后端程序代码就可以同时用于 Web 界面、手机、平板等多种客户端。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><strong>初次加载耗时长</strong>：为实现单页 Web 应用功能及显示效果，需要在加载页面的时候将 JavaScript、CSS 统一加载，部分页面按需加载；</li>
+<li><strong>前进后退路由管理</strong>：由于单页应用在一个页面中显示所有的内容，所以不能使用浏览器的前进后退功能，所有的页面切换需要自己建立堆栈管理；</li>
+<li><strong>SEO 难度较大</strong>：由于所有的内容都在一个页面中动态替换显示，所以在 SEO 上其有着天然的弱势。以SPA方式开发的网站不容易管理也不够安全。因为没了一页一页的网页给搜索引擎的爬虫来爬，所以，在搜索引擎最佳化（SEO）的工作上，需要花费额外的功夫。</li>
+</ul>
+<h1 id="响应式数据"><a href="#响应式数据" class="headerlink" title="响应式数据"></a>响应式数据</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>Vue数据双向绑定是通过<strong>数据劫持</strong>结合<strong>发布者-订阅者模式</strong>的方式来实现的。</p>
+<p>数据的双向绑定主要包含两个方面，一个方面是数据变化更新视图，另一方面是视图变化更新数据。</p>
+<p>视图变化更新数据可以通过事件监听到，比如click,input等等，关键是数据变化之后如何更新视图。</p>
+<ol>
+<li>当我们new一个vue之后，vue实例会执行<code>initData函数</code>；</li>
+<li>首先会将data里面的属性通过proxy进行代理，使用<code>Object.defineProperty()</code>方法将data里的属性绑定到vue的实例上，比如data里面有一个参数a，这样就可以通过this.a直接访问this._data.a；</li>
+<li>设置监听器Observer，给每个传进来的数据都绑定一个__ ob __对象，表示该数据已经做了响应式处理；</li>
+<li>如果数据对象的属性是<strong>对象</strong>，循环执行defineReactive函数，使用<code>Object.defineProperty()</code>对数据进行set和get劫持；当数据对象的某一个属性被用到的时候，就会触发get，这个属性的订阅者watcher就被添加到消息订阅器Dep里<code>dep.addSub(watcher)</code>，当相应的数据发生改变的时候，就会触发set，<code>dep.notify()</code>消息订阅器Dep就会通知订阅者watcher去更新视图。</li>
+<li>如果数据对象的属性是<strong>数组</strong>，就重写数组原型的七种变异方法(push pop shift unshift reverse sort splice)，将数组的原型保留并且继承，在不破坏原来执行结果的基础上进行功能的动态扩展，数组执行了插入元素的操作，就调用监听器Observer的observeArray函数，对数组每一项进行响应。</li>
+</ol>
+<h2 id="不足之处"><a href="#不足之处" class="headerlink" title="不足之处"></a>不足之处</h2><p>对象新增或者删除的属性无法被 set 监听到，只有对象本身存在的属性修改才会被劫持。<br>通过数组下标修改数组中的数据、通过修改数组长度清空数组 的操作方式来修改数组也是无法侦测到的。<br>当然，Vue也注意到了这一点，为了解决这一问题，Vue增加了两个全局API:Vue.set和Vue.delete。</p>
+<h2 id="为什么只对对象劫持，而要对数组进行方法重写？"><a href="#为什么只对对象劫持，而要对数组进行方法重写？" class="headerlink" title="为什么只对对象劫持，而要对数组进行方法重写？"></a>为什么只对对象劫持，而要对数组进行方法重写？</h2><p>因为对象最多也就几十个属性，拦截起来数量不多，但是数组可能会有几百几千项，拦截起来非常耗性能，所以直接重写数组原型上的方法，是比较节省性能的方案。</p>
+<h2 id="直接arr-index-xxx无法更新视图"><a href="#直接arr-index-xxx无法更新视图" class="headerlink" title="直接arr[index] = xxx无法更新视图"></a>直接arr[index] = xxx无法更新视图</h2><p>原因：Vue没有对数组进行Object.defineProperty的属性劫持，所以直接通过数组下标修改数组数据是无法更新视图的。<br>解决办法：<br>使用数组的splice方法，<code>arr.splice(index, 1, item)</code><br>使用<code>Vue.$set(arr, index, value)</code></p>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><ol>
+<li>实现监听器Observer：用来劫持并监听所有属性，如果有变动的，就通知订阅者；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">class Observer &#123;</span><br><span class="line">  constructor(value) &#123;</span><br><span class="line">    &#x2F;&#x2F; 给数据绑定__ob__属性，表示数据已经响应过了</span><br><span class="line">    Object.defineProperty(value, &quot;__ob__&quot;, &#123;</span><br><span class="line">      value: this,</span><br><span class="line">      enumerable: false,</span><br><span class="line">      writable: true,</span><br><span class="line">      configurable: true,</span><br><span class="line">    &#125;);</span><br><span class="line">    &#x2F;&#x2F; 这里对数组做了额外判断</span><br><span class="line">    if (Array.isArray(value)) &#123;</span><br><span class="line">      &#x2F;&#x2F; 通过重写数组原型方法来对数组的七种方法进行拦截</span><br><span class="line">      value.__proto__ &#x3D; arrayMethods;</span><br><span class="line">      &#x2F;&#x2F; 如果数组里面还包含数组 需要递归判断</span><br><span class="line">      this.observeArray(value);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      this.walk(value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  walk(data) &#123;</span><br><span class="line">    &#x2F;&#x2F; 对象上的所有属性依次进行观测</span><br><span class="line">    Object.keys(data).forEach(function(key) &#123;</span><br><span class="line">      defineReactive(data, key, data[key]);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">function defineReactive(data, key, value) &#123;</span><br><span class="line">  observe(value); &#x2F;&#x2F; 递归关键</span><br><span class="line">  Object.defineProperty(data, key, &#123;</span><br><span class="line">    get() &#123;</span><br><span class="line">      console.log(&quot;获取值&quot;);</span><br><span class="line">      return value;</span><br><span class="line">    &#125;,</span><br><span class="line">    set(newValue) &#123;</span><br><span class="line">      if (newValue &#x3D;&#x3D;&#x3D; value) return;</span><br><span class="line">      console.log(&quot;设置值&quot;);</span><br><span class="line">      value &#x3D; newValue;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">export function observe(value) &#123;</span><br><span class="line">  &#x2F;&#x2F; 如果传过来的是对象或者数组 进行属性劫持</span><br><span class="line">  if (</span><br><span class="line">    Object.prototype.toString.call(value) &#x3D;&#x3D;&#x3D; &quot;[object Object]&quot; ||</span><br><span class="line">    Array.isArray(value)</span><br><span class="line">  ) &#123;</span><br><span class="line">    return new Observer(value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>实现消息订阅器Dep：因为订阅者Watcher有很多个，Dep用来收集订阅者，在数据变化的时候执行对应的订阅者Watcher的更新函数；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Dep &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.subs &#x3D; []; &#x2F;&#x2F; 这个是存放watcher的容器</span><br><span class="line">  &#125;</span><br><span class="line">  addSub(sub) &#123;</span><br><span class="line">    this.subs.push(sub)</span><br><span class="line">  &#125;,</span><br><span class="line">  notify() &#123;</span><br><span class="line">    this.subs.forEach(function(sub) &#123;</span><br><span class="line">      sub.update()</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 修改defineReactive函数，植入消息订阅器</span><br><span class="line">function defineReactive(data, key, value) &#123;</span><br><span class="line">  observe(value)</span><br><span class="line">  var dep &#x3D; new Dep()</span><br><span class="line">  Object.defineProperty(data, key, &#123;</span><br><span class="line">    get() &#123;</span><br><span class="line">      if (是否需要添加订阅者) &#123;</span><br><span class="line">        dep.addSub(watcher); &#x2F;&#x2F; 在这里添加一个订阅者</span><br><span class="line">      &#125;</span><br><span class="line">      console.log(&quot;获取值&quot;);</span><br><span class="line">      return value;</span><br><span class="line">    &#125;,</span><br><span class="line">    set(newValue) &#123;</span><br><span class="line">      if (newValue &#x3D;&#x3D;&#x3D; value) return;</span><br><span class="line">      console.log(&quot;设置值&quot;);</span><br><span class="line">      value &#x3D; newValue;</span><br><span class="line">      dep.notify(); &#x2F;&#x2F; 如果数据变化，通知所有订阅者</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>实现订阅者Watcher：当数据被使用的时候初始化一个Watcher，并被Dep收集，当数据发生变化执行相应的函数，从而更新视图；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">class Watcher &#123;</span><br><span class="line">  constructor(vm, exprOrFn, cb) &#123;</span><br><span class="line">    this.vm &#x3D; vm</span><br><span class="line">    this.cb &#x3D; cb &#x2F;&#x2F;回调函数 比如在watcher更新之前可以执行beforeUpdate方法</span><br><span class="line">    &#x2F;&#x2F; parsePath-将data&#123;a:&#123;b:&#123;c:&#39;&#39;&#125;&#125;&#125;转化成data.a.b.c</span><br><span class="line">    this.getter &#x3D; parsePath(exprOrFn)</span><br><span class="line">    this.value &#x3D; this.get()</span><br><span class="line">  &#125;</span><br><span class="line">  get () &#123;</span><br><span class="line">    window.target &#x3D; this; &#x2F;&#x2F; 将Watcher绑定到全局target上面</span><br><span class="line">    const vm &#x3D; this.vm</span><br><span class="line">    &#x2F;&#x2F; 取值，强制执行监听器里的get函数，get函数里面Dep会判断window.target是否有值，有值就将watcher收集起来</span><br><span class="line">    let value &#x3D; vm.data[this.getter] </span><br><span class="line">    window.target &#x3D; undefined</span><br><span class="line">    return value</span><br><span class="line">  &#125;</span><br><span class="line">  update () &#123;</span><br><span class="line">    const oldValue &#x3D; this.value</span><br><span class="line">    this.value &#x3D; this.get()</span><br><span class="line">    &#x2F;&#x2F; 如果数据发生变化，执行回调函数更新视图</span><br><span class="line">    if (this.value !&#x3D;&#x3D; oldVal) &#123;</span><br><span class="line">      this.value &#x3D; value;</span><br><span class="line">      this.cb.call(this.vm, this.value, oldValue)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 修改defineReactive函数，植入消息订阅器</span><br><span class="line">function defineReactive(data, key, value) &#123;</span><br><span class="line">  observe(value)</span><br><span class="line">  var dep &#x3D; new Dep()</span><br><span class="line">  Object.defineProperty(data, key, &#123;</span><br><span class="line">    get() &#123;</span><br><span class="line">      if (window.target) &#123;</span><br><span class="line">        dep.addSub(window.target); &#x2F;&#x2F; 在这里添加一个订阅者</span><br><span class="line">      &#125;</span><br><span class="line">      console.log(&quot;获取值&quot;);</span><br><span class="line">      return value;</span><br><span class="line">    &#125;,</span><br><span class="line">    set(newValue) &#123;</span><br><span class="line">      if (newValue &#x3D;&#x3D;&#x3D; value) return;</span><br><span class="line">      console.log(&quot;设置值&quot;);</span><br><span class="line">      value &#x3D; newValue;</span><br><span class="line">      dep.notify(); &#x2F;&#x2F; 如果数据变化，通知所有订阅者</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2022/04/07/nwMZAUDzxVC7cNg.png" alt=""></p>
+<h1 id="模板编译原理"><a href="#模板编译原理" class="headerlink" title="模板编译原理"></a>模板编译原理</h1><p>模板编译就是将template里面的HTML代码片段编译成渲染函数render的过程，其中代码片段里面包含了vue的指令。模板编译过程如下：</p>
+<ol>
+<li><strong>模板解析</strong>：将template代码用正则等方式解析成AST抽象语法树；</li>
+<li><strong>优化</strong>：遍历AST抽象语法树，找出静态节点和静态根节点并打上标记；</li>
+<li><strong>代码生成</strong>：将AST抽象语法树转化成渲染函数render。</li>
+</ol>
+<h2 id="模板解析"><a href="#模板解析" class="headerlink" title="模板解析"></a>模板解析</h2><p>模板解析就是调用<code>parse(html)</code>函数，利用正则匹配HTML代码的开始标签、结束标签和文本，生成对应的AST语法树，不断截取HTML代码字符串，直到HTML代码解析完毕。</p>
+<p>正则表达式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 匹配标签名 形如 abc-123</span><br><span class="line">const ncname &#x3D; &#96;[a-zA-Z_][\\-\\.0-9_a-zA-Z]*&#96;</span><br><span class="line">&#x2F;&#x2F; 匹配特殊标签 形如 abc:234 前面的abc:可有可无</span><br><span class="line">const qnameCapture &#x3D; &#96;((?:$&#123;ncname&#125;\\:)?$&#123;ncname&#125;)&#96;</span><br><span class="line">&#x2F;&#x2F; 匹配标签开始 形如 &lt;abc-123 捕获里面的标签名</span><br><span class="line">const startTagOpen &#x3D; new RegExp(&#96;^&lt;$&#123;qnameCapture&#125;&#96;)</span><br><span class="line">&#x2F;&#x2F; 匹配标签结束  &gt;</span><br><span class="line">const startTagClose &#x3D; &#x2F;^\s*(\&#x2F;?)&gt;&#x2F;; </span><br><span class="line">&#x2F;&#x2F; 匹配标签结尾 如 &lt;&#x2F;abc-123&gt; 捕获里面的标签名</span><br><span class="line">const endTag &#x3D; new RegExp(&#96;^&lt;\\&#x2F;$&#123;qnameCapture&#125;[^&gt;]*&gt;&#96;, &#39;g&#39;)</span><br><span class="line">&#x2F;&#x2F; 匹配属性  形如 id&#x3D;&quot;app&quot;</span><br><span class="line">const attribute &#x3D; &#x2F;^\s*([^\s&quot;&#39;&lt;&gt;\&#x2F;&#x3D;]+)(?:\s*(&#x3D;)\s*(?:&quot;([^&quot;]*)&quot;+|&#39;([^&#39;]*)&#39;+|([^\s&quot;&#39;&#x3D;&lt;&gt;&#96;]+)))?&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>只要html还有值就一直循环执行以下步骤：</p>
+<ol>
+<li>获取字符 &lt; 的位置：<code>const textEnd = html.indexOf(&#39;&lt;&#39;)</code>；</li>
+<li>如果 textEnd=0，说明遇到的是开始或者结束标签，如 <code>&lt;div&gt;</code> 或者 <code>&lt;/div&gt;</code>；<ul>
+<li>解析开始标签<ul>
+<li>利用正则匹配开始标签，如果是的话就生成一个tagName为开始标签名的对象，然后调用advance方法截取html；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const start &#x3D; html.match(startTagOpen)</span><br><span class="line">&#x2F;&#x2F; 假设html&#x3D;&#39;&lt;div id&#x3D;&#39;aa&#39; class&#x3D;&quot;box&quot;&gt;&lt;span&gt;1234&lt;&#x2F;span&gt;&lt;&#x2F;div&gt;&#39;</span><br><span class="line">&#x2F;&#x2F; 那么start&#x3D;[&#39;&lt;div&#39;,&#39;div&#39;]</span><br><span class="line">match &#x3D; &#123;</span><br><span class="line">  tagName:start[1],</span><br><span class="line">  attrs:[]</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 截取html字符串，这个时候html&#x3D;&#39;  id&#x3D;&quot;aa&quot; class&#x3D;&quot;box&quot;&gt;&lt;span&gt;1234&lt;&#x2F;span&gt;&lt;&#x2F;div&gt;&#39;</span><br><span class="line">advance(start[0].length)</span><br><span class="line">function advance(n) &#123;</span><br><span class="line">  html &#x3D; html.substring(n)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>利用正则匹配开始标签的 &gt;，如果匹配成功表示该标签没有属性，直接调用advance截取html，将解析出来的match返回；如果匹配不成功的话就表示该标签有属性，利用正则匹配属性。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const end &#x3D; html.match(startTagClose)</span><br><span class="line">&#x2F;&#x2F; 有属性，end&#x3D;null attr&#x3D;[&#39;id&#x3D;&quot;aa&quot;&#39;,&#39;id&#39;,&#39;&#x3D;&#39;,undefined,&#39;aa&#39;,undefined]</span><br><span class="line">while(!end &amp;&amp; attr &#x3D; html.match(attribute))&#123; &#x2F;&#x2F; 一直循环到没有属性</span><br><span class="line">  advance(attr[0].length)</span><br><span class="line">  attr &#x3D; &#123;</span><br><span class="line">    name: attr[1],</span><br><span class="line">    value: attr[3] || attr[4] || attr[5]</span><br><span class="line">  &#125;</span><br><span class="line">  match.attrs.push(attr)</span><br><span class="line">&#125;</span><br><span class="line">if(end)&#123;</span><br><span class="line">  &#x2F;&#x2F; 没有属性，end&#x3D;[&#39;&gt;&#39;,&#39;&#39;]，直接截取字符串</span><br><span class="line">  advance(1)</span><br><span class="line">  &#x2F;&#x2F; 返回解析出来的对象match</span><br><span class="line">  return match</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>将返回的match节点转换成对应的AST函数，利用continue跳过本次循环<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">handleStartTag(match)</span><br><span class="line">function handleStartTag(&#123; tagName, attrs &#125;) &#123;</span><br><span class="line">  &#x2F;&#x2F; 传进来的element改成AST对象形式</span><br><span class="line">  const element &#x3D; &#123;</span><br><span class="line">    tag: tagName, &#x2F;&#x2F; 标签名</span><br><span class="line">    type: 1, &#x2F;&#x2F; 节点类型 - 元素节点</span><br><span class="line">    children: [], &#x2F;&#x2F; 子节点数组</span><br><span class="line">    attrs, &#x2F;&#x2F; 属性</span><br><span class="line">    parent: null &#x2F;&#x2F; 父节点</span><br><span class="line">  &#125;</span><br><span class="line">  if (!root) &#123;</span><br><span class="line">    &#x2F;&#x2F; 根节点只能有一个</span><br><span class="line">    root &#x3D; element</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 临时赋值给currentParent，也就是临时当一回爸爸</span><br><span class="line">  currentParent &#x3D; element</span><br><span class="line">  stack.push(element)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>解析结束标签<ul>
+<li>如果匹配开始标签没有返回match，就说明html可能是结束标签，也可能是带有 &lt; 的文本，利用正则匹配结束标签，如果是结束标签的话，对其进行处理，确定元素节点的父子关系。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const endTagMatch &#x3D; html.match(endTag)</span><br><span class="line">if (endTagMatch) &#123;</span><br><span class="line">  advance(endTagMatch[0].length)</span><br><span class="line">  &#x2F;&#x2F; 处理结束标签</span><br><span class="line">  handleEndTag(endTagMatch[1])</span><br><span class="line">  &#x2F;&#x2F; 跳过本次循环步骤</span><br><span class="line">  continue</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 处理结束标签</span><br><span class="line">function handleEndTag(tagName) &#123;</span><br><span class="line">    &#x2F;&#x2F; 父子节点关系对应</span><br><span class="line">    &#x2F;&#x2F; 比如 &lt;div&gt; &lt;span&gt;&lt;&#x2F;span&gt; &lt;&#x2F;div&gt;</span><br><span class="line">    &#x2F;&#x2F; 那么stack &#x3D; [&#123; div对象 &#125;, &#123; span对象 &#125;]</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 那么element就是&#123; span对象 &#125;</span><br><span class="line">    const element &#x3D; stack.pop()</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; currentParent是&#123; div对象 &#125;</span><br><span class="line">    currentParent &#x3D; stack[stack.length - 1]</span><br><span class="line"></span><br><span class="line">    if (currentParent) &#123;</span><br><span class="line">        element.parent &#x3D; currentParent</span><br><span class="line">        currentParent.children.push(element)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果 textEnd&gt;0，说明在标签之前有一段文本；<ul>
+<li>截取文本 text=html.substring(0, textEnd)；</li>
+<li>调用advance函数对html字符串进行截取 advance(text.length)；</li>
+<li>对文本节点进行处理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 去除空格</span><br><span class="line">text &#x3D; text.replace(&#x2F;\s&#x2F;g, &#39;&#39;)</span><br><span class="line">if (text) &#123;</span><br><span class="line">    currentParent.children.push(&#123;</span><br><span class="line">      type: 3, &#x2F;&#x2F; 节点类型 - 文本节点</span><br><span class="line">      text</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<p>注意：</p>
+<ol>
+<li><strong>stack变量</strong>：这个变量用来记录层级关系，将开始节点的match转化成AST函数的时候，会往stack里面push这个开始节点的AST，并将这个开始节点的AST作为临时的父对象currentParent，当处理结束标签的时候，会将stack里面的数据pop出来定义为element，element就是结束标签对应的开始标签的AST，取出最后一个数据作为临时的父对象currentParent，那么element.parent = currentParent,currentParent.children.push(element)，这样就可以确定元素之间的父子关系了。</li>
+<li><strong>节点类型type</strong>：1表示是元素节点，2表示是带变量的动态文本节点，3表示是文本节点。</li>
+</ol>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>优化就是调用optimize函数，遍历AST，找到静态节点和静态根节点打上标记的过程，这样做有两个好处：</p>
+<ul>
+<li>生成Virtual DOM的过程中，如果发现节点是静态子树，除了首次渲染外不会生成新的子节点树，而是拷贝已存在的静态子树；</li>
+<li>在 Virtual DOM 通过 patching 的过程中，如果发现节点是静态节点，就直接跳过，不进行比对。</li>
+</ul>
+<p><strong>标记静态节点 - markStatic(node)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function markStatic (node: ASTNode) &#123;</span><br><span class="line">  node.static &#x3D; isStatic(node)</span><br><span class="line">  if (node.type &#x3D;&#x3D;&#x3D; 1) &#123;</span><br><span class="line">    for (let i &#x3D; 0, l &#x3D; node.children.length; i &lt; l; i++) &#123;</span><br><span class="line">      const child &#x3D; node.children[i]</span><br><span class="line">      markStatic(child)</span><br><span class="line">      &#x2F;&#x2F; 子节点不是静态节点，当前节点也不是</span><br><span class="line">      if (!child.static) &#123;</span><br><span class="line">        node.static &#x3D; false</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (node.ifConditions) &#123;</span><br><span class="line">      for (let i &#x3D; 1, l &#x3D; node.ifConditions.length; i &lt; l; i++) &#123;</span><br><span class="line">        const block &#x3D; node.ifConditions[i].block</span><br><span class="line">        markStatic(block)</span><br><span class="line">        if (!block.static) &#123;</span><br><span class="line">          node.static &#x3D; false</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>调用isStatic函数判断节点是否是静态节点，判断节点类型type，如果type=2，表示是包含变量的动态文本节点，返回false，如果type=3，表示是不包含变量的纯文本节点，返回true，如果type=1，表示是元素节点，就需要进一步判断。</li>
+<li>如果是元素节点，遍历它的子节点判断是否是静态节点，如果子节点不是静态节点，需要将当前节点的static属性设置成false，表示当前节点也不是静态节点；</li>
+<li>如果当前节点的子节点带有v-if v-else的指令，这些节点没都只渲染一个，其余没有被渲染的节点不在children中，在ifConditions里，所以还需要遍历ifConditions。</li>
+</ul>
+<p><strong>标记静态根节点 - markStaticRoots(node)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">markStaticRoots(node)&#123;</span><br><span class="line">  if (node.type &#x3D;&#x3D;&#x3D; 1) &#123;</span><br><span class="line">    &#x2F;&#x2F; 静态根节点一定是元素节点，需要成为静态根节点需要满足以下条件：</span><br><span class="line">    &#x2F;&#x2F; 节点本身必须是静态节点；</span><br><span class="line">    &#x2F;&#x2F; 必须拥有子节点 children；</span><br><span class="line">    &#x2F;&#x2F; 子节点不能只是只有一个文本节点；</span><br><span class="line">    if (node.static &amp;&amp; node.children.length &amp;&amp; !(</span><br><span class="line">      node.children.length &#x3D;&#x3D;&#x3D; 1 &amp;&amp;</span><br><span class="line">      node.children[0].type &#x3D;&#x3D;&#x3D; 3</span><br><span class="line">    )) &#123;</span><br><span class="line">      node.staticRoot &#x3D; true</span><br><span class="line">      return</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        node.staticRoot &#x3D; false</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if (node.children) &#123;</span><br><span class="line">    for (let i &#x3D; 0, l &#x3D; node.children.length; i &lt; l; i++) &#123;</span><br><span class="line">      markStaticRoots(node.children[i], isInFor || !!node.for)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if (node.ifConditions) &#123;</span><br><span class="line">    for (let i &#x3D; 1, l &#x3D; node.ifConditions.length; i &lt; l; i++) &#123;</span><br><span class="line">      markStaticRoots(node.ifConditions[i].block, isInFor)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h2><p>代码生成是调用generate函数将AST语法树生成渲染函数的过程。<br>假设有一个template内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id&#x3D;&quot;NLRX&quot;&gt;&lt;p&gt;Hello &#123;&#123;name&#125;&#125;&lt;&#x2F;p&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<p>经过模板解析转化成AST抽象语法树结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ast &#x3D; &#123;</span><br><span class="line">  &#39;type&#39;: 1,</span><br><span class="line">  &#39;tag&#39;: &#39;div&#39;,</span><br><span class="line">  &#39;attrsList&#39;: [</span><br><span class="line">      &#123;</span><br><span class="line">          &#39;name&#39;:&#39;id&#39;,</span><br><span class="line">          &#39;value&#39;:&#39;NLRX&#39;,</span><br><span class="line">      &#125;</span><br><span class="line">  ],</span><br><span class="line">  &#39;attrsMap&#39;: &#123;</span><br><span class="line">    &#39;id&#39;: &#39;NLRX&#39;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#39;static&#39;:false,</span><br><span class="line">  &#39;parent&#39;: undefined,</span><br><span class="line">  &#39;plain&#39;: false,</span><br><span class="line">  &#39;children&#39;: [&#123;</span><br><span class="line">    &#39;type&#39;: 1,</span><br><span class="line">    &#39;tag&#39;: &#39;p&#39;,</span><br><span class="line">    &#39;plain&#39;: false,</span><br><span class="line">    &#39;static&#39;:false,</span><br><span class="line">    &#39;children&#39;: [</span><br><span class="line">      &#123;</span><br><span class="line">          &#39;type&#39;: 2,</span><br><span class="line">          &#39;expression&#39;: &#39;&quot;Hello &quot;+_s(name)&#39;,</span><br><span class="line">          &#39;text&#39;: &#39;Hello &#123;&#123;name&#125;&#125;&#39;,</span><br><span class="line">          &#39;static&#39;:false,</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上到下遍历AST的每一个节点，根据节点的类型创建不同的虚拟节点类型：</p>
+<ol>
+<li>根节点div是一个元素节点，创建元素型的虚拟节点<code>_c(tagName,data,children)</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_c(&#39;div&#39;,&#123;attrs:&#123;&quot;id&quot;:&quot;NLRX&quot;&#125;&#125;,[&#x2F;*子节点列表*&#x2F;])</span><br></pre></td></tr></table></figure></li>
+<li>div的子节点P，元素节点，创建的VNode如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_c(&#39;div&#39;,&#123;attrs:&#123;&quot;id&quot;:&quot;NLRX&quot;&#125;&#125;,[_c(&#39;p&#39;),[&#x2F;*子节点列表*&#x2F;]])</span><br></pre></td></tr></table></figure></li>
+<li>p的子节点是文本节点，创建文本节点的VNode<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_c(&#39;div&#39;,&#123;attrs:&#123;&quot;id&quot;:&quot;NLRX&quot;&#125;&#125;,[_c(&#39;p&#39;),[_v(&quot;Hello &quot;+_s(name))]])</span><br></pre></td></tr></table></figure></li>
+<li>AST遍历完成，将字符串转化成渲染函数：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 使用with改变this指向，可以方便code里去获取this（也就是Vue实例）里的数据</span><br><span class="line">let renderFn &#x3D; new Function(&#96;with(this)&#123;return $&#123;code&#125;&#125;&#96;)</span><br><span class="line">&#x2F;&#x2F; render函数字符串</span><br><span class="line">&#96;</span><br><span class="line">with(this)&#123;</span><br><span class="line">  reurn _c(</span><br><span class="line">    &#39;div&#39;,</span><br><span class="line">    &#123;</span><br><span class="line">        attrs:&#123;&quot;id&quot;:&quot;NLRX&quot;&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">    [</span><br><span class="line">        _c(&#39;p&#39;),</span><br><span class="line">        [</span><br><span class="line">            _v(&quot;Hello &quot;+_s(name))</span><br><span class="line">        ]</span><br><span class="line">    ]</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">&#96;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>以下是创建不同类型虚拟dom节点的方法：<br><code>_c</code>：创建元素类型节点的createElement方法；<br><code>_v</code>：创建文本类型节点的方法；<br><code>_s</code>：返回参数中的字符串方法，如；<br><code>_e</code>: 创建注释类型节点的方法。</p>
+<p><img src="https://s2.loli.net/2022/04/07/xPjwhaL3Yu6vMc2.png" alt=""></p>
+<h1 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h1><h2 id="什么是虚拟DOM"><a href="#什么是虚拟DOM" class="headerlink" title="什么是虚拟DOM"></a>什么是虚拟DOM</h2><p>虚拟DOM就是用来描述DOM节点的一个JS对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 真实DOM节点</span><br><span class="line">&lt;div class&#x3D;&quot;a&quot; id&#x3D;&quot;b&quot;&gt;我是内容&lt;&#x2F;div&gt;</span><br><span class="line">&#x2F;&#x2F; 虚拟DOM节点</span><br><span class="line">&#123;</span><br><span class="line">  tag:&#39;div&#39;,        &#x2F;&#x2F; 元素标签</span><br><span class="line">  attrs:&#123;           &#x2F;&#x2F; 属性</span><br><span class="line">    class:&#39;a&#39;,</span><br><span class="line">    id:&#39;b&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  text:&#39;我是内容&#39;,  &#x2F;&#x2F; 文本内容</span><br><span class="line">  children:[]       &#x2F;&#x2F; 子元素</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="为什么要使用虚拟DOM"><a href="#为什么要使用虚拟DOM" class="headerlink" title="为什么要使用虚拟DOM"></a>为什么要使用虚拟DOM</h2><p>真实DOM解析渲染过程：</p>
+<ul>
+<li><strong>解析HTML文件构建文档对象模型(DOM树)</strong>：浏览器从上到下读取标签，把他们分解成节点，从而创建 DOM 。</li>
+<li><strong>解析CSS文件构建CSS对象模型(CSSOM)</strong>：当浏览器发现任何与节点相关的样式时，比如：外部，内部，或行内样式，立即停止渲染 DOM ，并利用这些节点创建 CSSOM。这就是 CSS “渲染阻塞“ 的由来。</li>
+<li><strong>基于DOM和CSSOM执行脚本(Scripts)</strong>：浏览器不断构建 DOM / CSSOM 节点，直到发现外部或者行内的脚本，脚本需要等到CSS解析完才能执行，所以浏览器会停下对节点的解析，按成构建CSSOM，然后执行脚本，然后再继续解析节点，解析CSS。</li>
+<li><strong>合并DOM和CSSOM形成渲染树(Render Tree)</strong>：所有的节点被解析完后，DOM 和 CSSOM 合并，形成渲染树。</li>
+<li><strong>使用渲染树布局(Layout)所有元素</strong>：确定元素的位置和大小等。</li>
+<li><strong>渲染(Paint)所有元素</strong>。</li>
+</ul>
+<p>在传统的开发模式中，用原生JS或JQ操作DOM时，浏览器会将以上的步骤重新执行一遍，如果是频繁的操作DOM节点，代价很昂贵，会出现页面卡顿的现象，影响用户体验。</p>
+<p>为了解决真实DOM操作昂贵的问题，就引入了虚拟DOM，用JS模拟DOM节点。如果数据更新，会产生一个新的虚拟DOM，通过diff算法对比两个虚拟DOM对象，找出需要更新的视图，之后使用patch方法，对发生变化的DOM节点进行更新。说白了就是以JS的计算性能来换取操作真实DOM所消耗的性能。</p>
+<h2 id="虚拟DOM的实现"><a href="#虚拟DOM的实现" class="headerlink" title="虚拟DOM的实现"></a>虚拟DOM的实现</h2><p>Vue初始化完成后，会调用$mount方法进入模板编译阶段，将模板编译成渲染函数render，调用该函数就会产生虚拟DOM。<br>具体实现过程如下：</p>
+<ol>
+<li>执行渲染函数，渲染函数是由_c _v _s等创建不同节点类型虚拟DOM函数组成，执行渲染函数，就相当于执行这些创建不同节点类型的虚拟DOM函数；</li>
+<li>Vue有一个VNode类，这个类里面记录了一个真实DOM节点所需要的一系列属性，通过给这个类传入不同的参数，就可以创建不同节点类型的虚拟DOM；</li>
+<li>获取虚拟DOM，初次渲染时，通过patch函数将虚拟DOM转换成真实的DOM；</li>
+<li>渲染函数执行的时候会新建一个监听器watcher，一旦数据使用到就会触发get方法，将监听器添加到Dep中，如果数据发生变更，Dep会通知监听器去更新视图，产生一个新的虚拟DOM树；</li>
+<li>新的和旧的虚拟DOM树通过patch函数进行对比，找到需要更新的地方，更新视图。</li>
+</ol>
+<h2 id="mountComponent-渲染入口"><a href="#mountComponent-渲染入口" class="headerlink" title="mountComponent - 渲染入口"></a>mountComponent - 渲染入口</h2><p>模板编译完成后会调用mountComponent函数，执行_render获取虚拟DOM，并执行_update方法将虚拟DOM转化成真实的DOM；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">function mountComponent (vm, el) &#123;</span><br><span class="line">    vm.$el &#x3D; el</span><br><span class="line">    updateComponent &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">      &#x2F;&#x2F; 执行_render函数，来调用render函数生成虚拟DOM</span><br><span class="line">      &#x2F;&#x2F; 然后接收返回值虚拟DOM，调用_update函数把虚拟DOM转为真实DOM并渲染</span><br><span class="line">      vm._update(vm._render(), hydrating)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 监听器，数据get触发Dep收集，数据set触发Dep通知监听器更新视图</span><br><span class="line">    new Watcher(vm, updateComponent, noop, &#123;</span><br><span class="line">      before () &#123;</span><br><span class="line">        if (vm._isMounted) &#123;</span><br><span class="line">            callHook(vm, &#39;beforeUpdate&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, true &#x2F;* isRenderWatcher *&#x2F;)</span><br><span class="line">    return vm</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function lifecycleMixin(Vue) &#123;</span><br><span class="line">  &#x2F;&#x2F; 将_update挂在Vue原型上</span><br><span class="line">  Vue.prototype._update &#x3D; function (vnode) &#123;</span><br><span class="line">    const vm &#x3D; this</span><br><span class="line">    const prevVnode &#x3D; vm._vnode; &#x2F;&#x2F; 保留上一次的vnode</span><br><span class="line">    vm._vnode &#x3D; vnode;</span><br><span class="line">    if (!prevVnode) &#123;</span><br><span class="line">      &#x2F;&#x2F; 初次渲染 vm._vnode肯定不存在 要通过虚拟节点 渲染出真实的dom 赋值给$el属性</span><br><span class="line">      vm.$el &#x3D; patch(vm.$el, vnode); </span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      &#x2F;&#x2F; 更新时把上次的vnode和这次更新的vnode穿进去 进行diff算法</span><br><span class="line">      vm.$el &#x3D; patch(prevVnode, vnode); </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="render-获取虚拟DOM"><a href="#render-获取虚拟DOM" class="headerlink" title="_render - 获取虚拟DOM"></a>_render - 获取虚拟DOM</h2><p>_render函数获取到渲染函数之后直接执行获取到虚拟DOM并且返回。执行渲染函数就相当于执行_c _s _v等创建不同节点类型虚拟DOM的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">const &#123; createElement, createTextNode &#125; &#x3D; require(&#39;.&#x2F;vdom&#x2F;index&#39;)</span><br><span class="line">function renderMixin(Vue) &#123;</span><br><span class="line">    &#x2F;&#x2F; 将_render函数挂在Vue原型上</span><br><span class="line">    Vue.prototype._render &#x3D; function() &#123;</span><br><span class="line">      const vm &#x3D; this</span><br><span class="line">      &#x2F;&#x2F; 把上一节生成的render函数取出来</span><br><span class="line">      const &#123; render &#125; &#x3D; vm.$options</span><br><span class="line">      &#x2F;&#x2F; 执行render函数并获得虚拟DOM</span><br><span class="line">      const vnode &#x3D; render.call(vm)</span><br><span class="line">      return vnode </span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 创建元素节点虚拟DOM</span><br><span class="line">    Vue.prototype._c &#x3D; function(...args) &#123;</span><br><span class="line">      return createElement(...args)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 创建文本节点虚拟DOM</span><br><span class="line">    Vue.prototype._v &#x3D; function (text) &#123;</span><br><span class="line">      return createTextNode(text)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 对象的情况，把对象转成字符串</span><br><span class="line">    Vue.prototype._s &#x3D; function (val) &#123;</span><br><span class="line">      return val &#x3D;&#x3D;&#x3D; null ? &#39;&#39; : typeof val &#x3D;&#x3D;&#x3D; &#39;object&#39; ? JSON.stringify(val) : val</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    renderMixin</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Vue中有VNode类，这个类里面记录了一个真实DOM节点所需要的一系列属性，通过给这个类传入不同的参数，就可以创建不同节点类型的虚拟DOM；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建某一个节点的虚拟DOM</span><br><span class="line">class VNode &#123;</span><br><span class="line">    constructor(tag, data, key, children, text) &#123;</span><br><span class="line">        this.tag &#x3D; tag</span><br><span class="line">        this.data &#x3D; data</span><br><span class="line">        this.key &#x3D; key</span><br><span class="line">        this.children &#x3D; children</span><br><span class="line">        this.text &#x3D; text</span><br><span class="line">        &#x2F;&#x2F; 还有很多其他的属性，这里就不一一写出来了</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 创建元素节点虚拟DOM</span><br><span class="line">function createElement(tag, data&#x3D; &#123;&#125;, ...children) &#123;</span><br><span class="line">    const key &#x3D; data.key</span><br><span class="line">    return new VNode(tag, data, key, children)</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 创建文本节点虚拟DOM</span><br><span class="line">function createTextNode(text) &#123;</span><br><span class="line">    return new VNode(undefined, undefined, undefined, undefined, text)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="patch-diff算法"><a href="#patch-diff算法" class="headerlink" title="patch - diff算法"></a>patch - diff算法</h2><p>如果是初次渲染，patch函数会将虚拟DOM转化成真正的DOM；<br>如果不是初次渲染，patch函数回通过diff算法对新旧虚拟DOM进行对比；</p>
+<p><strong>初次渲染</strong>：oldVnode是el节点，vnode是虚拟DOM</p>
+<ul>
+<li>调用createElm方法将虚拟DOM转化成真实的DOM：<br>判断当前节点是元素节点还是文本，如果是元素，使用<code>document.createElement</code>创建元素，并且使用<code>el.setAttribute</code>给元素绑定属性，循环子节点递归创建元素绑定属性，如果是文本，使用<code>document.createTextNode</code>创建文本。</li>
+<li>将生成的DOM插入到el的后面，不能直接appendChild，因为el里面可能有同级的节点，需要使用insertBefore；</li>
+<li>最后删除oldVnode。</li>
+</ul>
+<p>具体代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">export function patch(oldVnode, vnode) &#123;</span><br><span class="line">  &#x2F;&#x2F; 判断oldVnode的类型，如果是初次渲染，oldVnode就是el节点，非初次渲染，oldVnode就是上一次的虚拟DOM</span><br><span class="line">  const isRealElement &#x3D; oldVnode.nodeType;</span><br><span class="line">  if (isRealElement) &#123; &#x2F;&#x2F; 初次渲染</span><br><span class="line">    const oldElm &#x3D; oldVnode</span><br><span class="line">    const parentElm &#x3D; oldElm.parentNode</span><br><span class="line">    &#x2F;&#x2F; 生成真实DOM对象</span><br><span class="line">    const el &#x3D; createElm(vnode)</span><br><span class="line">    &#x2F;&#x2F; 将生成的真实DOM。插入到el的下一个节点的前面</span><br><span class="line">    &#x2F;&#x2F; 也就是插到el的后面</span><br><span class="line">    &#x2F;&#x2F; 不直接appendChild是因为可能页面中有其他el同级节点，不能破坏顺序</span><br><span class="line">    parentElm.insertBefore(el, oldElm.nextSibling)</span><br><span class="line">    &#x2F;&#x2F; 删除老el节点</span><br><span class="line">    parentElm.removeChild(oldVnode)</span><br><span class="line">    return el</span><br><span class="line">  &#125; else &#123; &#x2F;&#x2F; 非初次渲染</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 虚拟DOM生成真实DOM</span><br><span class="line">function createElm(vnode) &#123;</span><br><span class="line">  const &#123; tag, data, key, children, text &#125; &#x3D; vnode</span><br><span class="line">  &#x2F;&#x2F; 判断是元素节点还是文本节点</span><br><span class="line">  if (typeof tag &#x3D;&#x3D;&#x3D; &#39;string&#39;) &#123;</span><br><span class="line">    &#x2F;&#x2F; 创建标签</span><br><span class="line">    vnode.el &#x3D; document.createElement(tag)</span><br><span class="line">    &#x2F;&#x2F; 解析虚拟DOM属性</span><br><span class="line">    updateProperties(vnode)</span><br><span class="line">    &#x2F;&#x2F; 递归，将子节点也生成真实DOM</span><br><span class="line">    children.forEach(child &#x3D;&gt; &#123;</span><br><span class="line">      return vnode.el.appendChild(createElm(child))</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    &#x2F;&#x2F; 文本节点直接创建</span><br><span class="line">    vnode.el &#x3D; document.createTextNode(text)</span><br><span class="line">  &#125;</span><br><span class="line">  return vnode.el</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 解析虚拟DOM的属性</span><br><span class="line">function updateProperties(vnode) &#123;</span><br><span class="line">  const newProps &#x3D; vnode.data || &#123;&#125;</span><br><span class="line">  const el &#x3D; vnode.el</span><br><span class="line">  for(let key in newProps) &#123;</span><br><span class="line">    if (key &#x3D;&#x3D;&#x3D; &#39;style&#39;) &#123;</span><br><span class="line">      &#x2F;&#x2F; style的处理</span><br><span class="line">      for (let styleName in newProps.style) &#123;</span><br><span class="line">          el.style[styleName] &#x3D; newProps.style[styleName]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else if (key &#x3D;&#x3D;&#x3D; &#39;class&#39;) &#123;</span><br><span class="line">      &#x2F;&#x2F; class的处理</span><br><span class="line">      el.className &#x3D; newProps.class</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      &#x2F;&#x2F; 调用dom的setAttribute进行属性设置</span><br><span class="line">      el.setAttribute(key, newProps[key])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>非初次渲染</strong>：新旧虚拟DOM通过diff算法比对<br><img src="https://s2.loli.net/2022/04/15/UrabpMosut2vYXH.png" alt=""><br>注意：如果是静态节点，diff算法会自动跳过，不进行比对。</p>
+<ul>
+<li>判断新旧标签是否一致，不一致的话就用新的替换旧的-replaceChildren()；<br><strong>标签一致条件</strong>：key值相等，标签名相等，都是/不是注释节点，都定义/未定义data，如果是input标签type是否相等。</li>
+<li>如果旧节点是文本节点，判断新旧文本内容是否一致，不一致就将旧文本修改成新文本内容oldVnode.el.textContent = vnode.text；</li>
+<li>如果标签一致且不是文本节点，<strong>为了节点复用，直接将旧的虚拟DOM对应的真实DOM赋值给新的虚拟DOM的el属性</strong>；</li>
+<li>更新属性：如果新的节点没有这个属性，需要把老的节点属性移除，新节点没有style，老节点style置空，遍历新节点的所有属性，旧节点setAttribute新增属性；</li>
+<li>旧节点有子节点但是新节点没有，使用<code>el.innerHTML =&#39;&#39;</code>将旧节点的内容置空；</li>
+<li>新节点有子节点但是老节点没有，遍历新节点的子节点，使用appendChild将子节点添加到旧节点中。</li>
+<li><strong>新老节点都有子节点，对子节点进行更新updateChildren，这是diff的核心</strong>：<br>取新旧子节点的首尾节点vnode和对应下标index，只要新旧子节点的startIndex&lt;=endIndex时就一直循环对比：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let oldStartIndex &#x3D; 0; &#x2F;&#x2F;老儿子的起始下标</span><br><span class="line">let oldStartVnode &#x3D; oldCh[0]; &#x2F;&#x2F;老儿子的第一个节点</span><br><span class="line">let oldEndIndex &#x3D; oldCh.length - 1; &#x2F;&#x2F;老儿子的结束下标</span><br><span class="line">let oldEndVnode &#x3D; oldCh[oldEndIndex]; &#x2F;&#x2F;老儿子的起结束节点</span><br><span class="line"></span><br><span class="line">let newStartIndex &#x3D; 0; &#x2F;&#x2F;同上  新儿子的</span><br><span class="line">let newStartVnode &#x3D; newCh[0];</span><br><span class="line">let newEndIndex &#x3D; newCh.length - 1;</span><br><span class="line">let newEndVnode &#x3D; newCh[newEndIndex];</span><br><span class="line">while (oldStartIndex &lt;&#x3D; oldEndIndex &amp;&amp; newStartIndex &lt;&#x3D; newEndIndex) &#123;......&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>头头比较：判断新旧子节点的第一个节点是否是同一个节点，如果是的话就递归调用patch函数进行对比，新旧子节点的startIndex + 1，让第二个子节点作为第一个子节点;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if (isSameVnode(oldStartVnode, newStartVnode)) &#123;</span><br><span class="line">  &#x2F;&#x2F; 头和头对比 依次向后追加</span><br><span class="line">  patch(oldStartVnode, newStartVnode); &#x2F;&#x2F;递归比较儿子以及他们的子节点</span><br><span class="line">  oldStartVnode &#x3D; oldCh[++oldStartIndex];</span><br><span class="line">  newStartVnode &#x3D; newCh[++newStartIndex];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>尾尾比较：判断新旧子节点的最后一个节点是否是同一个节点，如果是的话就递归调用patch函数进行对比，新旧子节点的endIndex - 1，让倒数第二个子节点作为最后一个子节点;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if (isSameVnode(oldEndVnode, newEndVnode)) &#123;</span><br><span class="line">  &#x2F;&#x2F;尾和尾对比 依次向前追加</span><br><span class="line">  patch(oldEndVnode, newEndVnode);</span><br><span class="line">  oldEndVnode &#x3D; oldCh[--oldEndIndex];</span><br><span class="line">  newEndVnode &#x3D; newCh[--newEndIndex];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>旧的头和新的尾比较：判断旧的头和新的尾是否是同一个节点，如果是的话递归调用patch函数进行对比，把旧的头部移动到尾部，旧的startIndex + 1，新的endIndex - 1；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (isSameVnode(oldStartVnode, newEndVnode)) &#123;</span><br><span class="line">  &#x2F;&#x2F; 旧的头和新的尾相同 把旧的头部移动到尾部</span><br><span class="line">  patch(oldStartVnode, newEndVnode);</span><br><span class="line">  &#x2F;&#x2F;insertBefore可以移动或者插入真实dom</span><br><span class="line">  parent.insertBefore(oldStartVnode.el, oldEndVnode.el.nextSibling); </span><br><span class="line">  oldStartVnode &#x3D; oldCh[++oldStartIndex];</span><br><span class="line">  newEndVnode &#x3D; newCh[--newEndIndex];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>旧的尾和新的头比较：判断旧的尾和新的头是否是同一个节点，如果是的话递归调用patch函数进行对比，把旧的尾部移动到头部，旧的endIndex - 1，新的startIndex + 1；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if (isSameVnode(oldEndVnode, newStartVnode)) &#123;</span><br><span class="line">  &#x2F;&#x2F; 旧的尾和新的头相同 把旧的尾部移动到头部</span><br><span class="line">  patch(oldEndVnode, newStartVnode);</span><br><span class="line">  parent.insertBefore(oldEndVnode.el, oldStartVnode.el);</span><br><span class="line">  oldEndVnode &#x3D; oldCh[--oldEndIndex];</span><br><span class="line">  newStartVnode &#x3D; newCh[++newStartIndex];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>如果头头、尾尾、头尾、尾头的比较都不满足的话，就<strong>暴力对比</strong>，利用旧的子节点建立key和index的映射表，然后从新的子节点的开始节点开始，在旧子节点的映射表里面找index，如果没有找到index，说明旧的子节点没有这个节点，就将这个节点插入，如果找到index，说明旧的节点有这个就饿点，将这个节点移动到前面，并递归调用patch函数。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 根据key来创建旧的子节点的index映射表  </span><br><span class="line">&#x2F;&#x2F; 类似 &#123;&#39;a&#39;:0,&#39;b&#39;:1&#125; 代表key为&#39;a&#39;的节点在第一个位置 key为&#39;b&#39;的节点在第二个位置</span><br><span class="line">function makeIndexByKey(children) &#123;</span><br><span class="line">  let map &#x3D; &#123;&#125;;</span><br><span class="line">  children.forEach((item, index) &#x3D;&gt; &#123;</span><br><span class="line">    map[item.key] &#x3D; index;</span><br><span class="line">  &#125;);</span><br><span class="line">  return map;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 生成的映射表</span><br><span class="line">let map &#x3D; makeIndexByKey(oldCh);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 暴力对比</span><br><span class="line">&#x2F;&#x2F; 从新的开始子节点开始，利用key查找旧子节点的映射表的index</span><br><span class="line">let moveIndex &#x3D; map[newStartVnode.key];</span><br><span class="line">if (!moveIndex) &#123;</span><br><span class="line">  &#x2F;&#x2F; 旧的节点找不到  直接插入</span><br><span class="line">  parent.insertBefore(createElm(newStartVnode), oldStartVnode.el);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  &#x2F;&#x2F;找得到就拿到旧的节点</span><br><span class="line">  let moveVnode &#x3D; oldCh[moveIndex]; </span><br><span class="line">  &#x2F;&#x2F;这个是占位操作 避免数组塌陷  防止老节点移动走了之后破坏了初始的映射表位置</span><br><span class="line">  oldCh[moveIndex] &#x3D; undefined; </span><br><span class="line">  &#x2F;&#x2F;把找到的节点移动到最前面</span><br><span class="line">  parent.insertBefore(moveVnode.el, oldStartVnode.el); </span><br><span class="line">  patch(moveVnode, newStartVnode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+如果旧节点循环结束但是新节点还有，将新节点插入到旧节点的头部或者尾部：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if (newStartIndex &lt;&#x3D; newEndIndex) &#123;</span><br><span class="line">  for (let i &#x3D; newStartIndex; i &lt;&#x3D; newEndIndex; i++) &#123;</span><br><span class="line">    &#x2F;&#x2F; 这是一个优化写法 insertBefore的第一个参数是null等同于appendChild作用</span><br><span class="line">    const ele &#x3D; newCh[newEndIndex + 1] &#x3D;&#x3D; null ? null : newCh[newEndIndex + 1].el;</span><br><span class="line">    parent.insertBefore(createElm(newCh[i]), ele);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+如果新节点循环结束但是旧节点还有，将剩余的旧节点删除：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (oldStartIndex &lt;&#x3D; oldEndIndex) &#123;</span><br><span class="line">  for (let i &#x3D; oldStartIndex; i &lt;&#x3D; oldEndIndex; i++) &#123;</span><br><span class="line">    let child &#x3D; oldCh[i];</span><br><span class="line">    if (child !&#x3D; undefined) &#123;</span><br><span class="line">      parent.removeChild(child.el);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<p>具体代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">export function patch(oldVnode, vnode) &#123;</span><br><span class="line">  &#x2F;&#x2F; 判断oldVnode的类型，如果是初次渲染，oldVnode就是el节点，非初次渲染，oldVnode就是上一次的虚拟DOM</span><br><span class="line">  const isRealElement &#x3D; oldVnode.nodeType;</span><br><span class="line">  if (isRealElement) &#123; &#x2F;&#x2F; 初次渲染</span><br><span class="line">    </span><br><span class="line">  &#125; else &#123; &#x2F;&#x2F; 非初次渲染</span><br><span class="line">    if (oldVnode.tag !&#x3D;&#x3D; vnode.tag) &#123;</span><br><span class="line">      &#x2F;&#x2F; 如果新旧标签不一致 用新的替换旧的 oldVnode.el代表的是真实dom节点--同级比较</span><br><span class="line">      oldVnode.el.parentNode.replaceChild(createElm(vnode), oldVnode.el);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 如果旧节点是一个文本节点</span><br><span class="line">    if (!oldVnode.tag) &#123;</span><br><span class="line">      if (oldVnode.text !&#x3D;&#x3D; vnode.text) &#123;</span><br><span class="line">        oldVnode.el.textContent &#x3D; vnode.text;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 不符合上面两种 代表标签一致 并且不是文本节点</span><br><span class="line">    &#x2F;&#x2F; 为了节点复用 所以直接把旧的虚拟dom对应的真实dom赋值给新的虚拟dom的el属性</span><br><span class="line">    const el &#x3D; (vnode.el &#x3D; oldVnode.el);</span><br><span class="line">    updateProperties(vnode, oldVnode.data); &#x2F;&#x2F; 更新属性</span><br><span class="line">    const oldCh &#x3D; oldVnode.children || []; &#x2F;&#x2F; 老的儿子</span><br><span class="line">    const newCh &#x3D; vnode.children || []; &#x2F;&#x2F; 新的儿子</span><br><span class="line">    if (oldCh.length &gt; 0 &amp;&amp; newCh.length &gt; 0) &#123;</span><br><span class="line">      &#x2F;&#x2F; 新老都存在子节点</span><br><span class="line">      updateChildren(el, oldCh, newCh);</span><br><span class="line">    &#125; else if (oldCh.length) &#123;</span><br><span class="line">      &#x2F;&#x2F; 老的有儿子新的没有</span><br><span class="line">      el.innerHTML &#x3D; &quot;&quot;;</span><br><span class="line">    &#125; else if (newCh.length) &#123;</span><br><span class="line">      &#x2F;&#x2F; 新的有儿子</span><br><span class="line">      for (let i &#x3D; 0; i &lt; newCh.length; i++) &#123;</span><br><span class="line">        const child &#x3D; newCh[i];</span><br><span class="line">        el.appendChild(createElm(child));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 解析虚拟DOM的属性 - 方法重写</span><br><span class="line">function updateProperties(vnode，oldProps &#x3D; &#123;&#125;) &#123;</span><br><span class="line">  const newProps &#x3D; vnode.data || &#123;&#125; &#x2F;&#x2F;新的vnode的属性</span><br><span class="line">  const el &#x3D; vnode.el &#x2F;&#x2F; 真实节点</span><br><span class="line">  &#x2F;&#x2F; 如果新的节点没有 需要把老的节点属性移除</span><br><span class="line">  for (const k in oldProps) &#123;</span><br><span class="line">    if (!newProps[k]) &#123;</span><br><span class="line">      el.removeAttribute(k);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 对style样式做特殊处理 如果新的没有 需要把老的style值置为空</span><br><span class="line">  const newStyle &#x3D; newProps.style || &#123;&#125;;</span><br><span class="line">  const oldStyle &#x3D; oldProps.style || &#123;&#125;;</span><br><span class="line">  for (const key in oldStyle) &#123;</span><br><span class="line">    if (!newStyle[key]) &#123;</span><br><span class="line">      el.style[key] &#x3D; &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 遍历新的属性 进行增加操作</span><br><span class="line">  for (const key in newProps) &#123;</span><br><span class="line">    if (key &#x3D;&#x3D;&#x3D; &quot;style&quot;) &#123;</span><br><span class="line">      for (const styleName in newProps.style) &#123;</span><br><span class="line">        el.style[styleName] &#x3D; newProps.style[styleName];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else if (key &#x3D;&#x3D;&#x3D; &quot;class&quot;) &#123;</span><br><span class="line">      el.className &#x3D; newProps.class;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      &#x2F;&#x2F; 给这个元素添加属性 值就是对应的值</span><br><span class="line">      el.setAttribute(key, newProps[key]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="为什么不建议用index作为循环项的key"><a href="#为什么不建议用index作为循环项的key" class="headerlink" title="为什么不建议用index作为循环项的key"></a>为什么不建议用index作为循环项的key</h1><p>假设有三个li标签，内容分别为a b c，在最前面新增一个li标签，内容是add。</p>
+<p>由上面的diff算法可以知道，新旧虚拟DOM会进行头头、尾尾、头尾、尾头对比，判断是否是同一个节点。如果是用index作为循环项的key，新旧节点的头都是key为0的li，就会判定为是同一个节点，key为1和2的节点同理也会被判定会是同一个节点，导致相同key的节点会去进行更新文本的操作，而原本就有的c节点，却因为旧的虚拟DOM没有key为3的节点，而被当做了新节点，执行了插入的操作。这样所有的li标签都更新了。</p>
+<p>但是如果是用独一无二的值，比如id作为循环项的key，a b c三个节点的key不会改变，就会节点复用，而新增的add节点由于旧的虚拟DOM中没有key对应的节点，会执行新增操作，这样只需要新增一个节点其他三个节点不动就可以完成视图的更新，节省了性能。</p>
+<h1 id="Vue-实例生命周期"><a href="#Vue-实例生命周期" class="headerlink" title="Vue 实例生命周期"></a>Vue 实例生命周期</h1><p>一个 Vue 应用由一个通过 new Vue 创建的根 Vue 实例，以及可选的嵌套的、可复用的组件树组成。所有的 Vue 组件都是 Vue 实例，并且接受相同的选项对象 (一些根实例特有的选项除外)。<br><img src="https://s2.loli.net/2022/04/08/cgPZud6QyU3pb1h.png" alt=""><br>Vue 实例的生命周期如上图所示，大致可以分为四个阶段：</p>
+<ul>
+<li><strong>初始化阶段</strong>：为 Vue 实例初始化一些属性，事件以及响应式数据；</li>
+<li><strong>模板编译阶段</strong>：将模板编译成渲染函数；</li>
+<li><strong>挂载阶段</strong>：将实例挂载到指定的 DOM 上，即将模板渲染到真实 DOM 中；</li>
+<li><strong>销毁阶段</strong>：将实例自身从父组件中删除，并取消依赖追踪及事件监听器。</li>
+</ul>
+<h1 id="生命周期-–-初始化阶段"><a href="#生命周期-–-初始化阶段" class="headerlink" title="生命周期 – 初始化阶段"></a>生命周期 – 初始化阶段</h1><h2 id="new-Vue"><a href="#new-Vue" class="headerlink" title="new Vue()"></a>new Vue()</h2><p>初始化阶段做的第一件事就是<code>new Vue()</code>创建一个 Vue 实例，从 new 操作符就可以看出 Vue 其实就是一个构造函数，传入的参数是一个对象，定义为 options，以下是Vue 的源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;index.js</span><br><span class="line">function Vue(options) &#123;</span><br><span class="line">  this._init(options)</span><br><span class="line">&#125;</span><br><span class="line">initMixin(Vue)</span><br><span class="line">&#x2F;&#x2F;将_render函数和渲染对应的创建节点类型的方法_c _v _e _s等绑定到Vue上</span><br><span class="line">renderMixin(Vue)</span><br><span class="line">&#x2F;&#x2F; 将_updata方法(虚拟DOM转为真实DOM方法)绑定到Vue上</span><br><span class="line">lifecycleMixin(Vue)</span><br><span class="line">export default Vue</span><br></pre></td></tr></table></figure>
+<p>这个构造函数的核心代码只有一行<code>this._init(options)</code>，这个<code>_init</code>方法是在执行<code>initMixin</code>方法的时候得到的，具体<code>initMixin</code>源码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;init.js</span><br><span class="line">export function initMixin(Vue) &#123;</span><br><span class="line">  Vue.prototype._init &#x3D; function (options) &#123;</span><br><span class="line">    &#x2F;&#x2F; 将Vue实例赋值给变量vm</span><br><span class="line">    const vm &#x3D; this;</span><br><span class="line">    &#x2F;&#x2F; options合并</span><br><span class="line">    vm.$options &#x3D; mergeOptions(</span><br><span class="line">      resolveConstructorOptions(vm.constructor),</span><br><span class="line">      options || &#123;&#125;,</span><br><span class="line">      vm</span><br><span class="line">    )</span><br><span class="line">    vm._self &#x3D; vm</span><br><span class="line">    initLifecycle(vm) &#x2F;&#x2F; 初始化生命周期</span><br><span class="line">    initEvents(vm) &#x2F;&#x2F; 初始化事件</span><br><span class="line">    initRender(vm) &#x2F;&#x2F; 初始化渲染</span><br><span class="line">    callHook(vm, &#39;beforeCreate&#39;) &#x2F;&#x2F; 调用生命周期钩子函数</span><br><span class="line">    initInjections(vm) &#x2F;&#x2F;初始化injections</span><br><span class="line">    initState(vm) &#x2F;&#x2F; 初始化状态 props-&gt;methods-&gt;data-&gt;computed-&gt;watch</span><br><span class="line">    initProvide(vm) &#x2F;&#x2F; 初始化 provide</span><br><span class="line">    callHook(vm, &#39;created&#39;)&#x2F;&#x2F; 调用生命周期钩子函数</span><br><span class="line">    &#x2F;&#x2F; 如果传入了 el 就调用$mount函数进入模板编译与挂载阶段</span><br><span class="line">    if (vm.$options.el) &#123;</span><br><span class="line">      vm.$mount(vm.$options.el)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>initMixin</code>方法里面就干了一件事，将<code>_init</code>方法绑定到 Vue 的原型上，同时<code>_init</code>方法也在构造函数内部调用激活，执行了<code>_init</code>方法里面的一系列初始化操作。<br>Vue 实例赋值给 vm – options合并 – 初始化属性、事件和响应数据 – 调用生命周期钩子函数 – 进入模板编译与挂载阶段</p>
+<h2 id="options合并"><a href="#options合并" class="headerlink" title="options合并"></a>options合并</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vm.$options &#x3D; mergeOptions(</span><br><span class="line">  resolveConstructorOptions(vm.constructor),</span><br><span class="line">  options || &#123;&#125;,</span><br><span class="line">  vm</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>options合并就是将用户传递的options选项与当前构造函数的options属性及其父级构造函数的options属性进行合并，得到一个新的options选项，并将新的options选项绑定到Vue实例的$options属性上。</p>
+<ul>
+<li><code>resolveConstructorOptions(vm.constructor)</code>：返回的是Vue构造函数自定义的options选项，<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 先通过Object.create(null)创建一个options空对象</span><br><span class="line">Vue.options &#x3D; Object.create(null)</span><br><span class="line">&#x2F;&#x2F; ASSET_TYPES &#x3D; [&#39;component&#39;,&#39;directive&#39;,&#39;filter&#39;]</span><br><span class="line">&#x2F;&#x2F; 然后给options绑定component,directive,filter空对象</span><br><span class="line">ASSET_TYPES.forEach(type &#x3D;&gt; &#123;</span><br><span class="line">  Vue.options[type + &#39;s&#39;] &#x3D; Object.create(null)</span><br><span class="line">&#125;)</span><br><span class="line">&#x2F;&#x2F; Vue.options.components &#x3D; &#123;&#125;</span><br><span class="line">&#x2F;&#x2F; Vue.options.directives &#x3D; &#123;&#125;</span><br><span class="line">&#x2F;&#x2F; Vue.options.filters &#x3D; &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 最后通过extend把一些内置组件扩展到Vue.options.components上</span><br><span class="line">&#x2F;&#x2F; 内置组件：&lt;keep-alive&gt;、&lt;transition&gt;、&lt;transition-group&gt;</span><br><span class="line">extend(Vue.options.components, builtInComponents)</span><br></pre></td></tr></table></figure></li>
+<li>mergeOptions：主要功能是把Vue实例的options和用户传入的options根据一些合并策略，合并成一个新对象并返回。这里的合并并不是简单的属性复制，而是根据被合并的不同的选项使用不同的合并策略。但是需要注意的是<strong>生命周期的钩子函数的合并</strong>，如果Vue实例的options和用户传入的options都定义了相同的钩子函数，那么它们会把 <strong>2 个钩子函数合并成一个数组</strong>。这是因为Vue允许用户使用Vue.mixin方法向实例混入自定义行为。</li>
+</ul>
+<h2 id="initLifecycle-初始化生命周期"><a href="#initLifecycle-初始化生命周期" class="headerlink" title="initLifecycle - 初始化生命周期"></a>initLifecycle - 初始化生命周期</h2><p>initLifecycle函数的逻辑很简单，就是给实例初始化了一些属性，包括以$开头的供用户使用的外部属性（$refs、$root、$parent、$children），也包括以_开头的供内部使用的内部属性。</p>
+<h2 id="initEvents-初始化事件"><a href="#initEvents-初始化事件" class="headerlink" title="initEvents - 初始化事件"></a>initEvents - 初始化事件</h2><p>当我们在父组件中使用子组件时，可以给子组件上注册一些事件，这些事件包括使用v-on或@注册的自定义事件，也包括注册的浏览器原生事件（需要加 .native 修饰符）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;child @select&#x3D;&quot;selectHandler&quot; 	@click.native&#x3D;&quot;clickHandler&quot;&gt;&lt;&#x2F;child&gt;</span><br></pre></td></tr></table></figure>
+<p>对于自定义事件和原生事件，Vue有不同的处理时机，<strong>原生事件是由父组件处理，而自定义事件是在子组件初始化的时候由父组件传给子组件，再由子组件注册到实例的事件系统中。</strong>所以实现原理如下：</p>
+<ol>
+<li>定义_events空对象用来存储事件；</li>
+<li>获取父组件注册的事件listeners；</li>
+<li>通过对比listeners和oldListeners的不同，调用add和remove进行事件注册和事件卸载：<ul>
+<li>先遍历listeners，获取每一个事件名，如果事件名对应的值不存在，抛出异常，如果存在就判断oldListeners是否有该事件名；</li>
+<li>如果oldListeners不存在该事件名，就调用add函数进行事件注册；</li>
+<li>最后遍历oldListeners，获取每一个事件名，判断事件名在listeners中是否存在，如果不存在就调用remove函数进行事件卸载。</li>
+</ul>
+</li>
+</ol>
+<h2 id="callHook-调用生命周期钩子函数"><a href="#callHook-调用生命周期钩子函数" class="headerlink" title="callHook - 调用生命周期钩子函数"></a>callHook - 调用生命周期钩子函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export function callHook (vm: Component, hook: string) &#123;</span><br><span class="line">  const handlers &#x3D; vm.$options[hook]</span><br><span class="line">  if (handlers) &#123;</span><br><span class="line">    for (let i &#x3D; 0, j &#x3D; handlers.length; i &lt; j; i++) &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">        handlers[i].call(vm)</span><br><span class="line">      &#125; catch (e) &#123;</span><br><span class="line">        handleError(e, vm, &#96;$&#123;hook&#125; hook&#96;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从实例的$options中获取到需要触发的钩子名称所对应的钩子函数数组handlers；</li>
+<li>遍历该数组，将数组中的每个钩子函数都执行一遍。</li>
+</ul>
+<h2 id="initInjections-初始化inject"><a href="#initInjections-初始化inject" class="headerlink" title="initInjections - 初始化inject"></a>initInjections - 初始化inject</h2><p>在Vue的组件通信中，常用的方法有inject和provide，provide和inject都是成对出现的。父组件可以使用provide选项给自己的下游子孙组件内注入一些数据，在下游子孙组件中可以使用inject选项来接收这些数据以便为自己所用。</p>
+<p><strong>既然rovide和inject都是成对出现的，为什么没有一起初始化？</strong><br>_init函数中调用initInjections函数和initProvide函数之间穿插一个initState函数，这是因为inject接收到父组件注入的数据之后，可能会在props、methods、data、computed、watch中使用，所以初始化完inject之后，就需要初始化数据，然后再初始化provide。</p>
+<p>初始化inject试下原理如下：</p>
+<ol>
+<li>初始化inject之前，调用了normalizeInject函数，将inject的选项数据规范化：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 写法一</span><br><span class="line">var Child &#x3D; &#123;</span><br><span class="line">  inject: [&#39;foo&#39;]</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 写法二</span><br><span class="line">const Child &#x3D; &#123;</span><br><span class="line">  inject: &#123;</span><br><span class="line">    foo: &#123; default: &#39;xxx&#39; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 写法三</span><br><span class="line">const Child &#x3D; &#123;</span><br><span class="line">  inject: &#123;</span><br><span class="line">    foo</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 统统转换成以下规范化格式</span><br><span class="line">const Child &#x3D; &#123;</span><br><span class="line">  inject: &#123;</span><br><span class="line">    foo: &#123;</span><br><span class="line">      from: &#39;foo&#39;,</span><br><span class="line">      default: &#39;xxx&#39;  &#x2F;&#x2F;如果有默认的值就有default属性</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>调用resolveInject函数将inject选项中的数据转化成键值对赋值给result：<br>inject选项中的每一项数据key都是由上游父组件提供的，所以我们应该遍历每一个数据key，从数据key拿到对应的from属性，从当前组件起，不断的向上游父级组件的_provided属性中查找该数据key对应的值，直到找到为止。如果在上游所有父级组件中没找到，那么就看在inject 选项是否为该数据key设置了默认值，如果设置了就使用默认值，如果没有设置，则抛出异常。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 父组件</span><br><span class="line">provide:&#123;</span><br><span class="line">  foo: &#39;bar&#39;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 子组件</span><br><span class="line">inject:[&#39;foo&#39;]</span><br><span class="line">&#x2F;&#x2F; result</span><br><span class="line">result &#x3D; &#123;</span><br><span class="line">    &#39;foo&#39;:&#39;bar&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>遍历result中的每一对键值，调用defineReactive函数将其添加当前实例上；<br>defineReactive函数，判断数据是数组还是对象，是数组的话就重写数组的变异方法实现数组的双向数据绑定，如果不是数组的话就是用<code>Object.defineProperty()</code>方法对数据进行get set劫持实现数据的双向绑定。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vm:&#123;</span><br><span class="line">  foo:bar</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>在遍历之前调用toggleObserving(false)函数让<code>shouldObserve = false</code>，作用就是告诉defineReactive函数仅仅是把键值添加到当前实例上但是不需要将其转换成响应式，所以<strong>provide 和 inject 绑定并不是可响应的</strong>。</li>
+</ol>
+<h2 id="initState-初始化状态"><a href="#initState-初始化状态" class="headerlink" title="initState - 初始化状态"></a>initState - 初始化状态</h2><ol>
+<li>给实例新增一个_watchers属性，用来存储当前实例中所有的watcher实例；<br>Vue对每个组件进行数据劫持，所以在每个组件上新增了vm._watchers属性，用来存放这个组件内用到的所有状态的依赖，当其中一个状态发生变化时，就会通知到组件，然后由组件内部使用虚拟DOM进行数据比对，从而降低内存开销，提高性能。</li>
+<li>依次开始初始化<strong>props -&gt; methods -&gt; data -&gt; computed -&gt; watch</strong>：<br>这些顺序不是任意的，而是精心安排的，这样的顺序可以在data里面使用props，在watch里面监听data和props。<ul>
+<li>initProps：<ul>
+<li>props写法既可以是数组，也可以是对象，所以需要调用normalizeProps函数将props接收的数据进行规范化转化，判断props是数组还是对象，遍历props统一转化成一下格式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">props: &#123;</span><br><span class="line">  name:&#123;</span><br><span class="line">      type: xxx</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>遍历props将键名key保存在keys里面，调用validateProp函数校验键key的数据类型是否匹配和获取键对应的值；</li>
+<li>将键key和值通过defineReactive函数添加到props中；</li>
+<li>然后判断键key在vue实例当中是否存在，如果不存在就调用proxy函数在vue实例vm上面绑定以key为属性的代码，<code>this[key] = this._props[key]</code>。<br><code>proxy(vm,&#39;_props&#39;,key)</code>，proxy函数是采用<code>Object.defineProperty()</code></li>
+</ul>
+</li>
+<li>initMethods:<ul>
+<li>遍历传入的methods，判断方法是否存在和有效：<br>判断某个方法key是否有value，判断方法名是否和props里的属性名重复，判断方法名是否已经存在，判断方法名是否以_或者$开头不符合规范。</li>
+<li>如果方法存在且有效，就将方法绑定到vm实例上。</li>
+</ul>
+</li>
+<li>initData：<ul>
+<li>将data指向vm._data，然后遍历data，判断data里面的数据是否合法，比如有无重复定义等；</li>
+<li>如果合法的话就将data里面的属性通过proxy进行代理，使用<code>Object.defineProperty()</code>方法将data里的属性绑定到vue的实例上，比如data里面有一个参数a，这样就可以通过this.a直接访问this._data.a；</li>
+<li>设置监听器Observer，给每个传进来的数据都绑定一个__ ob __对象，表示该数据已经做了响应式处理；</li>
+<li>如果数据对象的属性是<strong>数组</strong>，就重写数组原型的七种变异方法(push pop shift unshift reverse sort splice)，将数组的原型保留并且继承，在不破坏原来执行结果的基础上进行功能的动态扩展，循环数组里面的元素，判断是对象还是数组进行递归操作；</li>
+<li>如果数据对象的属性是<strong>对象</strong>，就遍历每一个属性，执行defineReactive函数，用<code>Object.defineProperty()</code>对数据进行set和get劫持；</li>
+</ul>
+</li>
+<li>initComputed：<ul>
+<li>computed写法，既可以是函数，也可以是对象(里面包含get set函数)；</li>
+<li>遍历computed，判断里面的对应的键key值是函数还是对象，函数的话就默认是getter，对象的话取get函数作为getter，无getter则抛出异常；</li>
+<li>如果不是在服务端渲染环境下，使用键值创建一个Watcher实例<code>new Watcher(vm, getter, () =&gt; {}, { lazy: true })</code>；</li>
+<li>判断当前key在vm实例上是否存在，存在抛出异常，不存在就调用defineComputed函数，使用Watcher实例的depend()方法，将计算属性的watcher添加到依赖表中实现相应处理，最后将computed的键值绑定到vm实例上。</li>
+</ul>
+</li>
+<li>initWatch：<ul>
+<li>watch写法，既可以是函数，也可以是函数名，也可以是对象，也可以是侦听表达式，为了可以灵活运用，多种写法就需要多种判断；</li>
+<li>遍历watch，判断key对应的value是否是数组，是数组就循环调用createWatcher函数创建watcher<code>new Watcher(vm, key, handler, {user: true})</code>，不是就直接创建；</li>
+<li>createWatcher函数：</li>
+</ul>
+<ol>
+<li>先判断value是否是对象，如果是的就表示计算属性是这样的写法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">  c: &#123;</span><br><span class="line">    handler: function (val, oldVal) &#123; &#x2F;* ... *&#x2F; &#125;,</span><br><span class="line">    deep: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+取value的handler作为value。</li>
+<li>然后判断value是否是字符串，如果是字符串就表示计算属性直接调用了methods里面的方法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">  &#x2F;&#x2F; methods选项中的方法名</span><br><span class="line">  b: &#39;someMethod&#39;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+既然是methods里面的方法，就说明该方法已经绑定到了vm实例上面，就让<code>value=vm[value]</code>；</li>
+<li>既不是对象也不是字符串，就默认是函数，不做任何处理。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="生命周期-–-模板编译阶段"><a href="#生命周期-–-模板编译阶段" class="headerlink" title="生命周期 – 模板编译阶段"></a>生命周期 – 模板编译阶段</h1><p>初始化阶段各项工作做完之后调用vm.$mount方法，该方法的调用标志着初始化阶段的结束和进入下一个阶段——模板编译阶段。该阶段所做的主要工作是获取到用户传入的模板内容并将其编译成渲染函数。</p>
+<h2 id="Vue版本"><a href="#Vue版本" class="headerlink" title="Vue版本"></a>Vue版本</h2><ul>
+<li><strong>完整版本</strong>：<br>完整版本是runtime + compiler，同时包含编译器和运行，在完整版本中，可以使用template选项进行模板编写，编译器会自动将template选项中的模板字符串编译成渲染函数render。</li>
+<li><strong>只包含运行时版本</strong>：<br>只包含运行时的版本是指该版本拥有创建Vue实例、渲染并处理Virtual DOM等功能，基本上就是除去编译器外的完整代码。这个版本使用场景有以下两种：<ul>
+<li>在选项中手写render函数去定义渲染过程；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 不需要编译器</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  render (h) &#123;</span><br><span class="line">    return h(&#39;div&#39;, this.hi)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>借助vue-loader这样的编译工具进行编译：比如利用webpack进行vue的工程化开发，会利用vue-loader对*.vue文件进行编译，尽管我们也是利用template模板标签去书写代码，但是此时的Vue已经不需要利用编译器去负责模板的编译工作了，这个过程交给了插件去实现。</li>
+</ul>
+</li>
+</ul>
+<p>编译过程对性能会造成一定的损耗，并且由于加入了编译的流程代码，Vue代码的总体积也更加庞大(运行时版本相比完整版体积要小大约 30%)。因此在实际开发中，我们需要借助像webpack的vue-loader这类工具进行编译，将Vue对模板的编译阶段合并到webpack的构建流程中，这样不仅减少了生产环境代码的体积，也大大提高了运行时的性能，一举两得。</p>
+<h2 id="模板编译过程解析"><a href="#模板编译过程解析" class="headerlink" title="模板编译过程解析"></a>模板编译过程解析</h2><p>模板编译是通过vm.$mount方法实现，有两个版本的Vue，就有两个版本的vm.$mount方法。</p>
+<p><strong>只包含运行时版本的$mount方法</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.$mount &#x3D; function (el,hydrating) &#123;</span><br><span class="line">  el &#x3D; el &amp;&amp; inBrowser ? query(el) : undefined;</span><br><span class="line">  return mountComponent(this, el, hydrating)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>该版本没有模板编译过程，直接获取el对应的元素，调用mountComponent方法进行挂载操作。</p>
+<p><strong>完整版本的$mount方法</strong>：</p>
+<ul>
+<li>获取template模板：options里面如果没有render就是用template，没有template就是用el.outerHTML作为template；</li>
+<li>compileToFunctions(template) - 模板转化成渲染函数render的核心方法：<ul>
+<li><strong>模板解析</strong>：调用parse(html)函数，利用正则匹配HTML代码的开始标签、结束标签和文本，生成对应的AST语法树，不断截取HTML代码字符串，直到HTML代码解析完毕。</li>
+<li><strong>优化</strong>：调用optimize函数，遍历AST语法树，找出其中的静态节点和静态根节点，并打上标记；</li>
+<li><strong>代码生成</strong>：拿到生成好的AST之后，调用generate函数，把AST转化成类似<code>with(this){_c(&#39;div&#39;,{id:&quot;app&quot;},_c(&#39;div&#39;,undefined,_v(&quot;hello&quot;+_s(name)),_c(&#39;span&#39;,undefined,_v(&quot;world&quot;))))}</code>这样的code字符串，然后使用new Function将字符串转化成渲染函数。</li>
+</ul>
+</li>
+</ul>
+<h1 id="生命周期-–-挂载阶段"><a href="#生命周期-–-挂载阶段" class="headerlink" title="生命周期 – 挂载阶段"></a>生命周期 – 挂载阶段</h1><p>模板编译完成之后，会调用mountComponent方法，进入挂载阶段，挂载阶段就是将编译阶段产生的渲染函数执行生成虚拟DOM，将虚拟DOM转化成真实DOM的过程，并对这一过程进行监听，当数据发生变更的时候通过diff算法进行视图更新。</p>
+<p>在mountComponent方法中，会在获取虚拟DOM之前执行生命周期函数<code>callHook(vm, &#39;beforeMount&#39;)</code>，之后执行<code>callHook(vm, &#39;mounted&#39;)</code>，在数据更新之前执行<code>callHook(vm, &#39;beforeUpdate&#39;)</code>，之后执行<code>callHook(vm, &#39;updated&#39;)</code></p>
+<p>所以挂载阶段实际上分成两个阶段：</p>
+<ol>
+<li>beforeMount-mounted：初次渲染，生成虚拟DOM并转化成真正的DOM；</li>
+<li>beforeUpdate-updated: 数据变更，产生新的虚拟DOM，新旧diff对比，更新视图。</li>
+</ol>
+<p>具体过程解析查看上面的模板编译原理。</p>
+<h1 id="生命周期-–-销毁阶段"><a href="#生命周期-–-销毁阶段" class="headerlink" title="生命周期 – 销毁阶段"></a>生命周期 – 销毁阶段</h1><p>当调用了实例的$destroy方法之后，当前实例就进入了销毁阶段，该阶段所做的主要工作是将当前的Vue实例从其父级实例中删除，取消当前实例上的所有依赖追踪并且移除实例上的所有事件监听器。</p>
+<ul>
+<li>判断 _isBeingDestroyed 属性是否为true，这个属性是用来标记当前实例是否处于正在被销毁的状态，如果是true的话直接return，防止反复执行销毁逻辑；</li>
+<li>触发生命周期钩子函数beforeDestroy<code>callHook(vm, &#39;beforeDestroy&#39;)</code>，该钩子函数的调用标志着当前实例正式开始销毁；</li>
+<li>将Vue实例从其父级实例中删除；</li>
+<li>执行<code>vm._watcher.teardown()</code>将实例自身从其他数据的依赖列表中删除，teardown方法的作用是从所有依赖项的Dep列表中将自己删除；</li>
+<li>遍历_watchers，将其中的每一个watcher都调用teardown方法，从而实现移除实例内数据对其他数据的依赖；</li>
+<li>移除实例内响应式数据的引用、给当前实例上添加_isDestroyed属性来表示当前实例已经被销毁，同时将实例的VNode树设置为null；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (vm._data.__ob__) &#123;</span><br><span class="line">  vm._data.__ob__.vmCount--</span><br><span class="line">&#125;</span><br><span class="line">vm._isDestroyed &#x3D; true</span><br><span class="line">vm.__patch__(vm._vnode, null)</span><br></pre></td></tr></table></figure></li>
+<li>触发生命周期钩子函数destroyed<code>callHook(vm, &#39;destroyed&#39;)</code>:</li>
+<li>调用实例的vm.$off方法，移除实例上的所有事件监听器。</li>
+</ul>
+<h1 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h1><h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>keep-alive是Vue内置组件，用于将包裹的组件缓存，而不是销毁。可以将不常变动的组件使用keep-alive包裹起来，这样就可以将组件缓存起来，这样做可以保留组件的状态或避免多次重新渲染，以提高页面性能。</p>
+<p>keep-alive组件接收三个属性：</p>
+<ol>
+<li>include：字符串、正则或者数组，只有名称匹配的组件才会被缓存；</li>
+<li>exculde：字符串、正则或者数组，任何名称匹配的组件都不会被缓存；</li>
+<li>max：数字，最多可以缓存多少个组件实例，一旦这个数字达到了，在新的组件被创建之前，<strong>已缓存的所有组件中最久没有被访问的组件实例会悲哀销毁</strong>。</li>
+</ol>
+<h2 id="实现原理-LRU-最近最少使用算法"><a href="#实现原理-LRU-最近最少使用算法" class="headerlink" title="实现原理 - LRU(最近最少使用算法)"></a>实现原理 - LRU(最近最少使用算法)</h2><p>keep-alive组件内没有常规的template标签，取而代之的是它内部多了一个叫做render的函数，所以它不是一个常规的模板组件，而是一个<strong>函数式组件</strong>。keep-alive组件被渲染的时候，render函数就会被执行，并且设置了abstract属性，不会被渲染成真正的DOM展示到页面上。</p>
+<ol>
+<li><strong>abstract</strong>: 判断此组件是否需要在渲染成真实DOM，true的话会跳过该实例，不进行渲染；</li>
+<li><strong>props</strong>：接收include exclude max三个属性；</li>
+<li><strong>created</strong>：初始化catch 和 keys 两个属性：<ul>
+<li>catch是一个对象，用来存储需要缓存的组件，键名是组件的key，值是组件的VNode；</li>
+<li>keys是一个数组，用来存储每个需要缓存的组件的key。</li>
+</ul>
+</li>
+<li><strong>render函数</strong>：<ul>
+<li>获取默认插槽里面第一个组件节点的VNode，获取组件的name去和include和exclude匹配，如果那么和include不匹配 / 和exclude匹配，说明这个组件不需要缓存，直接return VNode；</li>
+<li>如果需要缓存的话，根据组件ID、tag生成缓存key，根据key取catch[key]：<br>catch[key]无值，未命中缓存，说明这个组件是第一次被缓存，将组件的VNode保存到catch对象里，组件的key保存到keys中，<strong>如果keys的长度超过设定的max，将缓存中的第一个删除(删除catch/keys第一个，将对应的组件销毁(调用$destroy()钩子函数))</strong>；<br>catch[key]有值，命中缓存，说明这个组件已经被缓存了，<strong>将keys里面的key删除，将key放到keys的最后一个</strong>。</li>
+<li>将此组件实例的keepAlive属性设置为true。</li>
+</ul>
+</li>
+<li><strong>mounted</strong>：监听 include 和 exclude 属性是否发生变化，如果发生改变就说明缓存规则发生变化，会遍历catch对象，取出每一项的name，用于和新的缓存规则进行匹配，include如果匹配不上     / exclude如果匹配上了，说明这个组件不需要被缓存，将这个组件实例销毁，再从catch对象里面删除；</li>
+<li><strong>destroyed</strong>：当keep-alive组件被销毁的时候，会遍历catch对象，将还没有销毁的组件进行销毁并从catch对象里面删除。</li>
+</ol>
+<p><strong>注意</strong>：catch[key]未命中缓存，将缓存的第一个删除；catch[key]命中缓存，将原来的key删除放到keys最后，这里用到了缓存淘汰策略<strong>LUR</strong>(Least recently used，最近最少使用)。<br><img src="https://s2.loli.net/2022/04/15/AnjPafBX9c1qLHU.png" alt=""><br>LRU的核心思想是如果数据最近被访问过，那么将来被访问的几率会更高，所以我们将命中缓存的组件key重新插入到this.keys的尾部，这样一来，this.keys中越往头部的数据即将来被访问几率越低，所以当缓存数量达到最大值时，我们就删除将来被访问几率最低的数据，即this.keys中第一个缓存的组件。</p>
+<h2 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h2><p>组件被keep-alive缓存之后，再次渲染的时候就不会在执行created mounted钩子函数，但是在实际的业务场景中，经常需要在组件再次渲染的时候做一些事情，Vue提供了两个钩子函数：</p>
+<ul>
+<li>activated：keep-alive包裹的组件激活的时候触发；</li>
+<li>deactivated：keep-alive包裹的组件移除的时候触发。</li>
+</ul>
+<p>假设keep-alive报过了动态组件A和B，默认展示A，有一个按钮可以切换动态组件：<br>初次渲染：<br>A created -&gt; A mounted -&gt; A activated<br>切换至B组件：<br>A deactivated -&gt; B created -&gt; B mounted -&gt; B activated<br>切换回A组件：<br>B deactivated -&gt; A activated<br>切换回B组件：<br>A deactivated -&gt; B activated</p>
+<h1 id="vm-nextTick"><a href="#vm-nextTick" class="headerlink" title="vm.$nextTick"></a>vm.$nextTick</h1><p><code>vm.$nextTick([callback])</code>的作用是将回调延迟到下次DOM更新循环之后执行，也就是等DOM更新之后再去执行回调函数。</p>
+<p>由<a href="https://crystalsummer.gitee.io/2021/03/28/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E8%BF%9B%E9%98%B6(%E4%B8%80)/">前端基础进阶(一)——事件循环机制(Event Loop)</a>这篇文章知道，事件循环机制有函数调用栈（同步）和任务队列（异步），任务队列需要等函数调用栈执行结束之后执行，而任务又分为宏任务和微任务，微任务的优先级高，先执行微任务，再执行宏任务。<br>微任务：Promise，MutationObserver(html5新特性)，process.nextTick；<br>宏任务：script(整体代码), setTimeout, setInterval, setImmediate。</p>
+<h2 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h2><p>Vue的DOM更新是异步的，也就是说当数据发生变更的时候，不会立即更新DOM，而是会开启一个异步队列，并缓冲在同一个事件循环中发生的所有数据改变，如果一个数据被多次修改的话，只会被推入到队列里面一次。</p>
+<p>但有时候确实会会需要进行DOM的操作，尤其是和第三方插件进行配合的时候。nextTick就提供了一个桥梁，确保我们操作的是更新后的DOM。</p>
+<p><strong>为什么DOM更新是异步的？</strong><br>假设更新是同步的，如果在一段时间内多次修改数据，每修改一次就去更新一次DOM，就会经历set-&gt;dep-&gt;watcher-&gt;update-&gt;patch这样的过程，会非常损耗性能。</p>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>nextTick的核心原理就是利用异步队列来实现顺序的控制。</p>
+<p>Vue进行DOM更新，内部也是调用nextTick来做异步队列控制，当我们调用nextTick的时候，它就在更新DOM的队列后追加了我们定义的回调函数，从而确保我们的回调函数在DOM更新后执行。</p>
+<p>队列控制的最佳选择是微任务，因为宏任务耗费的时间是大于微任务的。但是因为兼容性问题，Vue做了<strong>降级处理</strong>，在浏览器支持的情况下，优先使用微任务Promise/MutationObserver，如果浏览器不支持微任务，就使用宏任务setImmediate/setTimeout(fn, 0)。</p>
+<p>当执行回调队列的时候，需要将队列备份，这是因为有这样的一种情况，nextTick里面又调用了nextTick，如果不备份直接循环执行回调函数，会导致里面nextTick 中的回调函数会进入回调队列。</p>
+<h1 id="vm-set"><a href="#vm-set" class="headerlink" title="vm.$set"></a>vm.$set</h1><p><code>vm.$set(target, key=propertyName/index, value)</code>向响应式对象中添加一个属性，并确保这个新属性同样是响应式的，且触发视图更新。</p>
+<p>核心：<br>如果target是数组，判断key是否是有效索引，是的话就是用splice方法将传入的索引key对应的value值添加进数组<code>target.splice(key, 1, val)</code>。使用splice是因为响应式对数组做了处理，重写了数组的七个变异方法。</p>
+<p>如果target是对象，判断key是否已经存在，存在的话表明不是新增操作，而是修改操作，直接对已经存在的属性进行修改<code>target[key] = value</code>，不存在的话表明是新增操作，判断该对象是否有__ ob __属性，没有的话说明该对象不是响应式数据，直接添加属性即可<code>target[key] = value</code>，有的话说明该对象是响应式数据，调用<code>defineReactive()</code>函数实现数据的绑定和响应，然后通知监听器更新视图<code>ob.dep.notify()</code>。</p>
+<p><img src="https://s2.loli.net/2022/04/18/ixXR1Qvulja6Ynb.png" alt=""></p>
+<h1 id="vm-delete"><a href="#vm-delete" class="headerlink" title="vm.$delete"></a>vm.$delete</h1><p><code>vm.$delete( target, key=propertyName/index )</code>删除对象的属性。如果对象是响应式的，确保删除能触发更新视图。</p>
+<p>核心：<br>如果target是数组，判断key是否是有效索引，是的话就是用splice方法将传入的索引key对应的value值删除 <code>target.splice(key, 1)</code>。</p>
+<p>如果target是对象，判断key是否已经存在，不存在的话什么都不用做，直接退出程序，存在的话删除该属性<code>delete target[key]</code>，然后通知监听器更新视图<code>ob.dep.notify()</code>。</p>
+<h1 id="computed-和-watch"><a href="#computed-和-watch" class="headerlink" title="computed 和 watch"></a>computed 和 watch</h1><ul>
+<li><p>computed：计算属性，依赖已有的变量来计算一个目标变量，大多数情况都是多个变量凑在一起计算出一个变量，<strong>多对一</strong>，具有<strong>缓存机制</strong>，依赖值不变的情况下会直接读取缓存进行复用，computed<strong>不能进行异步操作</strong>；</p>
+</li>
+<li><p>watch：监听属性，监听某一个变量的变化，并执行相应的回调函数，通常是一个变量的变化决定多个变量的变化，<strong>一对多</strong>，watch可以进行<strong>异步操作</strong>。</p>
+</li>
+</ul>
+<p>由数据响应式原理可知，Vue有监听器Watcher，大致分为三类：</p>
+<ol>
+<li>渲染Watcher：变量修改时，负责通知HTML里的重新渲染；</li>
+<li>computed Watcher：变量修改时，负责通知computed里依赖此变量的computed属性变量的修改；</li>
+<li>user Watcher：变量修改时，负责通知watch属性里所对应的变量函数的执行。</li>
+</ol>
+<p>由上文<strong>生命周期-初始化阶段</strong>中的initState里的initComputed和initWatch可知，会对computed和watch创建监听器，computed是<code>new Watcher(vm, getter, () =&gt; {}, { lazy: true })</code>这样创建的，其中lazy是computed特有的，将computed设置成可缓存，即lazy为true的时候，不执行get()方法；watch是<code>new Watcher(vm, key, handler, {user: true})</code>这样创建的，其中user是watch特有的。</p>
+<h1 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h1><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 在双括号里面使用</span><br><span class="line">&lt;div&gt;&#123;&#123; text | textFilter &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&#x2F;&#x2F; 在v-bind里面使用</span><br><span class="line">&lt;div v-bind:id&#x3D;&quot;id | idFilter&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&#x2F;&#x2F; 过滤器串联</span><br><span class="line">&lt;div&gt;&#123;&#123; text | aFilter | bFilter &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&#x2F;&#x2F; 过滤器传参 默认第一个参数是前一个的值，第二个参数是&#39;name&#39;</span><br><span class="line">&lt;div&gt;&#123;&#123; text | aFilter(&#39;name&#39;) &#125;&#125;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h2><p>Vue 对模板进行编译的时候，如果是标签，就使用HTML解析器parseHTML；如果是文本，就是用文本解析器parseText；如果是过滤器的话，有过滤器解析器parseFilters。</p>
+<p>如果过滤器是在双花括号中，过滤器就存在文本中，就在文本解析器parseText中调用过滤器解析器parseFilters函数对写在该处的过滤器进行解析。</p>
+<p>如果过滤器是在v-bind中，过滤器就相当于属性，就在HTML解析器parseHTML的processAttrs函数中调用过滤器解析器parseFilters函数对写在该处的过滤器进行解析。</p>
+<p>最后将过滤器解析成<code>_f(&quot;filter1&quot;)(message)</code>，如果是串联过滤器，就解析成<code>_f(&quot;filter2&quot;)(_f(&quot;filter1&quot;)(message),arg)</code>。</p>
+<p>_f 对应 resolveFilter 函数，该函数取得_f对应的过滤器函数并执行，最后返回需要的值。<br>从options中获取所有的过滤器函数，根据过滤器ID去除对应的函数，先从本地注册找，找不到将ID转换成驼峰形式找，找不到将ID转换成首字母大写找，再找不到就去原型链上找。</p>
+<h1 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h1><h2 id="普通插槽"><a href="#普通插槽" class="headerlink" title="普通插槽"></a>普通插槽</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 父组件</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;child&gt;</span><br><span class="line">    这是插入到默认插槽的内容</span><br><span class="line">    &lt;template v-slot:one&gt;这是插入到one插槽的内容&lt;&#x2F;template&gt;</span><br><span class="line">  &lt;&#x2F;child&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&#x2F;&#x2F; 子组件</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;slot&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">  &lt;slot name&#x3D;&quot;one&quot;&gt;&lt;&#x2F;slot&gt;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>父组件先解析，把child当成子元素处理，把插槽当做child的子元素处理，生成的节点如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;    </span><br><span class="line">  tag: &quot;div&quot;,    </span><br><span class="line">  children: [&#123;        </span><br><span class="line">    tag: &quot;child&quot;,        </span><br><span class="line">    children: [&#39;这是插入到默认插槽的内容&#39;,&#39;这是插入到one插槽的内容&#39;]</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>子组件解析，slot 作为一个占位符，会被解析成一个函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;    </span><br><span class="line">    tag: &quot;div&quot;,    </span><br><span class="line">    children: [</span><br><span class="line">        _t(&#39;default&#39;), &#x2F;&#x2F; 匿名插槽，默认名称为default</span><br><span class="line">        _t(&#39;one&#39;) &#x2F;&#x2F; 具名插槽，名称为one</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>_t函数的作用是把第一步解析得到的插槽节点拿到，然后返回解析后的节点，这样子组件解析后的节点如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;    </span><br><span class="line">  tag: &quot;div&quot;,    </span><br><span class="line">  children: [&#39;这是插入到默认插槽的内容&#39;,&#39;这是插入到one插槽的内容&#39;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="作用域插槽"><a href="#作用域插槽" class="headerlink" title="作用域插槽"></a>作用域插槽</h2><p>作用域插槽是指父组件在子组件的slot中使用子组件的数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 父组件</span><br><span class="line">&lt;child&gt; </span><br><span class="line">  &lt;template v-slot:default&#x3D;&#39;slotde&#39;&gt; </span><br><span class="line">     插入默认 slot 中&#123;&#123; slotde.value1 &#125;&#125;&#123;&#123; slotde.value2 &#125;&#125; </span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">  &lt;template v-slot:one&#x3D;&#39;slotone&#39;&gt;  </span><br><span class="line">    插入one slot 中&#123;&#123; slotone.value1 &#125;&#125;&#123;&#123; slotone.value2 &#125;&#125;</span><br><span class="line">  &lt;&#x2F;template&gt;</span><br><span class="line">  </span><br><span class="line">&lt;&#x2F;child&gt;</span><br><span class="line">&#x2F;&#x2F; 子组件</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;slot :value1&#x3D;&#39;child1&#39; :value2&#x3D;&#39;child2&#39;&gt;&lt;&#x2F;slot&gt;</span><br><span class="line">  &lt;slot name&#x3D;&quot;one&quot; :value1&#x3D;&#39;child1&#39; :value2&#x3D;&#39;child2&#39;&gt;&lt;&#x2F;slot&gt;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">data:&#123;</span><br><span class="line">  child1:&#39;数据1&#39;,</span><br><span class="line">  child2:&#39;数据2&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>父组件解析，遇到作用域插槽，将此插槽封装成一个函数保存到子元素 child 下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;    </span><br><span class="line"> tag: &quot;div&quot;,    </span><br><span class="line">  children: [&#123;        </span><br><span class="line">    tag: &quot;child&quot;</span><br><span class="line">    scopeSlots:&#123;            </span><br><span class="line">        default (data) &#123; &#x2F;&#x2F; 记住这个data参数               </span><br><span class="line">            return [&#39;插入默认 slot 中&#39; + data.value1 + data.value2]</span><br><span class="line">        &#125;,</span><br><span class="line">        one (data) &#123; &#x2F;&#x2F; 记住这个data参数             </span><br><span class="line">            return [&#39;插入one slot 中&#39; + data.value1 + data.value2]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>子组件解析，将对应的插槽数据包装成一个对象，传进_t函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;    </span><br><span class="line">  tag: &quot;div&quot;,    </span><br><span class="line">  children: [</span><br><span class="line">    _t(&#39;default&#39;,&#123;value1: &#39;数据1&#39;, value2: &#39;数据2&#39;&#125;),</span><br><span class="line">    _t(&#39;one&#39;,&#123;value1: &#39;数据1&#39;, value2: &#39;数据2&#39;&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>_t内部执行，包装后的对象被当做data参数传入了scopeSlots中的对应的各个函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;    </span><br><span class="line">  tag: &quot;div&quot;,    </span><br><span class="line">  children: [</span><br><span class="line">    &#39;插入默认 slot 中 数据1 数据2&#39;,</span><br><span class="line">    &#39;插入one slot 中 数据1 数据2&#39;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://baijiahao.baidu.com/s?id=1713594930243225961&wfr=spider&for=pc" target="_blank" rel="noopener">MVC、MVP、MVVM的区别及联系</a><br><a href="https://juejin.cn/column/6969563635194527758" target="_blank" rel="noopener">Sunshine_Lin的掘金专栏：Vue源码解析</a><br><a href="https://vue-js.com/learn-vue/" target="_blank" rel="noopener">Vue源码系列-Vue中文社区</a><br><a href="https://www.cnblogs.com/canfoo/p/6891868.html" target="_blank" rel="noopener">vue的双向绑定原理及实现</a><br><a href="https://www.jianshu.com/p/af0b398602bc" target="_blank" rel="noopener">vue核心之虚拟DOM(vdom)</a></p>
+
+    </div>
+
+    
+    
+    
+    
+    
+      <div>
+          <div>
+    
+        <div style="text-align:center;color: #666;font-size:14px;">-------------本文结束　<i class="fa fa-hourglass-end" style="color:rgb(90,85,85)"></i>　感谢阅读-------------</div>
+    
+</div>
+      </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Crystal
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://crystalsummer.gitee.io/2019/10/09/Vue2%EF%BC%88%E4%B8%80%EF%BC%89/" title="Vue2（一）">http://crystalsummer.gitee.io/2019/10/09/Vue2（一）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"><i class="fa fa-tag"></i> Vue</a>
+              <a href="/tags/%E5%8E%9F%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 原理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/09/01/Git/" rel="prev" title="Git">
+      <i class="fa fa-chevron-left"></i> Git
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/17/Vue2%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="Vue2（二）">
+      Vue2（二） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MDEyMC8yNjYxMA"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#架构模式"><span class="nav-number">1.</span> <span class="nav-text">架构模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC"><span class="nav-number">1.1.</span> <span class="nav-text">MVC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVP"><span class="nav-number">1.2.</span> <span class="nav-text">MVP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVVM"><span class="nav-number">1.3.</span> <span class="nav-text">MVVM</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue"><span class="nav-number">2.</span> <span class="nav-text">Vue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue为什么说是渐进式框架"><span class="nav-number">3.</span> <span class="nav-text">Vue为什么说是渐进式框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue与-Angular-相比"><span class="nav-number">4.</span> <span class="nav-text">Vue与 Angular 相比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-与-React-相比"><span class="nav-number">5.</span> <span class="nav-text">Vue 与 React 相比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SPA"><span class="nav-number">6.</span> <span class="nav-text">SPA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应式数据"><span class="nav-number">7.</span> <span class="nav-text">响应式数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">7.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不足之处"><span class="nav-number">7.2.</span> <span class="nav-text">不足之处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么只对对象劫持，而要对数组进行方法重写？"><span class="nav-number">7.3.</span> <span class="nav-text">为什么只对对象劫持，而要对数组进行方法重写？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接arr-index-xxx无法更新视图"><span class="nav-number">7.4.</span> <span class="nav-text">直接arr[index] &#x3D; xxx无法更新视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现过程"><span class="nav-number">7.5.</span> <span class="nav-text">实现过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模板编译原理"><span class="nav-number">8.</span> <span class="nav-text">模板编译原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模板解析"><span class="nav-number">8.1.</span> <span class="nav-text">模板解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">8.2.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码生成"><span class="nav-number">8.3.</span> <span class="nav-text">代码生成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#虚拟DOM"><span class="nav-number">9.</span> <span class="nav-text">虚拟DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是虚拟DOM"><span class="nav-number">9.1.</span> <span class="nav-text">什么是虚拟DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用虚拟DOM"><span class="nav-number">9.2.</span> <span class="nav-text">为什么要使用虚拟DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟DOM的实现"><span class="nav-number">9.3.</span> <span class="nav-text">虚拟DOM的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mountComponent-渲染入口"><span class="nav-number">9.4.</span> <span class="nav-text">mountComponent - 渲染入口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#render-获取虚拟DOM"><span class="nav-number">9.5.</span> <span class="nav-text">_render - 获取虚拟DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#patch-diff算法"><span class="nav-number">9.6.</span> <span class="nav-text">patch - diff算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么不建议用index作为循环项的key"><span class="nav-number">10.</span> <span class="nav-text">为什么不建议用index作为循环项的key</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-实例生命周期"><span class="nav-number">11.</span> <span class="nav-text">Vue 实例生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生命周期-–-初始化阶段"><span class="nav-number">12.</span> <span class="nav-text">生命周期 – 初始化阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#new-Vue"><span class="nav-number">12.1.</span> <span class="nav-text">new Vue()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#options合并"><span class="nav-number">12.2.</span> <span class="nav-text">options合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initLifecycle-初始化生命周期"><span class="nav-number">12.3.</span> <span class="nav-text">initLifecycle - 初始化生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initEvents-初始化事件"><span class="nav-number">12.4.</span> <span class="nav-text">initEvents - 初始化事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#callHook-调用生命周期钩子函数"><span class="nav-number">12.5.</span> <span class="nav-text">callHook - 调用生命周期钩子函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initInjections-初始化inject"><span class="nav-number">12.6.</span> <span class="nav-text">initInjections - 初始化inject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initState-初始化状态"><span class="nav-number">12.7.</span> <span class="nav-text">initState - 初始化状态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生命周期-–-模板编译阶段"><span class="nav-number">13.</span> <span class="nav-text">生命周期 – 模板编译阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue版本"><span class="nav-number">13.1.</span> <span class="nav-text">Vue版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板编译过程解析"><span class="nav-number">13.2.</span> <span class="nav-text">模板编译过程解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生命周期-–-挂载阶段"><span class="nav-number">14.</span> <span class="nav-text">生命周期 – 挂载阶段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生命周期-–-销毁阶段"><span class="nav-number">15.</span> <span class="nav-text">生命周期 – 销毁阶段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#keep-alive"><span class="nav-number">16.</span> <span class="nav-text">keep-alive</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">16.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现原理-LRU-最近最少使用算法"><span class="nav-number">16.2.</span> <span class="nav-text">实现原理 - LRU(最近最少使用算法)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期钩子函数"><span class="nav-number">16.3.</span> <span class="nav-text">生命周期钩子函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vm-nextTick"><span class="nav-number">17.</span> <span class="nav-text">vm.$nextTick</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#产生原因"><span class="nav-number">17.1.</span> <span class="nav-text">产生原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现原理"><span class="nav-number">17.2.</span> <span class="nav-text">实现原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vm-set"><span class="nav-number">18.</span> <span class="nav-text">vm.$set</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vm-delete"><span class="nav-number">19.</span> <span class="nav-text">vm.$delete</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#computed-和-watch"><span class="nav-number">20.</span> <span class="nav-text">computed 和 watch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过滤器"><span class="nav-number">21.</span> <span class="nav-text">过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">21.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析"><span class="nav-number">21.2.</span> <span class="nav-text">解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插槽"><span class="nav-number">22.</span> <span class="nav-text">插槽</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#普通插槽"><span class="nav-number">22.1.</span> <span class="nav-text">普通插槽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域插槽"><span class="nav-number">22.2.</span> <span class="nav-text">作用域插槽</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">23.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Crystal"
+      src="/uploads/avatar2.png">
+  <p class="site-author-name" itemprop="name">Crystal</p>
+  <div class="site-description" itemprop="description">Only for recording life</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/crystal-summer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;crystal-summer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:herr_510@163.com" title="E-Mail → mailto:herr_510@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/5596982190/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;5596982190&#x2F;profile?rightmod&#x3D;1&amp;wvr&#x3D;6&amp;mod&#x3D;personnumber&amp;is_all&#x3D;1" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.ruanyifeng.com/blog/" title="http:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;" rel="noopener" target="_blank">阮一峰</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://juejin.im/" title="https:&#x2F;&#x2F;juejin.im&#x2F;" rel="noopener" target="_blank">掘金</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://developer.mozilla.org/zh-CN/" title="https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;" rel="noopener" target="_blank">MDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.zhangxinxu.com/" title="https:&#x2F;&#x2F;www.zhangxinxu.com&#x2F;" rel="noopener" target="_blank">张鑫旭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://codepen.io/" title="https:&#x2F;&#x2F;codepen.io&#x2F;" rel="noopener" target="_blank">CodePen</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.nowcoder.com/" title="https:&#x2F;&#x2F;www.nowcoder.com&#x2F;" rel="noopener" target="_blank">牛客</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.dandyweng.com/" title="https:&#x2F;&#x2F;www.dandyweng.com&#x2F;" rel="noopener" target="_blank">翁天信</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Crystal Summer</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">479k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">7:16</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='34,34,34' opacity='0.5' zIndex='' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
